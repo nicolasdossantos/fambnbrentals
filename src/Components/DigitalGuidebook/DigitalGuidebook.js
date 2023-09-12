@@ -5,7 +5,7 @@ function DigitalGuideBook() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Coming Soon</h1>
+        <h1>Coming Soon kjk</h1>
       </header>
     </div>
   );
