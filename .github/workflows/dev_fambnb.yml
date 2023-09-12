@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Fambnb'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EB7FB9DEB79145208352D7184000B93A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_85714A59D11D4E2E89572FC7BE01B20C }}
           package: .
