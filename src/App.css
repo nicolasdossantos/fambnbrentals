@@ -29,10 +29,9 @@
 }
 
 #coverImage {
-  width: 60%;
-  height: 60%;
-  margin-top: 15%;
-  position: relative;
+  width: 100%;
+  height: auto;
+
 
 }
 

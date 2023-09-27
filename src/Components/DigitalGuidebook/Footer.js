@@ -16,10 +16,11 @@ export default function Footer() {
     <Box  >
       <BottomNavigation
         className="footer"
-        
+
         showLabels
         value={value}
         onChange={(event, newValue) => {
+            
           setValue(newValue);
         }}
       >
