@@ -14,19 +14,49 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: "white";
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .App-link {
   color: #61dafb;
 }
+
+#coverImage {
+  width: 60%;
+  height: 60%;
+  margin-top: 15%;
+  position: relative;
+
+}
+
+.alert  {
+ display: flex;
+  align-items: center; /* Aligns items on the cross axis */
+  justify-content: center; 
+  
+}
+
+.alert-text {
+  font-size: 1.2rem !important;
+  line-height: 0px !important; /* should be equal to the container's height */
+  text-align: center !important; 
+  
+}
+
+.center-div {
+  display: flex;
+  align-items: center; /* Aligns items on the cross axis */
+  justify-content: center; /* Aligns items on the main axis */
+  height: 100vh; /* You might want to adjust the height */
+}
+
 
 @keyframes App-logo-spin {
   from {

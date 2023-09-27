@@ -1,0 +1,25 @@
+.footer {
+  
+}
+
+.MuiBottomNavigation-root {
+    background-color: rgb(25, 118, 210) !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    height: 6% !important;
+
+}
+
+.Mui-selected {
+    color: white !important;
+    background-color: rgb(20, 100, 179) !important;
+    
+}
+
+.MuiBottomNavigationAction-root {
+    
+ 
+
+}

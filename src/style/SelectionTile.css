@@ -1,0 +1,28 @@
+.grid {
+    padding: 1rem;
+}
+
+.tile-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.tile-icon {
+    color:rgb(25, 118, 210);
+}
+
+svg {
+    font-size: 2.5rem !important;
+}
+
+.tile {
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.center-div {
+    display: flex;
+    align-items: center; /* Aligns items on the cross axis */
+    justify-content: center; /* Aligns items on the main axis */
+    height: 100vh; /* You might want to adjust the height */
+  }
