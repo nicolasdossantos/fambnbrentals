@@ -3,7 +3,7 @@
 }
 
 .MuiBottomNavigation-root {
-    background-color: rgb(25, 118, 210) !important;
+    background-color: #7AC7C4 !important;
     position: fixed !important;
     bottom: 0 !important;
     width: 100% !important;
@@ -14,7 +14,7 @@
 
 .Mui-selected {
     color: white !important;
-    background-color: rgb(20, 100, 179) !important;
+    background-color: #4F8B8E !important;
     
 }
 

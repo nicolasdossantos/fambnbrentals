@@ -1,65 +1,64 @@
 import React from 'react';
 import './App.css';
-import TileGrid from './Components/DigitalGuidebook/TileGrid';
-import coverImage from './cover.png'
+
+import { Route, Routes } from 'react-router-dom';
+import DigitalGuideBook from './Components/DigitalGuidebook/DigitalGuidebook'
+import MapComponent from './Components/DigitalGuidebook/MapComponent';
 import Header from './Components/DigitalGuidebook/Header';
 import Footer from './Components/DigitalGuidebook/Footer';
-import Alert from '@mui/material/Alert';
-import WifiIcon from '@mui/icons-material/Wifi';
+
 
 function App() {
 
-  const [timer, setTimer] = React.useState(null);
-  const history = React.useHistory();
+  // const [timer, setTimer] = React.useState(null);
+  // const history = useNavigate();
 
-  const isOnInitialPage = () => history.location.pathname === '/';
+  // const isOnInitialPage = () => history.location.pathname === '/';
 
-  const resetTimer = () => {  
-    if (timer) clearTimeout(timer);
+  // const resetTimer = () => {  
+  //   if (timer) clearTimeout(timer);
     
-    if(isOnInitialPage()) return;
+  //   if(isOnInitialPage()) return;
   
 
-    setTimer(setTimeout(() => {
-      history.push('/'); 
-    }, 300000));
-  };
+  //   setTimer(setTimeout(() => {
+  //     history.push('/'); 
+  //   }, 300000));
+  // };
 
-  const handleInteraction = () => {
-    if(!isOnInitialPage()) resetTimer();
-  }
+  // const handleInteraction = () => {
+  //   if(!isOnInitialPage()) resetTimer();
+  // }
 
-  React.useEffect(() => {
-    if(!isOnInitialPage()) {
-      resetTimer();
-    }
-    window.addEventListener('touchstart', handleInteraction);
-    window.addEventListener('click', handleInteraction);
+  // React.useEffect(() => {
+  //   if(!isOnInitialPage()) {
+  //     resetTimer();
+  //   }
+  //   window.addEventListener('touchstart', handleInteraction);
+  //   window.addEventListener('click', handleInteraction);
     
-    // Cleanup function to remove event listeners when the component unmounts
-    return () => {
-      window.removeEventListener('touchstart', handleInteraction);
-      window.removeEventListener('click', handleInteraction);
-      if(timer) clearTimeout(timer);
-    };
-  }, [history.location.pathname]);
+  //   // Cleanup function to remove event listeners when the component unmounts
+  //   return () => {
+  //     window.removeEventListener('touchstart', handleInteraction);
+  //     window.removeEventListener('click', handleInteraction);
+  //     if(timer) clearTimeout(timer);
+  //   };
+  // }, [history.location.pathname]);
 
   return (
-    <div className="App">
-      <Header props={window}></Header>
-      <div >
-     
-        <div>
-          <img id="coverImage" src={coverImage} alt="logo" />
-        </div>
-        <Alert className="alert" severity="info" icon={<WifiIcon></WifiIcon>}>
-          <p className="alert-text">Network: <b>Fam BnB</b> | Password: <b>Poconos2023</b></p>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<DigitalGuideBook />} />
+        <Route path="/thingstodo" element={<MapComponent />} />
+      </Routes>
+      <Footer />
+    </>
 
-          </Alert>
-        <TileGrid></TileGrid>
-      </div>
-      <Footer></Footer>
-    </div>
+
+
+
+    
     
   );
 }

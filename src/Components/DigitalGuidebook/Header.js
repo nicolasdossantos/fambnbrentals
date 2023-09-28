@@ -15,6 +15,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
+import '../../style/Header.css';
+import FamBnbLogo from '../../fambnb.png';
 
 const drawerWidth = 240;
 
@@ -29,22 +31,10 @@ function Header(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" className="bar">
         <Toolbar>
-          <Typography
-            variant="h6"
-            component="div"
-            textAlign="left"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            FamBnB
-          </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-              <Button sx={{ color: '#fff' }}>
-                <ShareRoundedIcon  />
-              </Button>
-           
-          </Box>
+         <img className="logo" src={FamBnbLogo} alt="logo" />
+          
         </Toolbar>
       </AppBar>
       <nav>
