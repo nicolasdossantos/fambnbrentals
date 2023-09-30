@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import InfoCard from './InfoCard';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import KeyRoundedIcon from '@mui/icons-material/KeyRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
@@ -42,7 +41,7 @@ const TileGrid = () => {
         <div className="grid">
             <Grid spacing={1} container>
                 {tilesData.map((tile) => (
-                    <Grid item xs={6}>
+                    <Grid key={tile.title} item xs={6}>
                         <SelectionTiles title={tile.title} icon={tile.icon} />
                     </Grid>
                 ))}

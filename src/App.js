@@ -1,83 +1,76 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
-
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import DigitalGuideBook from './Components/DigitalGuidebook/DigitalGuidebook'
 import MapComponent from './Components/DigitalGuidebook/MapComponent';
 import Header from './Components/DigitalGuidebook/Header';
 import Footer from './Components/DigitalGuidebook/Footer';
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-
-import { InteractiveBrowserCredential } from '@azure/identity';
-import { SecretClient } from '@azure/keyvault-secrets';
-
-
-
-async function getApiKey() {
-  const credential = new InteractiveBrowserCredential({
-    clientId: " ae2a2a98-04d6-4c32-a052-eb3518ae6817", // The Client Id of your registered app in Azure AD
-  });
-  const vaultUrl = "https://fambnbkv.vault.azure.net/"; // Replace with your Key Vault URI
-  const secretName = "googlemapsapikey"; // Replace with your Secret Name
-  //
-
-  const client = new SecretClient(vaultUrl, credential);
-  try {
-    const secret = await client.getSecret(secretName);
-    return secret.value;
-  } catch (error) {
-    console.error('Error accessing key vault:', error);
-    throw error;
-  }
-}
+import ContactUs from './Components/DigitalGuidebook/ContactUs';
+import {LoadScript} from '@react-google-maps/api';
+import axios from 'axios';
 
 function App() {
+
   const libraries = ["places"];
-  const [apiKey, setApiKey] = useState(""); // Add a state variable for apiKey
-  
+  const [apiKey, setApiKey] = useState("");
+  const [timer, setTimer] = React.useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     async function fetchData() {
-      const key = await getApiKey(); // Get the API key
-      setApiKey(key); // Set the API key in the state
+      if (apiKey !== "") return;
+      await getApiKey();
     }
     fetchData();
   }, []);
-  
-  // const [timer, setTimer] = React.useState(null);
-  // const history = useNavigate();
 
-  // const isOnInitialPage = () => history.location.pathname === '/';
+  const isOnInitialPage = () => location.pathname === "/";
 
-  // const resetTimer = () => {  
-  //   if (timer) clearTimeout(timer);
-    
-  //   if(isOnInitialPage()) return;
-  
+  const resetTimer = () => {
+    if (timer) clearTimeout(timer);
 
-  //   setTimer(setTimeout(() => {
-  //     history.push('/'); 
-  //   }, 300000));
-  // };
+    if (isOnInitialPage()) return;
 
-  // const handleInteraction = () => {
-  //   if(!isOnInitialPage()) resetTimer();
-  // }
 
-  // React.useEffect(() => {
-  //   if(!isOnInitialPage()) {
-  //     resetTimer();
-  //   }
-  //   window.addEventListener('touchstart', handleInteraction);
-  //   window.addEventListener('click', handleInteraction);
-    
-  //   // Cleanup function to remove event listeners when the component unmounts
-  //   return () => {
-  //     window.removeEventListener('touchstart', handleInteraction);
-  //     window.removeEventListener('click', handleInteraction);
-  //     if(timer) clearTimeout(timer);
-  //   };
-  // }, [history.location.pathname]);
+    setTimer(setTimeout(() => {
+      navigate('/');
+    }, 300000));
+  };
+
+  const handleInteraction = () => {
+    if (!isOnInitialPage()) resetTimer();
+  }
+
+  React.useEffect(() => {
+    if (!isOnInitialPage()) {
+      resetTimer();
+    }
+    window.addEventListener('touchstart', handleInteraction);
+    window.addEventListener('click', handleInteraction);
+
+    // Cleanup function to remove event listeners when the component unmounts
+    return () => {
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('click', handleInteraction);
+      if (timer) clearTimeout(timer);
+    };
+  }, [location.pathname]);
+
+
+  async function getApiKey() {
+    const url = 'https://fambnbserver.azurewebsites.net/api/serverhttp?code=KqYL-V3aVOoeyF1EM617QgxRqYo_EirL1AHMWgasAXVmAzFuSsRP3w==';  // Update the URL to match the new function name
+    axios.post(url, JSON.stringify({ googleApiKey: "getGoogleAPIKey" }), {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => {
+        setApiKey(response.data);
+      })
+      .catch(err => console.error('Error:', err))
+  };
 
   return (
     <>
@@ -85,13 +78,12 @@ function App() {
       <Routes>
         <Route path="/" element={<DigitalGuideBook />} />
         <Route path="/thingstodo" element={
-          <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
-          <MapComponent />
-
-          </LoadScript>
-        
-        
+          apiKey === "" ? <h1>Loading...</h1> :
+            <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
+              <MapComponent />
+            </LoadScript>
         } />
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
       <Footer />
     </>
@@ -99,8 +91,8 @@ function App() {
 
 
 
-    
-    
+
+
   );
 }
 
