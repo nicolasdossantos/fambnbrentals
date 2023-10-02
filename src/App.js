@@ -20,6 +20,8 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
+      //todo: Get key later
+      return "Nothing"
       if (apiKey !== "") return;
       await getApiKey();
     }
