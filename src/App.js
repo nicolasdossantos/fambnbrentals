@@ -1,14 +1,14 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import './App.css';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import DigitalGuideBook from './Components/DigitalGuidebook/DigitalGuidebook'
+import { LoadScript } from '@react-google-maps/api';
+import axios from 'axios';
+
+import './App.css';
+import DigitalGuideBook from './Components/DigitalGuidebook/DigitalGuidebook';
 import MapComponent from './Components/DigitalGuidebook/MapComponent';
 import Header from './Components/DigitalGuidebook/Header';
 import Footer from './Components/DigitalGuidebook/Footer';
 import ContactUs from './Components/DigitalGuidebook/ContactUs';
-import {LoadScript} from '@react-google-maps/api';
-import axios from 'axios';
 
 function App() {
 
