@@ -1,0 +1,22 @@
+.attraction-icon {
+   
+    height: 10% !important;
+    width: 10% !important;
+    transform: scale(0.8);
+    transform-origin: center;
+    margin-top: -2%;
+}
+
+.rating {
+   height: 10% !important;
+    width: 10% !important;
+    transform: scale(0.6);
+    transform-origin: center;
+    margin-top: -2%;
+   
+}
+
+.rating-distance-box {
+    margin-top: -2%;
+    margin-left: -3%;
+}

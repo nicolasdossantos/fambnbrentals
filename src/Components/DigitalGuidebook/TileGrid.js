@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
+import {useNavigate} from 'react-router-dom';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import KeyRoundedIcon from '@mui/icons-material/KeyRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
@@ -10,30 +11,38 @@ import SelectionTiles from './SelectionTiles';
 import '../../style/SelectionTile.css'
 
 const TileGrid = () => {
+    const navigate = useNavigate();
+
     const tilesData = [
         {
             title: "Welcome",
-            icon: StarRateRoundedIcon
+            icon: StarRateRoundedIcon,
+            onClickFunction: () => { navigate('/welcome') }
         },
         {
             title: "Arrival Info",
-            icon: KeyRoundedIcon
+            icon: KeyRoundedIcon,
+            onClickFunction: () => { navigate('/arrivalinfo') }
         },
         {
             title: "Before You Leave",
-            icon: ChecklistRoundedIcon
+            icon: ChecklistRoundedIcon,
+            onClickFunction: () => { navigate('/beforeyouleave') }
         },
         {
             title: "House Rules",
-            icon: HouseRoundedIcon
+            icon: HouseRoundedIcon,
+            onClickFunction: () => { navigate('/houserules') }
         },
         {
             title: "Amenities",
-            icon: HotTubRoundedIcon
+            icon: HotTubRoundedIcon,
+            onClickFunction: () => { navigate('/amenities') }
         },
         {
-            title: "Towamensing Trails",
-            icon: PoolRoundedIcon
+            title: "Community",
+            icon: PoolRoundedIcon,
+            onClickFunction: () => { navigate('/community') }
         }
     ]
 
@@ -42,7 +51,7 @@ const TileGrid = () => {
             <Grid spacing={1} container>
                 {tilesData.map((tile) => (
                     <Grid key={tile.title} item xs={6}>
-                        <SelectionTiles title={tile.title} icon={tile.icon} />
+                        <SelectionTiles title={tile.title} icon={tile.icon} onClickFunction={tile.onClickFunction}/>
                     </Grid>
                 ))}
 

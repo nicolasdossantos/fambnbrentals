@@ -9,6 +9,13 @@ import MapComponent from './Components/DigitalGuidebook/MapComponent';
 import Header from './Components/DigitalGuidebook/Header';
 import Footer from './Components/DigitalGuidebook/Footer';
 import ContactUs from './Components/DigitalGuidebook/ContactUs';
+import ThingsToDo from './Components/DigitalGuidebook/ThingsToDo';
+import Welcome from './Components/DigitalGuidebook/Welcome';
+import ArrivalInfo from './Components/DigitalGuidebook/ArrivalInfo';
+import BeforeYouLeave from './Components/DigitalGuidebook/BeforeYouLeave';  
+import HouseRules from './Components/DigitalGuidebook/HouseRules';
+import Amenities from './Components/DigitalGuidebook/Amenities';
+import Community from './Components/DigitalGuidebook/Community';
 
 function App() {
 
@@ -18,15 +25,15 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    async function fetchData() {
-      //todo: Get key later
-      return "Nothing"
-      if (apiKey !== "") return;
-      await getApiKey();
-    }
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     //todo: Get key later
+  //     return "Nothing"
+  //     if (apiKey !== "") return;
+  //     await getApiKey();
+  //   }
+  //   fetchData();
+  // }, []);
 
   const isOnInitialPage = () => location.pathname === "/";
 
@@ -58,7 +65,7 @@ function App() {
       window.removeEventListener('click', handleInteraction);
       if (timer) clearTimeout(timer);
     };
-  }, [location.pathname]);
+  }, []);
 
 
   async function getApiKey() {
@@ -77,16 +84,25 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<DigitalGuideBook />} />
-        <Route path="/thingstodo" element={
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={<DigitalGuideBook />} />
+          {/* <Route path="/thingstodo" element={
           apiKey === "" ? <h1>Loading...</h1> :
             <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
               <MapComponent />
             </LoadScript>
-        } />
-        <Route path="/contactus" element={<ContactUs />} />
-      </Routes>
+        } /> */}
+          <Route path="/thingstodo" element={<ThingsToDo />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path='/welcome' element={<Welcome />}></Route>
+          <Route path='/arrivalinfo' element={<ArrivalInfo />}></Route>
+          <Route path='/beforeyouleave' element={<BeforeYouLeave />}></Route>
+          <Route path='/houserules' element={<HouseRules />}></Route>
+          <Route path='/amenities' element={<Amenities />}></Route>
+          <Route path='/community' element={<Community />}></Route>
+        </Routes>
+      </div>
       <Footer />
     </>
 

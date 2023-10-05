@@ -23,6 +23,14 @@ export default function Footer() {
     }
   }, []);
 
+  const reservationInfo = {
+    guestNames: "John & Jane Doe",
+    checkInDate: "Oct 15, 2023",
+    checkOutDate: "Oct 20, 2023",
+    checkInTime: "3:00 PM",
+    checkOutTime: "11:00 AM"
+  };
+
   const handleHomeClick = () => {
     navigate('/');
   }

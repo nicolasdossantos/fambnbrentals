@@ -2,8 +2,14 @@
     background-color: white !important;
     color: black !important;
     border-bottom: 1px solid #7AC7C4 !important;
-}
-
-.logo {
+    height: 64px; /* assuming this is the height of your AppBar; adjust if necessary */
+  }
+  
+  .logo {
     width: 30%;
-}
+  }
+  
+  /* Add a style for the main content padding */
+  .content-container {
+    padding-top: 70px; /* slightly more than the AppBar height to provide some spacing */
+  }
