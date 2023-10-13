@@ -32,7 +32,8 @@
     "serve": "serve -s build",
     "build": "webpack --config webpack.config.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "npm-install-peers"
   },
   "eslintConfig": {
     "extends": [

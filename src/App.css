@@ -37,6 +37,7 @@
 
 .main-content {
   padding-top: 70px; /* slightly more than the AppBar height to provide some spacing */
+  padding-bottom: 70px; /* slightly more than the AppBar height to provide some spacing */
 }
 
 .alert  {

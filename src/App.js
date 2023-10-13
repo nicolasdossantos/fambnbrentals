@@ -24,16 +24,17 @@ function App() {
   const [timer, setTimer] = React.useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const placeNames = ["Big Boulder Ski Resort", "Hawk Falls", "CamelBack Ski Resort"]
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     //todo: Get key later
-  //     return "Nothing"
-  //     if (apiKey !== "") return;
-  //     await getApiKey();
-  //   }
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      //todo: Get key later
+      console.log("Place names", placeNames)
+      if (apiKey !== "") return;
+      await getApiKey();
+    }
+    fetchData();
+  }, []);
 
   const isOnInitialPage = () => location.pathname === "/";
 
@@ -76,6 +77,7 @@ function App() {
       },
     })
       .then(response => {
+        console.log('Success:', response.data);
         setApiKey(response.data);
       })
       .catch(err => console.error('Error:', err))
@@ -87,13 +89,13 @@ function App() {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<DigitalGuideBook />} />
-          {/* <Route path="/thingstodo" element={
+          <Route path="/thingstodo" element={
           apiKey === "" ? <h1>Loading...</h1> :
             <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
-              <MapComponent />
+              <MapComponent businessNames={placeNames}/>
             </LoadScript>
-        } /> */}
-          <Route path="/thingstodo" element={<ThingsToDo />} />
+        } />
+          {/* <Route path="/thingstodo" element={<ThingsToDo />} /> */}
           <Route path="/contactus" element={<ContactUs />} />
           <Route path='/welcome' element={<Welcome />}></Route>
           <Route path='/arrivalinfo' element={<ArrivalInfo />}></Route>
