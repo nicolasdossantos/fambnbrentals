@@ -28,6 +28,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
+      return "Nothing"
       //todo: Get key later
       console.log("Place names", placeNames)
       if (apiKey !== "") return;
@@ -70,6 +71,7 @@ function App() {
 
 
   async function getApiKey() {
+    // return "test"
     const url = 'https://fambnbserver.azurewebsites.net/api/serverhttp?code=KqYL-V3aVOoeyF1EM617QgxRqYo_EirL1AHMWgasAXVmAzFuSsRP3w==';  // Update the URL to match the new function name
     axios.post(url, JSON.stringify({ googleApiKey: "getGoogleAPIKey" }), {
       headers: {
@@ -89,13 +91,13 @@ function App() {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<DigitalGuideBook />} />
-          <Route path="/thingstodo" element={
-          apiKey === "" ? <h1>Loading...</h1> :
-            <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
-              <MapComponent businessNames={placeNames}/>
-            </LoadScript>
-        } />
-          {/* <Route path="/thingstodo" element={<ThingsToDo />} /> */}
+          {/* <Route path="/thingstodo" element={
+        //   apiKey === "" ? <h1>Loading...</h1> :
+        //     <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
+        //       <MapComponent businessNames={placeNames}/>
+        //     </LoadScript>
+        // } /> */}
+          <Route path="/thingstodo" element={<ThingsToDo />} /> 
           <Route path="/contactus" element={<ContactUs />} />
           <Route path='/welcome' element={<Welcome />}></Route>
           <Route path='/arrivalinfo' element={<ArrivalInfo />}></Route>

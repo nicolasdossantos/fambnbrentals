@@ -6,7 +6,8 @@ import HawkFallsPic from '../../hawkfalls.jpg'
 import RestaurantRoundedIcon from '@mui/icons-material/RestaurantRounded';
 import LocalGroceryStoreRoundedIcon from '@mui/icons-material/LocalGroceryStoreRounded';
 import ToDoCategory from './ToDoCategory';
-import '../../style/ThingsToDo.css'
+import '../../style/ThingsToDo.css';
+import HunanHousePic  from '../../OIP.jpg';
 
 function ThingsToDo() {
 
@@ -32,12 +33,12 @@ function ThingsToDo() {
   
   const restaurants = [
     {
-      image: BigBoulderPic,
-      name: 'Big Boulder Ski Resort',
+      image: HunanHousePic,
+      name: 'Mommy Sorry',
       rating: 4.8,
       distance: 4.2,
       description: 'Two Resorts. Mountains of Memories...Come join us and take your Poconos experience to the next level! Check out our hours of operations below to get the most from your visit.',
-      typeIcon: <DownhillSkiingRoundedIcon style={{ color: "#7AC7C4" }} /> // replace with an actual MUI icon
+      typeIcon: <RestaurantRoundedIcon style={{ color: "#7AC7C4" }} /> // replace with an actual MUI icon
     }
   ]
 
