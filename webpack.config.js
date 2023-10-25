@@ -1,72 +1,73 @@
-
 const path = require('path');
 const UnusedWebpackPlugin = require('unused-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    entry: './src/index.js',
-    mode: 'development',
-    plugins: [
-        new UnusedWebpackPlugin({
-            // Source directories
-            directories: [path.join(__dirname, 'src')],
-            // Exclude patterns
-            exclude: ['*.test.js'],
-            // Root directory (optional)
-            root: __dirname,
-          }),
-	new HtmlWebpackPlugin({
-      template: './public/index.html',  // path to your index.html template
-      filename: 'index.html',  // output file
+  entry: './src/index.js',
+  mode: 'development',
+  plugins: [
+    new Dotenv(),
+    new UnusedWebpackPlugin({
+      directories: [path.join(__dirname, 'src')],
+      exclude: ['*.test.js'],
+      root: __dirname,
     }),
-    ],
-    module: {
-        rules: [
+    new HtmlWebpackPlugin({
+      template: './dist/index.html',
+      filename: 'index.html',
+      inject: true,
+      templateParameters: (compilation, assets, assetTags, options) => {
+        return {
+          PUBLIC_URL: process.env.PUBLIC_URL,
+          compilation: compilation,
+          webpackConfig: compilation.options,
+          htmlWebpackPlugin: {
+            tags: assetTags,
+            files: assets,
+            options: options
+          }
+        };
+      }
+   })
+   
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        use: [
           {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-              loader: "babel-loader",
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash].[ext]',
+              outputPath: 'images/',
             },
           },
-          {
-            test: /\.css$/,
-            use: [
-              'style-loader',
-              'css-loader',
-            ],
-          },
-          {
-            test: /\.(png|jpg|gif|svg)$/,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[ext]',
-                  outputPath: 'images/',
-                },
-              },
-            ],
-          },
-          {
-            test: /\.(jpg|jpeg|png|gif|svg)$/,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[hash].[ext]',
-                  outputPath: 'images/',
-                },
-              },
-            ],
-          }
         ],
-    },
-    resolve: {
-        extensions: ['.js', '.jsx', '.css'],
-    },
-    output: {
-      filename: 'bundle.js',
-      path: __dirname + '/dist'
-    },
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css'],
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: process.env.PUBLIC_URL || '/'
+  },
 };
