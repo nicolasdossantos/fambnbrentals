@@ -3,6 +3,17 @@ import HomeAmenityCard from './HomeAmenityCard';
 import Button from '@mui/material/Button';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import FmdBadRoundedIcon from '@mui/icons-material/FmdBadRounded';
+import LakePicture from '../../photos/community/lake.jpg';
+import BeachPicture from '../../photos/community/beach.jpg';
+import PoolPicture from '../../photos/community/pool.jpg';
+import ClubhousePicture from '../../photos/community/clubhouseview.jpg';
+import VolleyballPicture from '../../photos/community/volleyball.png';
+// import VolleyballPicture from '../../photos/community/volleyball.jpg';
+// import TennisPicture from '../../photos/community/tennis.jpg';
+// import BasketballPicture from '../../photos/community/basketball.jpg';
+import PlaygroundPicture from '../../photos/community/playground.jpeg';
+import BoatPicture from '../../photos/community/boats.jpg';
+
 
 import { useNavigate } from 'react-router-dom';
 
@@ -33,36 +44,36 @@ const Community = () => {
               fontSize: '20px',
               fontWeight: 'bold',
           },
-        container: {
+          container: {
             fontFamily: 'Arial, sans-serif',
             padding: '20px',
             maxWidth: '500px',
             margin: 'auto',
-          }
+          },
     };
     const amenityList = [
         {
-            picture: "",
+            picture: LakePicture,
             title: "Lake",
             description:"Test Description 5"
         },
         {
-            picture: "",
+            picture: BeachPicture,
             title: "Beach",
             description:"Test Description 1"
         },
         {
-            picture: "",
+            picture: PoolPicture,
             title: "Pool",
             description:"Test Description 2"
         },
         {
-            picture: "",
+            picture: ClubhousePicture,
             title: "Clubhouse",
             description:"Test Description 3"
         },
         {
-            picture: "",
+            picture: VolleyballPicture,
             title: "Volleyball Court",
             description:"Test Description 4"
         },
@@ -77,14 +88,14 @@ const Community = () => {
             description:"Test Description 7"
         },
         {
-            picture: "",
+            picture: PlaygroundPicture,
             title: "Playground",
             description:"Test Description 8"
         },
         {
-            picture: "",
+            picture: BoatPicture,
             title: "Boat Rentals",
-            description:"Test Description 9"
+            description:"Test Description 9s"
         }
       
     ]
@@ -99,11 +110,6 @@ const Community = () => {
                  Our HOA only offers 8 wristbands for full access to the lake and pool amenities. Kindly note, anyone over the age of 5 requires a wristband and additional wristbands are NOT available for purchase. We appreciate your understanding and hope you enjoy your stay!
 
             </div>
-
-
-
-            <div>
-.</div>
             {amenityList.map((amenity) => (
                 <HomeAmenityCard amenity={amenity}></HomeAmenityCard>
             ))}

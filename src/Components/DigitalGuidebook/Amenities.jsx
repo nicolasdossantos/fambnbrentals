@@ -2,6 +2,15 @@ import React from "react";
 import HomeAmenityCard from './HomeAmenityCard';
 import Button from '@mui/material/Button';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import GrillPicture from '../../photos/house/Grill.jpg';
+import HotTubPicture from '../../photos/house/Hot tub.jpg';
+import PoolTablePicture from '../../photos/house/pool table.jpg';
+import PingPongTablePicture from '../../photos/house/Ping Pong.jpg';
+import FoosballTablePicture from '../../photos/house/Foosball.jpg';
+import ArcadeGamesPicture from '../../photos/house/Arcades.jpg';
+import BoardGamesPicture from '../../photos/house/Board Games.jpg';
+import CornholePicture from '../../photos/house/Cornhole.jpg';
+
 
 import { useNavigate } from 'react-router-dom';
 
@@ -28,42 +37,42 @@ const Amenities = () => {
     };
     const amenityList = [
         {
-            picture: "",
+            picture: GrillPicture,
             title: "Grill",
             description:"Test Description 5"
         },
         {
-            picture: "",
+            picture:    HotTubPicture,
             title: "Hot Tub",
             description:"Test Description 1"
         },
         {
-            picture: "",
+            picture: PoolTablePicture,
             title: "Pool Table",
             description:"Test Description 2"
         },
         {
-            picture: "",
+            picture: PingPongTablePicture,
             title: "Ping Pong Table",
             description:"Test Description 3"
         },
         {
-            picture: "",
+            picture: FoosballTablePicture,
             title: "Foosball Table",
             description:"Test Description 4"
         },
         {
-            picture: "",
+            picture:ArcadeGamesPicture,
             title: "Arcade Games",
             description:"Test Description 6"
         },
         {
-            picture: "",
+            picture: BoardGamesPicture,
             title: "Board Games",
             description:"Test Description 7"
         },
         {
-            picture: "",
+            picture: CornholePicture,
             title: "Cornhole",
             description:"Test Description 8"
         }
