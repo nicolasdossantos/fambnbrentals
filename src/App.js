@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 import './App.css';
 import DigitalGuideBook from './Components/DigitalGuidebook/DigitalGuidebook';
@@ -10,7 +9,7 @@ import ContactUs from './Components/DigitalGuidebook/ContactUs';
 import ThingsToDo from './Components/DigitalGuidebook/ThingsToDo';
 import Welcome from './Components/DigitalGuidebook/Welcome';
 import ArrivalInfo from './Components/DigitalGuidebook/ArrivalInfo';
-import BeforeYouLeave from './Components/DigitalGuidebook/BeforeYouLeave';  
+import BeforeYouLeave from './Components/DigitalGuidebook/BeforeYouLeave';
 import HouseRules from './Components/DigitalGuidebook/HouseRules';
 import Amenities from './Components/DigitalGuidebook/Amenities';
 import Community from './Components/DigitalGuidebook/Community';
@@ -38,7 +37,7 @@ function App() {
     if (!isOnInitialPage()) resetTimer();
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isOnInitialPage()) {
       resetTimer();
     }
@@ -60,7 +59,7 @@ function App() {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<DigitalGuideBook />} />
-          <Route path="/thingstodo" element={<ThingsToDo />} /> 
+          <Route path="/thingstodo" element={<ThingsToDo />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path='/welcome' element={<Welcome />}></Route>
           <Route path='/arrivalinfo' element={<ArrivalInfo />}></Route>
