@@ -65,13 +65,6 @@ const BeforeYouLeave = () => {
         <ChecklistRoundedIcon style={styles.icon} />
         Before You Leave
       </div>
-
-      {/* Rule: No Smoking */}
-      <div style={styles.rule}>
-        <DoneRoundedIcon alt="No Smoking" style={styles.icon} />
-        Please do not smoke inside the property. Designated areas are available outside.
-      </div>
-
       {/* Rule: No Pets Allowed */}
       <div style={styles.rule}>
         <DoneRoundedIcon style={styles.icon} />
@@ -83,7 +76,7 @@ const BeforeYouLeave = () => {
       </div>
       <div style={styles.rule}>
         <DoneRoundedIcon style={styles.icon} />
-       Cover hot tub & fire pit.
+       Cover hot tub, fire pit & grill.
       </div>
       <div style={styles.rule}>
         <DoneRoundedIcon style={styles.icon} />
@@ -99,7 +92,7 @@ const BeforeYouLeave = () => {
       {/* Rule: No Parties or Events */}
       <div style={styles.rule}>
         <DoneRoundedIcon style={styles.icon} />
-        Set thermostats to 68 degrees.
+        Set thermostats to 50 degrees.
       </div>
 
       {/* Rule: Check-out Procedure */}

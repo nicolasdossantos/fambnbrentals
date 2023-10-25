@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import '../../style/Header.css';
-import FamBnbLogo from '../../fambnb.png';
+import FamBnbLogo from '../../photos/general/fambnb.png';
 
 function Header() {
   const navigate = useNavigate();

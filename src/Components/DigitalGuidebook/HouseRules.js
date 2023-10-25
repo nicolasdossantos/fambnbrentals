@@ -7,6 +7,9 @@ import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 import FlareRoundedIcon from '@mui/icons-material/FlareRounded';
 import Button from '@mui/material/Button';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+
+
 
 import { useNavigate } from 'react-router-dom';
 
@@ -94,6 +97,11 @@ const HouseRules = () => {
       <div style={styles.rule}>
         <FlareRoundedIcon style={styles.icon} />
         Fireworks are prohibited by the HOA. This includes sparklers.
+      </div>
+
+      <div style={styles.rule}>
+        <DeleteRoundedIcon style={styles.icon} />
+        Due to wild life, please do not leave trash outside.
       </div>
 
       <div style={styles.footer}>

@@ -42,7 +42,18 @@ module.exports = {
               },
             ],
           },
-          // ... other rules
+          {
+            test: /\.(jpg|jpeg|png|gif|svg)$/,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  name: '[name].[hash].[ext]',
+                  outputPath: 'images/',
+                },
+              },
+            ],
+          }
         ],
     },
     resolve: {
