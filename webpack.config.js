@@ -1,5 +1,7 @@
+
 const path = require('path');
 const UnusedWebpackPlugin = require('unused-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -13,6 +15,10 @@ module.exports = {
             // Root directory (optional)
             root: __dirname,
           }),
+	new HtmlWebpackPlugin({
+      template: './public/index.html',  // path to your index.html template
+      filename: 'index.html',  // output file
+    }),
     ],
     module: {
         rules: [
