@@ -15,7 +15,6 @@ import CornholePicture from '../../photos/house/Cornhole.jpg';
 import { useNavigate } from 'react-router-dom';
 
 const Amenities = () => {
-
     const navigate = useNavigate();
     const styles = {
         header: {
@@ -33,8 +32,10 @@ const Amenities = () => {
             padding: '20px',
             maxWidth: '500px',
             margin: 'auto',
-          },
+        },
     };
+
+
     const amenityList = [
         {
             picture: GrillPicture,
@@ -81,15 +82,22 @@ const Amenities = () => {
 
     return (
         <div style={styles.container}>
-            <div style={styles.header}>
+            <header style={styles.header}>
                 Home Amenities
-            </div>
-            {amenityList.map((amenity) => (
-                <HomeAmenityCard amenity={amenity}></HomeAmenityCard>
+            </header>
+            {amenityList.map((amenity, index) => (
+                <HomeAmenityCard key={index} amenity={amenity} />
             ))}
-                  <Button startIcon={<ArrowBackRoundedIcon />} onClick={() => navigate('/')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Back to Home</Button>
-
-        </ div >
+            <Button 
+                startIcon={<ArrowBackRoundedIcon />} 
+                onClick={() => navigate('/')} 
+                variant="contained" 
+                color="primary" 
+                style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}
+            >
+                Back to Home
+            </Button>
+        </div>
     );
 }
 

@@ -108,14 +108,20 @@ const Community = () => {
             <div style={styles.alert}>
                 <div style={styles.attention}>Attention!</div>
                  Our HOA only offers 8 wristbands for full access to the lake and pool amenities. Kindly note, anyone over the age of 5 requires a wristband and additional wristbands are NOT available for purchase. We appreciate your understanding and hope you enjoy your stay!
-
             </div>
-            {amenityList.map((amenity) => (
-                <HomeAmenityCard amenity={amenity}></HomeAmenityCard>
+            {amenityList.map((amenity, index) => (
+                <HomeAmenityCard key={index} amenity={amenity} />
             ))}
-                  <Button startIcon={<ArrowBackRoundedIcon />} onClick={() => navigate('/')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Back to Home</Button>
-
-        </ div >
+            <Button 
+                startIcon={<ArrowBackRoundedIcon />} 
+                onClick={() => navigate('/')} 
+                variant="contained" 
+                color="primary" 
+                style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}
+            >
+                Back to Home
+            </Button>
+        </div>
     );
 }
 

@@ -1,47 +1,61 @@
-.cover-container {
-    position: relative;
-    width: 100%;
-    height: 350px; /* Or whatever height you desire */
-    overflow: hidden; /* This will hide the excess part of the image */
-  }
-  
-  #coverImage {
-    display: block;
-    max-width: 100%; /* This ensures the image doesn't exceed container width */
-    height: auto; /* Keep aspect ratio */
-    position: relative;
-    top: 50%; /* Move the image downwards by half of its height */
-    transform: translateY(-50%); /* Shift back by half of the container's height */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coverContainer {
+  position: relative;
+  width: 100%;
+  height: auto; /* Adjust height automatically for different screen sizes */
+  overflow: hidden;
+}
+
+.coverImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.reservationCard {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 90%; /* Ensures the card doesn't exceed the screen width */
+}
+
+.reservationCardTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.alert {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.alertText {
+  text-align: center;
+}
+
+/* Media Queries for Larger Screens */
+@media (min-width: 768px) {
+  .reservationCard {
+    bottom: 4%;
+    right: 2%;
+    left: auto;
+    transform: none;
   }
 
-  /* .img-container {
-    position: relative;
-    width: 100%;
-  } */
-
-  .reservation-card-title {
-    font-size: 1.2em !important;
-    font-weight: bold !important;
-    margin-bottom: 2px;
+  .reservationCardTitle {
+    font-size: 1.5em; /* Slightly larger font for larger screens */
   }
-  
-  .reservation-card {
-    position: absolute;
-    bottom: 4%; /* Adjust as needed */
-    right: 2%; /* Adjust as needed */
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    max-width: 250px; /* Adjust based on your design needs */
-  }
-  
-  .reservation-card h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  
-  .reservation-card p {
-    font-size: 1em;
-    margin: 5px 0;
-  }
+}

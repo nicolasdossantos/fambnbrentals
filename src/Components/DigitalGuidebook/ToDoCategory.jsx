@@ -1,20 +1,18 @@
 import React from 'react';
-import '../../style/ThingsToDo.css'
-import { Accordion, AccordionSummary, AccordionDetails, Grid} from '@mui/material';
+import '../../style/ThingsToDo.css';
+import { Accordion, AccordionSummary, AccordionDetails, Grid } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AttractionCard from './AttractionCard';
-import '../../style/ThingsToDo.css'
+import PropTypes from 'prop-types'; // import prop-types
 
-
-const ToDoCategory = (props) => {
-  const { title, items, icon: Icon } = props;
+const ToDoCategory = ({ title, items, icon: Icon }) => {
   return (
     <div>
-      <Accordion >
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="attractions-content"
-          id="attractions-header"
+          aria-controls={`${title}-content`}
+          id={`${title}-header`}
         >
           <Grid container spacing={3}>
             <Grid item>
@@ -23,13 +21,12 @@ const ToDoCategory = (props) => {
             <Grid item>
               <div className="accordion-title">{title} </div>
             </Grid>
-
           </Grid>
         </AccordionSummary>
         <AccordionDetails style={{ justifyContent: 'center', display: 'flex' }}>
           <Grid container>
-            {items.map((attraction) => (
-              <AttractionCard key={attraction.name} {...attraction} />
+            {items.map((attraction, index) => (
+              <AttractionCard key={index} {...attraction} />
             ))}
           </Grid>
         </AccordionDetails>
@@ -37,5 +34,12 @@ const ToDoCategory = (props) => {
     </div>
   );
 }
+
+// Prop types validation
+ToDoCategory.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
+  icon: PropTypes.elementType.isRequired // elementType is used for React components
+};
 
 export default ToDoCategory;

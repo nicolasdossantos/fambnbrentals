@@ -1,30 +1,32 @@
 .bar {
-    background-color: white !important;
-    color: black !important;
-    border-bottom: 1px solid #7AC7C4 !important;
-    height: 64px; /* assuming this is the height of your AppBar; adjust if necessary */
-  }
-  
-  .logo {
-    width: 30%;
-  }
-  
-  /* Add a style for the main content padding */
-  .content-container {
-    padding-top: 70px; /* slightly more than the AppBar height to provide some spacing */
-  }
+  background-color: white !important;
+  color: black !important;
+  border-bottom: 1px solid #7AC7C4 !important;
+  height: 64px; /* Adjust if necessary */
+}
 
-  .back-button {
-     background-color: #7AC7C4 !important;
-     height: 30px;
-  }
+.logo {
+  width: 100%; /* Adjust for smaller screens */
+  max-width: 150px; /* Limit the maximum width */
+  cursor: pointer; /* Indicates clickable */
+}
 
-  .toolbar {
-    display: flex !important;
-    justify-content: space-between !important;
-  }
+/* Add a style for the main content padding */
+.content-container {
+  padding-top: 70px; /* Slightly more than the AppBar height */
+}
 
-  .icon {
-    height: 30px !important;
-  }
-  
+.back-button {
+  background-color: #7AC7C4 !important;
+  height: 30px;
+}
+
+.toolbar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important; /* Align items vertically */
+}
+
+.icon {
+  height: 20px !important; /* Adjust icon size */
+}

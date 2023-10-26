@@ -5,7 +5,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
-import '../../style/Footer.css'
+import '../../style/Footer.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Footer() {
@@ -21,15 +21,7 @@ export default function Footer() {
     } else {
       setValue(2);
     }
-  }, []);
-
-  const reservationInfo = {
-    guestNames: "John & Jane Doe",
-    checkInDate: "Oct 15, 2023",
-    checkOutDate: "Oct 20, 2023",
-    checkInTime: "3:00 PM",
-    checkOutTime: "11:00 AM"
-  };
+  }, [location.pathname]);
 
   const handleHomeClick = () => {
     navigate('/');
@@ -44,7 +36,7 @@ export default function Footer() {
   }
 
   return (
-    <Box  >
+    <Box>
       <BottomNavigation
         className="footer"
         showLabels
@@ -59,6 +51,4 @@ export default function Footer() {
       </BottomNavigation>
     </Box>
   );
-
-
 }

@@ -14,24 +14,27 @@ function Header() {
 
   const handleLogoClick = () => {
     navigate('/');
-
   }
+
   const location = useLocation();
-  
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav" className="bar">
         <Toolbar className="toolbar">
-          <img onClick={handleLogoClick} className="logo" src={FamBnbLogo} alt="logo" />
-          {location.pathname !== '/' ?  <Button startIcon={<ArrowBackRoundedIcon className="icon" />} className="back-button" onClick={() => navigate('/')} variant="contained" color="primary"  /> : null
-          }
-         
-
+          <img onClick={handleLogoClick} className="logo" src={FamBnbLogo} alt="FamBnb Logo" />
+          {location.pathname !== '/' && (
+            <Button
+              startIcon={<ArrowBackRoundedIcon />}
+              className="back-button"
+              onClick={() => navigate('/')}
+              variant="contained"
+              color="primary"
+            />
+          )}
         </Toolbar>
       </AppBar>
-      <nav>
-      </nav>
     </Box>
   );
 }

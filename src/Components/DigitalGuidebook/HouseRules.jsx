@@ -52,7 +52,10 @@ const HouseRules = () => {
       color: '#A9CCE3',
       textAlign: 'center',
       marginTop: '20px',
-    },
+      padding: '10px',
+      border: '1px solid #e0e0e0',
+      borderRadius: '5px',
+  },
     buttons : {
         display: 'flex',
         justifyContent: 'space-around',
@@ -63,11 +66,10 @@ const HouseRules = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.header}>
-        {/* Placeholder for the icon */}
-        <ChecklistRoundedIcon style={styles.icon} />
-        House Rules
-      </div>
+            <div style={styles.header}>
+                <ChecklistRoundedIcon style={styles.icon} />
+                House Rules
+            </div>
 
       {/* Rule: No Smoking */}
       <div style={styles.rule}>
@@ -100,20 +102,27 @@ const HouseRules = () => {
       </div>
 
       <div style={styles.rule}>
-        <DeleteRoundedIcon style={styles.icon} />
-        Due to wild life, please do not leave trash outside.
-      </div>
+                <DeleteRoundedIcon alt="No Littering" style={styles.icon} />
+                Due to wildlife, please do not leave trash outside.
+            </div>
 
-      <div style={styles.footer}>
-        Thank you for understanding and respecting our house rules. We hope you have a wonderful stay!
-      </div>
-      <div style={styles.buttons} >
-      <Button startIcon={<ArrowBackRoundedIcon />} onClick={() => navigate('/')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Back to Home</Button>
-      {/* <Button startIcon={<LogoutRoundedIcon />} onClick={() => navigate('/beforeyouleave')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Checkout Rules</Button> */}
-      </div>
-   
-    </div>
-  );
+            <div style={styles.footer}>
+                Thank you for understanding and respecting our house rules. We hope you have a wonderful stay!
+            </div>
+            <div style={styles.buttons} >
+                <Button
+                    startIcon={<ArrowBackRoundedIcon />}
+                    onClick={() => navigate('/')}
+                    variant="contained"
+                    color="primary"
+                    style={{ backgroundColor: '#7AC7C4' }}
+                >
+                    Back to Home
+                </Button>
+            </div>
+        </div>
+    );
 };
+
 
 export default HouseRules;

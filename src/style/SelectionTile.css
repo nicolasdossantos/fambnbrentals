@@ -1,29 +1,58 @@
 .grid {
     padding: 1rem;
-}
-
-.tile-title {
+  }
+  
+  .tile-title {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-}
-
-.tile-icon {
-    color:#7AC7C4;
-}
-
-svg {
-    font-size: 2.5rem !important;
-}
-
-.tile {
-    padding-top: 10%;
-    padding-bottom: 10%;
-    border: 1px solid #7AC7C4;
-}
-
-.center-div {
-    display: flex;
-    align-items: center; /* Aligns items on the cross axis */
-    justify-content: center; /* Aligns items on the main axis */
-    height: 100vh; /* You might want to adjust the height */
+    text-align: center; /* Center-align the title */
   }
+  
+  .tile-icon {
+    color: #7AC7C4;
+    display: flex; /* Flexbox to center the icon */
+    justify-content: center; /* Center horizontally */
+  }
+  
+  svg {
+    font-size: 2.5rem !important;
+  }
+  
+  .tile {
+    padding: 10% 0; /* Consistent shorthand for top and bottom padding */
+    border: 1px solid #7AC7C4;
+    display: flex; /* Flexbox layout for tile content */
+    flex-direction: column; /* Stack icon and text vertically */
+    align-items: center; /* Center-align items */
+    justify-content: center; /* Center content vertically */
+    height: 150px; /* Set a fixed height for uniformity */
+    cursor: pointer; /* Indicate that the tiles are clickable */
+    transition: transform 0.3s ease; /* Smooth transform on hover */
+  }
+  
+  .tile:hover {
+    transform: scale(1.05); /* Slightly enlarge tile on hover */
+  }
+  
+  .center-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Media Queries for larger screens */
+  @media (min-width: 768px) {
+    .tile {
+      height: 180px; /* Larger tiles for larger screens */
+    }
+    
+    svg {
+      font-size: 3rem !important; /* Slightly larger icons */
+    }
+  
+    .tile-title {
+      font-size: 1.4rem; /* Slightly larger text */
+    }
+  }
+  

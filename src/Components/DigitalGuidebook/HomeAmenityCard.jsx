@@ -8,67 +8,44 @@ const HomeAmenityCard = ({ amenity }) => {
             maxWidth: '500px',
             margin: 'auto',
         },
-
-        alert: {
-            backgroundColor: '#FFF4E5',
-            padding: '20px',
-            fontWeight: 'bold',
-            borderRadius: '5px',
-            marginBottom: '20px',
-
-        },
         section: {
             marginBottom: '20px',
             padding: '10px',
             border: '1px solid #e0e0e0',
             borderRadius: '5px',
-            display: 'flex',             // added this
-            flexDirection: 'column',     // added this
+            display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-        },
-        icon: {
-            width: '25px',
-            height: '25px',
-            marginRight: '5px',
         },
         title: {
             fontSize: '20px',
             fontWeight: 'bold',
             textAlign: 'center'
         },
-        footer: {
-            color: '#A9CCE3',
-            textAlign: 'center',
-            marginTop: '20px',
-        },
-        buttons: {
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            marginTop: '20px',
-        },
         images: {
-            height: '300px',
-            width: 'auto',
-            margin: '0 auto'
+            width: '100%',
+            margin: '0 auto',
+            objectFit: 'cover', // Adjusts image to fit the container
         }
-
     };
 
+    const placeholderImage = '/path/to/placeholder.jpg'; // Replace with your placeholder image path
+
     return (
-        <div>
+        <section style={styles.container}>
             <div style={styles.section}>
-                <img style={styles.images} src={amenity.picture}></img>
+                <img
+                    style={styles.images}
+                    src={amenity.picture || placeholderImage}
+                    alt={amenity.title || 'Amenity Image'}
+                />
                 <div>
-                    <div style={styles.title}>{amenity.title}</div>
+                    <header style={styles.title}>{amenity.title}</header>
                     <p>{amenity.description}</p>
                 </div>
             </div>
-        </div>
+        </section>
     )
-
-
-
-
 }
+
 export default HomeAmenityCard;

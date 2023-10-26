@@ -1,62 +1,46 @@
 import React from 'react';
-import SmokeFreeRoundedIcon from '@mui/icons-material/SmokeFreeRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
-import PetsRoundedIcon from '@mui/icons-material/PetsRounded';
-import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
-import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import Button from '@mui/material/Button';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-
 import { useNavigate } from 'react-router-dom';
-
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 const BeforeYouLeave = () => {
     const navigate = useNavigate();
-  const styles = {
-    container: {
-      fontFamily: 'Arial, sans-serif',
-      padding: '20px',
-      maxWidth: '500px',
-      margin: 'auto',
-    },
-    header: {
-      backgroundColor: '#A9CCE3', // soft blue color
-      padding: '10px 15px',
-      borderRadius: '5px',
-      fontSize: '20px',
-      fontWeight: 'bold',
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: '20px',
-    },
-    rule: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: '20px',
-      padding: '10px',
-      border: '1px solid #e0e0e0',
-      borderRadius: '5px',
-    },
-    icon: {
-      width: '30px',
-      height: '30px',
-      marginRight: '15px',
-
-    },
-    footer: {
-      color: '#A9CCE3',
-      textAlign: 'center',
-      marginTop: '20px',
-    },
-    buttons : {
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        marginTop: '20px',
-    }
-  };
+    const styles = {
+        container: {
+            fontFamily: 'Arial, sans-serif',
+            padding: '20px',
+            maxWidth: '500px',
+            margin: 'auto',
+        },
+        header: {
+            backgroundColor: '#A9CCE3',
+            padding: '8px 12px',
+            borderRadius: '5px',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: '10px',
+        },
+        rule: {
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: '8px',
+            padding: '8px',
+            border: '1px solid #e0e0e0',
+            borderRadius: '5px',
+        },
+        icon: {
+            marginRight: '15px',
+        },
+        buttons: {
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '8px',
+        },
+    };
 
   return (
     <div style={styles.container}>

@@ -48,9 +48,9 @@ const TileGrid = () => {
 
     return (
         <div className="grid">
-            <Grid spacing={1} container>
-                {tilesData.map((tile) => (
-                    <Grid key={tile.title} item xs={6}>
+            <Grid spacing={2} container>
+                {tilesData.map((tile, index) => (
+                    <Grid key={index} item xs={6} sm={4} md={4} lg={3}>
                         <SelectionTiles title={tile.title} icon={tile.icon} onClickFunction={tile.onClickFunction}/>
                     </Grid>
                 ))}
