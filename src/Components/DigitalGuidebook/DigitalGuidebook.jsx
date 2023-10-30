@@ -20,12 +20,12 @@ function DigitalGuideBook() {
             <img id="coverImage" src={coverImage} alt="Cover" />
           
           <div className="reservation-card">
-            <div className="reservation-card-title">{reservationInfo.guestNames}</div>
-            <p><strong>Check-in:</strong> {reservationInfo.checkInDate}</p>
-            <p><strong>Check-out:</strong> {reservationInfo.checkOutDate}</p>
+            <div className="reservation-card-title title-font">{reservationInfo.guestNames}</div>
+            <p className="detail-font"><strong>Check-in:</strong> {reservationInfo.checkInDate}</p>
+            <p className="detail-font"><strong>Check-out:</strong> {reservationInfo.checkOutDate}</p>
           </div>
         </div>
-        <Alert className="alert" severity="info" icon={<WifiIcon className="icon"/>}>
+        <Alert className="alert description-font" severity="info" icon={<WifiIcon className="icon icon-font"/>}>
           <p className="alert-text">Network: <b>Fam BnB</b> | Password: <b>Poconos2023</b></p>
         </Alert>
         <TileGrid />

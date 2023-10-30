@@ -19,11 +19,6 @@
   object-position: center;
 }
 
-.reservation-card-title {
-  font-size: 2vw;
-  font-weight: bold;
-  margin-bottom: 0.5vw;
-}
 
 .reservation-card {
   position: absolute;
@@ -36,30 +31,27 @@
   max-width: 25vw;
 }
 
-.reservation-card h3 {
-  font-size: 1.8vw;
-  margin-bottom: 1vw;
-}
 
 .reservation-card p {
-  font-size: 1.5vw;
   margin: 0.5vw 0;
 }
+
 .alert {
-  display: flex;
-  align-items: center;
-  padding: 0.5vw 1vw;
+  display: flex !important;
+  align-items: center !important;
+  padding: 1vw 1vw !important;
+  line-height: 0.3 !important;
  
-  white-space: nowrap; /* Prevents text wrapping onto the next line */
-  overflow: hidden;   /* Hides overflow content */
-  text-overflow: ellipsis; /* Adds "..." for overflowed content */
-  width: 100%;         /* Set to desired width, can be adjusted */
-  margin: 1vw auto;   /* Centers the alert */
+  white-space: nowrap !important; /* Prevents text wrapping onto the next line */
+  overflow: hidden !important;   /* Hides overflow content */
+  text-overflow: ellipsis !important; /* Adds "..." for overflowed content */
+  width: 100% !important;         /* Set to desired width, can be adjusted */
+  margin-bottom: 1vw !important;
 }
 
-.alert-text {
-  
-  font-size:3.2vw !important;
+
+.icon {
+
 }
 
 
@@ -67,33 +59,12 @@
 /* Media Queries */
 @media (max-width: 768px) { 
   /* Adjust styles for tablets and mobile devices */
-  .cover-container {
-
-    
-  }
 
   .reservation-card {
       padding: 3vw;
       max-width: 50vw;
   }
 
-  .reservation-card-title {
-      font-size: 4vw;
-  }
-
-  .reservation-card h3 {
-      font-size: 3.6vw;
-  }
-
-  .reservation-card p {
-      font-size: 3vw;
-  }
-  .alert-text {
-    font-size: 3.4vw !important;
-}
-.icon {
-    font-size: 6vw !important;
-}
 }
 
 /* If you find text getting too small or too large on some devices, 

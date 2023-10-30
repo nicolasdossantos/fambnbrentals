@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -44,25 +40,34 @@
 .main-content {
   position: fixed;
   top: 7% !important;
-
   height: 93%;
   overflow-y: scroll;
   
 }
 
-.alert  {
- display: flex;
-  align-items: center; /* Aligns items on the cross axis */
-  justify-content: center; 
-  
+
+.description-font {
+  font-size: 4vw !important;
 }
 
-.alert-text {
-  font-size: 1.2rem !important;
-  line-height: 0px !important; /* should be equal to the container's height */
-  text-align: center !important; 
-  
+.detail-font {
+  font-size: 3vw !important;
+
 }
+.title-font {
+  font-size: 4.5w !important;
+  font-weight: bold;
+  margin-bottom: 0.5vw;
+}
+
+.icon-font {
+  font-size: 7vw !important;
+}
+
+
+
+
+
 
 .center-div {
   display: flex;

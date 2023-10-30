@@ -9,8 +9,8 @@ const SelectionTiles = ({ title, icon: Icon, onClickFunction }) => {
     return (
     <div className="tile-container">
         <Paper elevation={3}  className="tile" onClick={onClickFunction}>
-            <Icon className="tile-icon" />
-            <div className="tile-title">{title}</div>
+            <Icon className="tile-icon icon-font" />
+            <div className="tile-title description-font">{title}</div>
         </Paper>
     </div>
 

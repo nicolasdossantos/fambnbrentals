@@ -2,8 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import Alert from '@mui/material/Alert';
-import WifiIcon from '@mui/icons-material/Wifi';
 import NewReleasesRoundedIcon from '@mui/icons-material/NewReleasesRounded';
 
 
@@ -11,8 +9,8 @@ const Welcome = () => {
     const navigate = useNavigate();
     const styles = {
         container: {
-            fontFamily: 'Arial, sans-serif',
-            padding: '20px',
+           
+            padding: '3vw',
             maxWidth: '500px',
             margin: 'auto',
         },
@@ -20,11 +18,13 @@ const Welcome = () => {
             backgroundColor: '#A9CCE3', // soft blue color
             padding: '10px 15px',
             borderRadius: '5px',
-            fontSize: '20px',
+            displpay: 'flex',
+            alignItems: 'center',
             fontWeight: 'bold',
             display: 'flex',
             alignItems: 'center',
             marginBottom: '20px',
+            justifyContent: 'center',
         },
         alert: {
           backgroundColor: '#FFF4E5',
@@ -63,8 +63,8 @@ const Welcome = () => {
 
     return (
       <div style={styles.container}>
-        <div style={styles.header}>A Heartfelt Welcome to Our Home!</div>
-        <div style={styles.section}> We're a close-knit family of four cousins, stepping into the world of short-term rentals. This isn't just a business for us; it's a passion. We've poured our hearts into creating a space that feels like home for every guest.</div>
+        <div style={styles.header} className="title-font">A Heartfelt Welcome to Our Home!</div>
+        <div style={styles.section} className="description-font"> We're a close-knit family of four cousins, stepping into the world of short-term rentals. This isn't just a business for us; it's a passion. We've poured our hearts into creating a space that feels like home for every guest.</div>
         <div> </div>
         <div style={styles.alert}>
          <NewReleasesRoundedIcon style={styles.icon}></NewReleasesRoundedIcon>Our goal is to make your stay perfect. If there's even a slight hiccup, don't hesitate to let us know. We're committed to turning it around, because your comfort matters deeply to us.
