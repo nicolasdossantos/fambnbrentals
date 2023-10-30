@@ -41,9 +41,6 @@
     height: 100% !important;
 }
 
-.tile:hover {
-    transform: scale(1.05); /* Scale up tile on hover */
-}
 
 .center-div {
     display: flex;

@@ -10,7 +10,7 @@ const Welcome = () => {
     const styles = {
         container: {
            
-            padding: '3vw',
+            padding: '3vh 5vw',
             maxWidth: '500px',
             margin: 'auto',
         },
