@@ -26,7 +26,7 @@ function DigitalGuideBook() {
           </div>
         </div>
         <Alert className="alert description-font" severity="info" icon={<WifiIcon className="icon icon-font"/>}>
-          <p className="alert-text">Network: <b>Fam BnB</b> | Password: <b>Poconos2023</b></p>
+          <p className="alert-text">Network: <b>FAM BNB</b> | Password: <b>Poconos2023</b></p>
         </Alert>
         <TileGrid />
       </div>
