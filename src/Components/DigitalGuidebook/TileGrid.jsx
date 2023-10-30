@@ -7,6 +7,8 @@ import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import HouseRoundedIcon from '@mui/icons-material/HouseRounded';
 import HotTubRoundedIcon from '@mui/icons-material/HotTubRounded';
 import PoolRoundedIcon from '@mui/icons-material/PoolRounded';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CallRoundedIcon from '@mui/icons-material/CallRounded';
 import SelectionTiles from './SelectionTiles';
 import '../../style/SelectionTile.css'
 
@@ -43,6 +45,16 @@ const TileGrid = () => {
             title: "Community",
             icon: PoolRoundedIcon,
             onClickFunction: () => { navigate('/community') }
+        },
+        {
+            title: "Things To Do",
+            icon: LocationOnIcon,
+            onClickFunction: () => { navigate('/thingstodo') }
+        },
+        {
+            title: "Contact Us",
+            icon: CallRoundedIcon,
+            onClickFunction: () => { navigate('/contact') }
         }
     ]
 

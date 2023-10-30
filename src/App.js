@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header className="header"/>
       <div className="main-content">
         <Routes>
           <Route path="/" element={<DigitalGuideBook />} />
@@ -69,7 +69,7 @@ function App() {
           <Route path='/community' element={<Community />}></Route>
         </Routes>
       </div>
-      <Footer />
+      
     </>
 
 

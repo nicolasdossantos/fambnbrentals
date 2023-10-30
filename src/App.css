@@ -13,7 +13,13 @@
   }
 }
 
-.App-header {
+.header {
+  height: 7% !important;
+}
+
+
+
+/* .App-header {
   background-color: "white";
   min-height: 100vh;
   display: flex;
@@ -22,7 +28,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -36,8 +42,12 @@
 }
 
 .main-content {
-  padding-top: 70px; /* slightly more than the AppBar height to provide some spacing */
-  padding-bottom: 70px; /* slightly more than the AppBar height to provide some spacing */
+  position: fixed;
+  top: 7% !important;
+
+  height: 93%;
+  overflow-y: scroll;
+  
 }
 
 .alert  {

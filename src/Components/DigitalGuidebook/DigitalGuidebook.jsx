@@ -13,7 +13,7 @@ function DigitalGuideBook() {
   };
 
   return (
-    <div className="App">
+    <div className="App main">
       <div>
         <div className="cover-container">
          
@@ -25,7 +25,7 @@ function DigitalGuideBook() {
             <p><strong>Check-out:</strong> {reservationInfo.checkOutDate}</p>
           </div>
         </div>
-        <Alert className="alert" severity="info" icon={<WifiIcon />}>
+        <Alert className="alert" severity="info" icon={<WifiIcon className="icon"/>}>
           <p className="alert-text">Network: <b>Fam BnB</b> | Password: <b>Poconos2023</b></p>
         </Alert>
         <TileGrid />

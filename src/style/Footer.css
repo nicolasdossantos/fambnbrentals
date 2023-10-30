@@ -1,7 +1,4 @@
-.footer {
-    height: 64px !important;
-  
-}
+
 
 .MuiBottomNavigation-root {
     background-color: #7AC7C4 !important;
@@ -9,19 +6,10 @@
     bottom: 0 !important;
     width: 100% !important;
     z-index: 1000 !important;
-    height: 7% !important;
-
 }
 
 .Mui-selected {
     color: white !important;
     background-color: #4F8B8E !important;
     
-}
-
-
-.MuiBottomNavigationAction-root {
-    
- 
-
 }
