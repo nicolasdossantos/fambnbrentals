@@ -1,11 +1,9 @@
 .grid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 0.5rem;
+    gap: 1vw;
+    padding: 2.5vw;
 }
-
-
 
 .grid > * {
     display: flex;

@@ -1,22 +1,25 @@
 .bar {
-    background-color: white !important;
-    color: black !important;
-    border-bottom: 1px solid #7AC7C4 !important;
-   
-  }
+  background-color: white !important;
+  color: black !important;
+  border-bottom: 1px solid #7AC7C4 !important;
+  height: 7vh !important;
+  display: flex;
+  align-items: left;
   
-  .logo {
-    width: 44%;
-  }
-  
+}
+
+.logo {
+  max-height: 90% !important; /* Max height relative to parent */
+  width: auto; /* Let width be automatic */
+  max-width: 26vw; 
+  object-fit: contain; /* Preserve aspect ratio */
+}
   /* Add a style for the main content padding */
-  .content-container {
-    padding-top: 70px; /* slightly more than the AppBar height to provide some spacing */
-  }
+
 
   .back-button {
      background-color: #7AC7C4 !important;
-     height: 30px;
+     height: 3vh !important;
   }
 
   .toolbar {
@@ -25,6 +28,6 @@
   }
 
   .icon-header {
-    height: 30px !important;
+    height: 3vh !important;
   }
   

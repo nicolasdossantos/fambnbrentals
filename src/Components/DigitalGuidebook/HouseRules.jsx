@@ -17,98 +17,109 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 const HouseRules = () => {
     const navigate = useNavigate();
-  const styles = {
-    container: {
-      fontFamily: 'Arial, sans-serif',
-      padding: '20px',
-      maxWidth: '500px',
-      margin: 'auto',
+    const styles = {
+      container: {
+        padding: '3vh 5vw',
+        margin: 'auto',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
     },
     header: {
-      backgroundColor: '#A9CCE3', // soft blue color
-      padding: '10px 15px',
-      borderRadius: '5px',
-      fontSize: '20px',
-      fontWeight: 'bold',
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: '20px',
+        backgroundColor: '#A9CCE3', // soft blue color
+        padding: '1vh 2vw',
+        borderRadius: '5px',
+        displpay: 'flex',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '2vh',
+        justifyContent: 'center',
+    },
+    alert: {
+        display: 'flex',
+    
+        backgroundColor: '#FFF4E5',
+        padding: '2vh 4vw',
+        fontWeight: 'bold',
+        borderRadius: '5px',
+        marginBottom: '2vh',
+  
     },
     rule: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: '20px',
-      padding: '10px',
-      border: '1px solid #e0e0e0',
-      borderRadius: '5px',
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '1vh',
+        padding: '2vh 4vw',
+        border: '1px solid #e0e0e0',
+        borderRadius: '5px',
     },
     icon: {
-      width: '30px',
-      height: '30px',
-      marginRight: '15px',
-
+        marginRight: '5px',
     },
     footer: {
-      color: '#A9CCE3',
-      textAlign: 'center',
-      marginTop: '20px',
+        color: '#A9CCE3',
+        textAlign: 'center',
+        marginTop: '2vh',
     },
-    buttons : {
+    buttons: {
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginTop: '20px',
-    }
+        marginTop: '2vh',
+      
+    },
   };
 
   return (
     <div style={styles.container}>
-      <div style={styles.header}>
+      <div style={styles.header} className="title-font">
         {/* Placeholder for the icon */}
-        <ChecklistRoundedIcon style={styles.icon} />
+        <ChecklistRoundedIcon style={styles.icon} className="icon-font"/>
         House Rules
       </div>
 
       {/* Rule: No Smoking */}
-      <div style={styles.rule}>
-        <SmokeFreeRoundedIcon alt="No Smoking" style={styles.icon} />
+      <div style={styles.rule}  className="description-font">
+        <SmokeFreeRoundedIcon alt="No Smoking" style={styles.icon} className="icon-font"/>
         Please do not smoke inside the property. Designated areas are available outside.
       </div>
 
       {/* Rule: No Pets Allowed */}
-      <div style={styles.rule}>
-        <PetsRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <PetsRoundedIcon style={styles.icon} className="icon-font"/>
         We love animals, but unfortunately, pets are not allowed in the property.
       </div>
 
       {/* Rule: Quiet Hours */}
-      <div style={styles.rule}>
-        <VolumeOffRoundedIcon style={styles.icon} />
-        Please respect quiet hours from 10 PM to 7 AM.
+      <div style={styles.rule} className="description-font">
+        <VolumeOffRoundedIcon style={styles.icon} className="icon-font"/>
+        Please respect quiet hours from 11 PM to 8 AM.
       </div>
 
       {/* Rule: No Parties or Events */}
-      <div style={styles.rule}>
-        <CelebrationRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <CelebrationRoundedIcon style={styles.icon} className="icon-font"/>
         Our property is not suitable for parties or large events. Please respect our policy.
       </div>
 
       {/* Rule: Check-out Procedure */}
-      <div style={styles.rule}>
-        <FlareRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <FlareRoundedIcon style={styles.icon} className="icon-font"/>
         Fireworks are prohibited by the HOA. This includes sparklers.
       </div>
 
-      <div style={styles.rule}>
-        <DeleteRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DeleteRoundedIcon style={styles.icon} className="icon-font" />
         Due to wild life, please do not leave trash outside.
       </div>
 
-      <div style={styles.footer}>
+      <div style={styles.footer} className="description-font">
         Thank you for understanding and respecting our house rules. We hope you have a wonderful stay!
       </div>
-      <div style={styles.buttons} >
-      <Button startIcon={<ArrowBackRoundedIcon />} onClick={() => navigate('/')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Back to Home</Button>
+      <div style={styles.buttons} className="description-font">
+      <Button startIcon={<ArrowBackRoundedIcon className="icon-font"/>} onClick={() => navigate('/')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Back to Home</Button>
       {/* <Button startIcon={<LogoutRoundedIcon />} onClick={() => navigate('/beforeyouleave')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Checkout Rules</Button> */}
       </div>
    

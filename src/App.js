@@ -13,9 +13,11 @@ import BeforeYouLeave from './Components/DigitalGuidebook/BeforeYouLeave';
 import HouseRules from './Components/DigitalGuidebook/HouseRules';
 import Amenities from './Components/DigitalGuidebook/Amenities';
 import Community from './Components/DigitalGuidebook/Community';
+import useScrollRestoration from './UseScrollRestoration';
+
 
 function App() {
-
+  useScrollRestoration();
   const [timer, setTimer] = React.useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,6 +40,7 @@ function App() {
   }
 
   useEffect(() => {
+    
     if (!isOnInitialPage()) {
       resetTimer();
     }
@@ -56,8 +59,12 @@ function App() {
   return (
     <>
       <Header className="header"/>
+
+     
       <div className="main-content">
+        
         <Routes>
+     
           <Route path="/" element={<DigitalGuideBook />} />
           <Route path="/thingstodo" element={<ThingsToDo />} />
           <Route path="/contactus" element={<ContactUs />} />

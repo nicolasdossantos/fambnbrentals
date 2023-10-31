@@ -1,114 +1,128 @@
 import React from 'react';
-import SmokeFreeRoundedIcon from '@mui/icons-material/SmokeFreeRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
-import PetsRoundedIcon from '@mui/icons-material/PetsRounded';
-import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
-import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import Button from '@mui/material/Button';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-
 import { useNavigate } from 'react-router-dom';
 
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 const BeforeYouLeave = () => {
     const navigate = useNavigate();
   const styles = {
     container: {
-      fontFamily: 'Arial, sans-serif',
-      padding: '20px',
-      maxWidth: '500px',
+      padding: '3vh 5vw',
       margin: 'auto',
-    },
-    header: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
+  },
+  header: {
       backgroundColor: '#A9CCE3', // soft blue color
-      padding: '10px 15px',
+      padding: '1vh 2vw',
       borderRadius: '5px',
-      fontSize: '20px',
+      displpay: 'flex',
+      alignItems: 'center',
       fontWeight: 'bold',
       display: 'flex',
       alignItems: 'center',
-      marginBottom: '20px',
-    },
-    rule: {
+      marginBottom: '2vh',
+      justifyContent: 'center',
+  },
+  alert: {
+      display: 'flex',
+  
+      backgroundColor: '#FFF4E5',
+      padding: '2vh 4vw',
+      fontWeight: 'bold',
+      borderRadius: '5px',
+      marginBottom: '2vh',
+
+  },
+  rule: {
       display: 'flex',
       alignItems: 'center',
-      marginBottom: '20px',
-      padding: '10px',
+      marginBottom: '1vh',
+      padding: '2vh 4vw',
       border: '1px solid #e0e0e0',
       borderRadius: '5px',
-    },
-    icon: {
-      width: '30px',
-      height: '30px',
-      marginRight: '15px',
-
-    },
-    footer: {
+  },
+  icon: {
+      marginRight: '5px',
+  },
+  footer: {
       color: '#A9CCE3',
       textAlign: 'center',
-      marginTop: '20px',
-    },
-    buttons : {
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        marginTop: '20px',
-    }
+      marginTop: '2vh',
+  },
+  buttons: {
+      display: 'flex',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      marginTop: '2vh',
+    
+  },
+    
   };
 
   return (
     <div style={styles.container}>
-      <div style={styles.header}>
+      <div style={styles.header} className="title-font">
         {/* Placeholder for the icon */}
-        <ChecklistRoundedIcon style={styles.icon} />
+        <ChecklistRoundedIcon style={styles.icon} className="icon-font"/>
         Before You Leave
       </div>
       {/* Rule: No Pets Allowed */}
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
         Lock doors.
       </div>
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
        Turn off lights.
       </div>
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
        Cover hot tub, fire pit & grill.
       </div>
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
        Load and run dishwasher.
       </div>
 
       {/* Rule: Quiet Hours */}
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
        Leave used beds un-made.
       </div>
 
       {/* Rule: No Parties or Events */}
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
         Set thermostats to 50 degrees.
       </div>
 
       {/* Rule: Check-out Procedure */}
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
         Bring trash to dumpsters accross the street from community office @ 44 Towamenings Trail. 
       </div>
-      <div style={styles.rule}>
-        <DoneRoundedIcon style={styles.icon} />
+      <div style={styles.rule} className="description-font">
+        <DoneRoundedIcon style={styles.icon} className="icon-font"/>
        Leave used towels on bathroom floor. 
       </div>
 
-      <div style={styles.buttons} >
-      <Button startIcon={<ArrowBackRoundedIcon />} onClick={() => navigate('/')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Back to Home</Button>
-      {/* <Button startIcon={<LogoutRoundedIcon />} onClick={() => navigate('/beforeyouleave')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Checkout Rules</Button> */}
-      </div>
+      <div style={styles.buttons}>
+                <Button
+                    className="description-font"
+                    startIcon={<ArrowBackRoundedIcon className="icon-font" />}
+                    onClick={() => navigate('/')}
+                    variant="contained"
+                    color="primary"
+                    style={{ backgroundColor: '#7AC7C4' }}
+                >
+                    Back to Home
+                </Button>
+            </div>
    
     </div>
   );
