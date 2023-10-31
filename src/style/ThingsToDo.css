@@ -1,8 +1,8 @@
-.accordion-title {
-    font-size: 1.4rem;
-    /* margin-bottom: 0.rem; */
+.accordion-icon {
+    color: #7AC7C4 !important;
 }
 
-.accordion-icon {
-    color:#7AC7C4 !important;
+.accordion-details {
+    display: flex;
+    justify-content: center;
 }

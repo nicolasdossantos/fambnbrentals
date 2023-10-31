@@ -1,25 +1,18 @@
+import { width } from '@mui/system';
 import React from 'react';
 
 const HomeAmenityCard = ({ amenity }) => {
     const styles = {
         container: {
-            fontFamily: 'Arial, sans-serif',
-            padding: '20px',
-            maxWidth: '500px',
+            padding: '3vh 5vw',
             margin: 'auto',
-        },
-
-        alert: {
-            backgroundColor: '#FFF4E5',
-            padding: '20px',
-            fontWeight: 'bold',
-            borderRadius: '5px',
-            marginBottom: '20px',
-
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
         },
         section: {
-            marginBottom: '20px',
-            padding: '10px',
+            marginBottom: '2vh',
+            padding: '2vh 2vw',
             border: '1px solid #e0e0e0',
             borderRadius: '5px',
             display: 'flex',             // added this
@@ -27,29 +20,22 @@ const HomeAmenityCard = ({ amenity }) => {
             alignItems: 'center',
         },
         icon: {
-            width: '25px',
-            height: '25px',
-            marginRight: '5px',
+            marginRight: '0.5vw',
         },
-        title: {
-            fontSize: '20px',
-            fontWeight: 'bold',
-            textAlign: 'center'
-        },
-        footer: {
-            color: '#A9CCE3',
-            textAlign: 'center',
-            marginTop: '20px',
-        },
+
         buttons: {
             display: 'flex',
             justifyContent: 'space-around',
             alignItems: 'center',
-            marginTop: '20px',
+            marginTop: '2vh',
+
+        },
+        title: {
+            textAlign: 'center'
         },
         images: {
-            height: '300px',
             width: 'auto',
+            maxWidth: '100%',
             margin: '0 auto'
         }
 
@@ -60,8 +46,8 @@ const HomeAmenityCard = ({ amenity }) => {
             <div style={styles.section}>
                 <img style={styles.images} src={amenity.picture}></img>
                 <div>
-                    <div style={styles.title}>{amenity.title}</div>
-                    <p>{amenity.description}</p>
+                    <div style={styles.title} className="title-font">{amenity.title}</div>
+                    <p className="description-font">{amenity.description}</p>
                 </div>
             </div>
         </div>

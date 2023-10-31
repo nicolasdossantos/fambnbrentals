@@ -9,7 +9,7 @@ function AttractionCard(props) {
     <Card style={{ display: 'flex', margin: '10px 0' }}>
       <CardMedia
         component="img"
-        style={{ width: '170px', height: 'auto' }}
+        style={{ width: '35%', height: 'auto' }}
         image={image}
         alt={name}
       />

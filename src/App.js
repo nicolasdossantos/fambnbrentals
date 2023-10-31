@@ -24,36 +24,36 @@ function App() {
 
   const isOnInitialPage = () => location.pathname === "/";
 
-  const resetTimer = () => {
-    if (timer) clearTimeout(timer);
+  // const resetTimer = () => {
+  //   if (timer) clearTimeout(timer);
 
-    if (isOnInitialPage()) return;
+  //   if (isOnInitialPage()) return;
 
 
-    setTimer(setTimeout(() => {
-      navigate('/');
-    }, 300000));
-  };
+  //   setTimer(setTimeout(() => {
+  //     navigate('/');
+  //   }, 300000));
+  // };
 
-  const handleInteraction = () => {
-    if (!isOnInitialPage()) resetTimer();
-  }
+  // const handleInteraction = () => {
+  //   if (!isOnInitialPage()) resetTimer();
+  // }
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    if (!isOnInitialPage()) {
-      resetTimer();
-    }
-    window.addEventListener('touchstart', handleInteraction);
-    window.addEventListener('click', handleInteraction);
+  //   if (!isOnInitialPage()) {
+  //     resetTimer();
+  //   }
+  //   window.addEventListener('touchstart', handleInteraction);
+  //   window.addEventListener('click', handleInteraction);
 
     // Cleanup function to remove event listeners when the component unmounts
-    return () => {
-      window.removeEventListener('touchstart', handleInteraction);
-      window.removeEventListener('click', handleInteraction);
-      if (timer) clearTimeout(timer);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('touchstart', handleInteraction);
+  //     window.removeEventListener('click', handleInteraction);
+  //     if (timer) clearTimeout(timer);
+  //   };
+  // }, []);
 
 
   return (

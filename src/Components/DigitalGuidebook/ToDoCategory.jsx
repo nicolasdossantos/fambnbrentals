@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../style/ThingsToDo.css'
 import { Accordion, AccordionSummary, AccordionDetails, Grid} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AttractionCard from './AttractionCard';
@@ -12,21 +11,20 @@ const ToDoCategory = (props) => {
     <div>
       <Accordion >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon className="icon-font"/>}
           aria-controls="attractions-content"
-          id="attractions-header"
         >
           <Grid container spacing={3}>
             <Grid item>
               <Icon className="accordion-icon" />
             </Grid>
             <Grid item>
-              <div className="accordion-title">{title} </div>
+              <div className="title-font">{title} </div>
             </Grid>
 
           </Grid>
         </AccordionSummary>
-        <AccordionDetails style={{ justifyContent: 'center', display: 'flex' }}>
+        <AccordionDetails className="accordion-details">
           <Grid container>
             {items.map((attraction) => (
               <AttractionCard key={attraction.name} {...attraction} />

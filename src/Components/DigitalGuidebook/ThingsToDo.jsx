@@ -2,17 +2,17 @@ import React from 'react';
 import LocalSeeIcon from '@mui/icons-material/LocalSee';
 import DownhillSkiingRoundedIcon from '@mui/icons-material/DownhillSkiingRounded';
 import ParkRoundedIcon from '@mui/icons-material/ParkRounded';
-import BigBoulderPic from '../../photos/attractions/bigboulder.jpg'
-import HawkFallsPic from '../../photos/attractions/hawkfalls.jpg'
+import BigBoulderPic from '../../photos/attractions/Big Boulder (web).jpg'
+import HawkFallsPic from '../../photos/attractions/Hawk-Falls-PA (web).jpg'
 import RestaurantRoundedIcon from '@mui/icons-material/RestaurantRounded';
 import LocalGroceryStoreRoundedIcon from '@mui/icons-material/LocalGroceryStoreRounded';
 import ToDoCategory from './ToDoCategory';
 import '../../style/ThingsToDo.css';
 import HunanHousePic  from '../../photos/restaurat/Chinese.jpg';
-import Paintball from '../../photos/attractions/paintball.jpg'
-import IndoorWaterPark from '../../photos/attractions/indoorwater.jpg'
+import Paintball from '../../photos/attractions/paintball (web).jpg'
+import IndoorWaterPark from '../../photos/attractions/indoorwater (web).jpg'
 import PoolRoundedIcon from '@mui/icons-material/PoolRounded';
-import GorillaPic from '../../photos/attractions/gorilla.jpg';
+import GorillaPic from '../../photos/attractions/gorilla (web).jpg';
 import DirectionsRunRoundedIcon from '@mui/icons-material/DirectionsRunRounded';
 
 function ThingsToDo() {
@@ -87,39 +87,6 @@ function ThingsToDo() {
       typeIcon: <RestaurantRoundedIcon style={{ color: "#7AC7C4" }} /> // replace with an actual MUI icon
     }
   ]
-
-  // Historic Jim Thorpe 
-  // Jack Frost 
-  // Split Rock Waterpark
-  // Lake Harmony
-  // Big Boulder Lake
-  // Pocono Raceway
-  // 
-  // Bear Mountain Butterfly Sanctuary
-  // Hickory Run State Park
-  // Fishing allowed with PA Fishing License (catch and release rule in effect).
-  // Sleigh Rides at Daisy Field Farms
-  // Mount Airy Casino
-  // Split Rock Golf Course
-  // Split Rock water park
-  // Kalahari Resort - America's Largest Indoor Waterpark
-  // Poconos Outdoor Adventure
-  
- 
-  
-  // Blue Mountain
-  // Camelback
-
-
-  // Barley Creek Brewing Comp
-   // Blue Ridge Vineyard
-   // Mountain View Winery
-   // Pocono Wine Trail
-
-
-    // The Crossing Premium Outlets
-  
-
 
   const categories = [
 

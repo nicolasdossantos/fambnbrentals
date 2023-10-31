@@ -20,74 +20,88 @@ const Amenities = () => {
     const styles = {
         header: {
             backgroundColor: '#A9CCE3', // soft blue color
-            padding: '10px 15px',
+            padding: '1vh 2vw',
             borderRadius: '5px',
-            fontSize: '20px',
+            displpay: 'flex',
+            alignItems: 'center',
             fontWeight: 'bold',
             display: 'flex',
             alignItems: 'center',
-            marginBottom: '20px',
+            marginBottom: '2vh',
+            justifyContent: 'center',
         },
+
         container: {
-            fontFamily: 'Arial, sans-serif',
-            padding: '20px',
-            maxWidth: '500px',
+            padding: '3vh 5vw',
             margin: 'auto',
-          },
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+        },
+        buttons: {
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            marginTop: '2vh',
+
+        },
     };
     const amenityList = [
         {
             picture: GrillPicture,
             title: "Grill",
-            description:"Test Description 5"
+            description: "Test Description 5"
         },
         {
-            picture:    HotTubPicture,
+            picture: HotTubPicture,
             title: "Hot Tub",
-            description:"Test Description 1"
+            description: "Test Description 1"
         },
         {
             picture: PoolTablePicture,
             title: "Pool Table",
-            description:"Test Description 2"
+            description: "Test Description 2"
         },
         {
             picture: PingPongTablePicture,
             title: "Ping Pong Table",
-            description:"Test Description 3"
+            description: "Test Description 3"
         },
         {
             picture: FoosballTablePicture,
             title: "Foosball Table",
-            description:"Test Description 4"
+            description: "Test Description 4"
         },
         {
-            picture:ArcadeGamesPicture,
+            picture: ArcadeGamesPicture,
             title: "Arcade Games",
-            description:"Test Description 6"
+            description: "Test Description 6"
         },
         {
             picture: BoardGamesPicture,
             title: "Board Games",
-            description:"Test Description 7"
+            description: "Test Description 7"
         },
         {
             picture: CornholePicture,
             title: "Cornhole",
-            description:"Test Description 8"
+            description: "Test Description 8"
         }
-      
+
     ]
 
     return (
         <div style={styles.container}>
-            <div style={styles.header}>
+            <div style={styles.header} className="title-font">
                 Home Amenities
             </div>
             {amenityList.map((amenity) => (
                 <HomeAmenityCard amenity={amenity}></HomeAmenityCard>
             ))}
-                  <Button startIcon={<ArrowBackRoundedIcon />} onClick={() => navigate('/')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Back to Home</Button>
+            <div style={styles.buttons} className="description-font">
+                <Button startIcon={<ArrowBackRoundedIcon className="icon-font" />} onClick={() => navigate('/')} variant="contained" color="primary" style={{ marginTop: '20px', backgroundColor: '#7AC7C4' }}>Back to Home</Button>
+                {/* <Button startIcon={<LogoutRoundedIcon />} onClick={() => navigate('/beforeyouleave')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Checkout Rules</Button> */}
+            </div>
 
         </ div >
     );
