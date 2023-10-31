@@ -6,16 +6,16 @@ function AttractionCard(props) {
   const { image, name, rating, distance, description, typeIcon } = props;
 
   return (
-    <Card style={{ display: 'flex', margin: '10px 0' }}>
+    <Card className="card-container">
       <CardMedia
         component="img"
-        style={{ width: '35%', height: 'auto' }}
+        className="attraction-image"
         image={image}
         alt={name}
       />
       <CardContent style={{ flex: 1, padding: '10px' }}>
         <Box display="flex" justifyContent="space-between">
-          <Typography variant="h6">{name}</Typography>
+          <div className="title-font card-title">{name}</div>
           <Icon className="attraction-icon">{typeIcon}</Icon>
         </Box>
         <Box display="flex" justifyContent="space-between" className="rating-distance-box">
@@ -26,9 +26,9 @@ function AttractionCard(props) {
             readOnly
             size="small" />
 
-          <Typography variant="body2" style={{ marginLeft: '8px' }}>{distance} Miles Away</Typography>
+          <div className="distance-font" >{distance} Miles Away</div>
         </Box>
-        <Typography variant="body2" mt={1}>{description}</Typography>
+        <div className="description-font" mt={1}>{description}</div>
       </CardContent>
     </Card>
   );

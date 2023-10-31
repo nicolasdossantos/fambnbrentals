@@ -7,15 +7,38 @@
 }
 
 .rating {
-   height: 10% !important;
-    width: 10% !important;
-    transform: scale(0.6);
-    transform-origin: center;
     margin-top: -2%;
    
 }
 
+
+
+.attraction-image {
+    width: 100% !important;
+    height: 40% !important;
+    object-fit: cover !important;
+}
+
+.card-container {
+    margin: 1vh 0;
+}
+
+.card-title {
+    font-weight: 100 !important;
+}
+.distance-font {
+    font-size: 3.5vw !important;
+    margin-top: -2.5%;
+}
+
 .rating-distance-box {
-    margin-top: -2%;
-    margin-left: -3%;
+    margin-top: 0.5vh;
+    margin-bottom: 1.2vh;
+}
+
+.MuiPaper-root {
+    height: fit-content;
+    padding-bottom: 1vh;
+    
+    
 }

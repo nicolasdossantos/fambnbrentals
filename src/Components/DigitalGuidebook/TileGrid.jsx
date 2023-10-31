@@ -54,7 +54,7 @@ const TileGrid = () => {
         {
             title: "Contact Us",
             icon: CallRoundedIcon,
-            onClickFunction: () => { navigate('/contact') }
+            onClickFunction: () => { navigate('/contactus') }
         }
     ]
 
