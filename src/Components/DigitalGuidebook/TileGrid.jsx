@@ -19,42 +19,42 @@ const TileGrid = () => {
         {
             title: "Welcome",
             icon: StarRateRoundedIcon,
-            onClickFunction: () => { navigate('/welcome') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/welcome') }
         },
         {
             title: "Arrival Info",
             icon: KeyRoundedIcon,
-            onClickFunction: () => { navigate('/arrivalinfo') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/arrivalinfo') }
         },
         {
             title: "Before You Leave",
             icon: ChecklistRoundedIcon,
-            onClickFunction: () => { navigate('/beforeyouleave') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/beforeyouleave') }
         },
         {
             title: "House Rules",
             icon: HouseRoundedIcon,
-            onClickFunction: () => { navigate('/houserules') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/houserules') }
         },
         {
             title: "Amenities",
             icon: HotTubRoundedIcon,
-            onClickFunction: () => { navigate('/amenities') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/amenities') }
         },
         {
             title: "Community",
             icon: PoolRoundedIcon,
-            onClickFunction: () => { navigate('/community') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/community') }
         },
         {
             title: "Things To Do",
             icon: LocationOnIcon,
-            onClickFunction: () => { navigate('/thingstodo') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/thingstodo') }
         },
         {
             title: "Contact Us",
             icon: CallRoundedIcon,
-            onClickFunction: () => { navigate('/contactus') }
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/contactus') }
         }
     ]
 
@@ -62,7 +62,7 @@ const TileGrid = () => {
         <div className="grid">
             <Grid spacing={1} container>
                 {tilesData.map((tile) => (
-                    <Grid key={tile.title} item xs={6}>
+                    <Grid key={tile.title} item xs={6} md={4}>
                         <SelectionTiles title={tile.title} icon={tile.icon} onClickFunction={tile.onClickFunction}/>
                     </Grid>
                 ))}

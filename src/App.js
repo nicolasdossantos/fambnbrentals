@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
 import DigitalGuideBook from './Components/DigitalGuidebook/DigitalGuidebook';
 import Header from './Components/DigitalGuidebook/Header';
-import Footer from './Components/DigitalGuidebook/Footer';
+
 import ContactUs from './Components/DigitalGuidebook/ContactUs';
 import ThingsToDo from './Components/DigitalGuidebook/ThingsToDo';
 import Welcome from './Components/DigitalGuidebook/Welcome';
@@ -15,53 +15,56 @@ import HouseRules from './Components/DigitalGuidebook/HouseRules';
 import Amenities from './Components/DigitalGuidebook/Amenities';
 import Community from './Components/DigitalGuidebook/Community';
 import useScrollRestoration from './UseScrollRestoration';
+import ComingSoon from './Components/ComingSoon';
 
 
 
 function App() {
-  useScrollRestoration();
-  const location = useLocation();
+    useScrollRestoration();
+    const location = useLocation();
+    return (
+        <>
 
-  return (
-    <>
-      <Header className="header" />
+            <Header className="header" />
+            <div className="main-content">
+                <AnimatePresence mode="wait">
+                    <Routes location={location} key={location.pathname}>
 
-
-
-      <div className="main-content">
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-
-            <Route path="/" element={<motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <DigitalGuideBook />
-            </motion.div>} />
+                        <Route path="/bishop/digitalguidebook" element={<motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <DigitalGuideBook />
+                        </motion.div>} />
 
 
-            <Route path="/thingstodo" element={
+                        <Route path="/bishop/digitalguidebook/thingstodo" element={
 
-              <ThingsToDo />
+                            <ThingsToDo />
 
-            } />
-            <Route path="/contactus" element={<ContactUs />} />
-            <Route path='/welcome' element={<Welcome />}></Route>
-            <Route path='/arrivalinfo' element={<ArrivalInfo />}></Route>
-            <Route path='/beforeyouleave' element={<BeforeYouLeave />}></Route>
-            <Route path='/houserules' element={<HouseRules />}></Route>
-            <Route path='/amenities' element={<Amenities />}></Route>
-            <Route path='/community' element={<Community />}></Route>
-          </Routes>
-        </AnimatePresence>
-      </div>
+                        } />
 
-    </>
+                        <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs />} />
+                        <Route path='/bishop/digitalguidebook/welcome' element={<Welcome />}></Route>
+                        <Route path='/bishop/digitalguidebook/arrivalinfo' element={<ArrivalInfo />}></Route>
+                        <Route path='/bishop/digitalguidebook/beforeyouleave' element={<BeforeYouLeave />}></Route>
+                        <Route path='/bishop/digitalguidebook/houserules' element={<HouseRules />}></Route>
+                        <Route path='/bishop/digitalguidebook/amenities' element={<Amenities />}></Route>
+                        <Route path='/bishop/digitalguidebook/community' element={<Community />}></Route>
+                        <Route path='/' element={<ComingSoon />}></Route>
+                    </Routes>
+                </AnimatePresence>
+            </div>
 
 
-  );
+
+
+        </>
+
+
+    );
 }
 
 export default App;

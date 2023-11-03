@@ -99,7 +99,7 @@ const Amenities = () => {
                 <HomeAmenityCard amenity={amenity}></HomeAmenityCard>
             ))}
             <div style={styles.buttons} className="description-font">
-                <Button startIcon={<ArrowBackRoundedIcon className="icon-font" />} onClick={() => navigate('/')} variant="contained" color="primary" style={{ marginTop: '20px', backgroundColor: '#7AC7C4' }}>Back to Home</Button>
+                <Button startIcon={<ArrowBackRoundedIcon className="icon-font" />} onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary" style={{ marginTop: '20px', backgroundColor: '#7AC7C4' }}>Back to Home</Button>
                 {/* <Button startIcon={<LogoutRoundedIcon />} onClick={() => navigate('/beforeyouleave')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Checkout Rules</Button> */}
             </div>
 

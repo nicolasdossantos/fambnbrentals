@@ -75,7 +75,7 @@ const Welcome = () => {
                 <Button
                     className="description-font"
                     startIcon={<ArrowBackRoundedIcon className="icon-font" />}
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/bishop/digitalguidebook')}
                     variant="contained"
                     color="primary"
                     style={{ backgroundColor: '#7AC7C4' }}

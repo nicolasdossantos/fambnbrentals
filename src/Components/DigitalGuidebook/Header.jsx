@@ -24,7 +24,7 @@ function Header() {
       <AppBar component="nav" className="bar">
         <Toolbar className="toolbar">
           <img onClick={handleLogoClick} className="logo" src={FamBnbLogo} alt="logo" />
-          {location.pathname !== '/' ?  <Button startIcon={<ArrowBackRoundedIcon className="icon-header" />} className="back-button" onClick={() => navigate('/')} variant="contained" color="primary"  /> : null
+          {location.pathname !== '/bishop/digitalguidebook'  & location.pathname !== '/' ?  <Button startIcon={<ArrowBackRoundedIcon className="icon-header" />} className="back-button" onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary"  /> : null
           }
          
 

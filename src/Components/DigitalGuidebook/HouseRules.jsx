@@ -119,7 +119,7 @@ const HouseRules = () => {
         Thank you for understanding and respecting our house rules. We hope you have a wonderful stay!
       </div>
       <div style={styles.buttons} className="description-font">
-      <Button startIcon={<ArrowBackRoundedIcon className="icon-font"/>} onClick={() => navigate('/')} variant="contained" color="primary" style={{ backgroundColor: '#7AC7C4'}}>Back to Home</Button>
+      <Button startIcon={<ArrowBackRoundedIcon className="icon-font"/>} onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary" style={{ backgroundColor: '#7AC7C4'}}>Back to Home</Button>
       </div>
    
     </div>
