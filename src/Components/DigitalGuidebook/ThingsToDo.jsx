@@ -203,7 +203,7 @@ function ThingsToDo() {
     },
     {
       icon: RestaurantRoundedIcon,
-      title: 'Restaurants & Bars',
+      title: 'Food & Drinks',
       items: restaurants
     },
     {

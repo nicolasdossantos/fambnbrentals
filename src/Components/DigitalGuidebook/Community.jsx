@@ -60,47 +60,47 @@ const Community = () => {
         {
             picture: LakePicture,
             title: "Lake",
-            description: "Test Description 5"
+            description: "Explore the serene waters of Wolf Run Lake. Dive into a refreshing swim, embark on a kayaking adventure, or unwind with some catch-and-release fishing (PA fishing license required). During the summer months, take advantage of our rentals for kayaks, pedal boats, and paddleboards to make the most of your lakeside experience."
         },
         {
             picture: BeachPicture,
             title: "Beach",
-            description: "Test Description 1"
+            description: "Step out of our front door and onto the sands of Towamensing Trails Beach, conveniently located just across the way. Bask in the sun and enjoy swimming in the summer months, or take a leisurely stroll along the shore any time of year — the beauty of the beach is always accessible for your enjoyment."
         },
         {
             picture: PoolPicture,
             title: "Pool",
-            description: "Test Description 2"
+            description: "Take a dip in the Towamensing Trails Community Pool, accessible to our guests throughout the summer. It’s an ideal spot for a refreshing swim and some fun under the sun!"
         },
         {
             picture: ClubhousePicture,
             title: "Clubhouse",
-            description: "Test Description 3"
+            description: "Visit the Club House for a convenient dining option right within Towamensing Trails. The restaurant welcomes guests, offering a variety of dishes to enjoy. Please note that while guests can savor the food, alcohol service is exclusive to club members."
         },
         {
             picture: VolleyballPicture,
             title: "Volleyball Court",
-            description: "Test Description 4"
+            description: "Enjoy a game of beach volleyball at the court located adjacent to the beach. It's a great way to have some fun in the sun and engage in some spirited competition."
         },
-        {
-            picture: "",
-            title: "Tennis Court",
-            description: "Test Description 6"
-        },
-        {
-            picture: "",
-            title: "Basketball Court",
-            description: "Test Description 7"
-        },
+        // {
+        //     picture: "",
+        //     title: "Tennis Court",
+        //     description: "Test Description 6"
+        // },
+        // {
+        //     picture: "",
+        //     title: "Basketball Court",
+        //     description: "Test Description 7"
+        // },
         {
             picture: PlaygroundPicture,
             title: "Playground",
-            description: "Test Description 8"
+            description: "Our younger guests will delight in the playground conveniently situated just across the street. It's a safe and fun space for kids to play and enjoy the outdoors."
         },
         {
             picture: BoatPicture,
             title: "Boat Rentals",
-            description: "Test Description 9s"
+            description: "Set off on a summer adventure with our rental options for kayaks, pedal boats, and paddle boards. Available exclusively in the summer months, they're a fantastic way to explore the water and enjoy the sunshine."
         }
 
     ]

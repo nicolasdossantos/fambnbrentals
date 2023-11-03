@@ -50,42 +50,42 @@ const Amenities = () => {
         {
             picture: GrillPicture,
             title: "Grill",
-            description: "Test Description 5"
+            description: "Enjoy our 6-burner grill with convenient electric ignition. Extra propane tanks are available on the backyard deck for your grilling needs. Kindly cover the grill after use once it has cooled down."
         },
         {
             picture: HotTubPicture,
             title: "Hot Tub",
-            description: "Test Description 1"
+            description: "Indulge in our comfortable 5-person hot tub — the perfect way to unwind. Please make sure to cover it after each use to maintain cleanliness and safety. Importantly, the hot tub should remain on at all times. Simply lower the temperature to 80 degrees before you leave. Enjoy your soothing retreat!"
         },
         {
             picture: PoolTablePicture,
             title: "Pool Table",
-            description: "Test Description 2"
+            description: "Enjoy a game of pool, ping pong, or gather around for a meal on our versatile table that easily converts to suit your needs. For instructions on how to transform it, please refer to the guide located on the game room wall."
         },
         {
             picture: PingPongTablePicture,
             title: "Ping Pong Table",
-            description: "Test Description 3"
+            description: "Enjoy a game of pool, ping pong, or gather around for a meal on our versatile table that easily converts to suit your needs. For instructions on how to transform it, please refer to the guide located on the game room wall."
         },
         {
             picture: FoosballTablePicture,
             title: "Foosball Table",
-            description: "Test Description 4"
+            description: "Challenge your friends and family to a spirited match at our foosball table — a classic and entertaining addition to our game room that's sure to provide hours of fun."
         },
         {
             picture: ArcadeGamesPicture,
             title: "Arcade Games",
-            description: "Test Description 6"
+            description: "Step back in time and enjoy our arcade classics! Go head-to-head in 'NBA Jam' or hit the virtual links with 'Golden Tee.' These timeless games are sure to add some retro fun to your stay!"
         },
         {
             picture: BoardGamesPicture,
             title: "Board Games",
-            description: "Test Description 7"
+            description: "Choose from our extensive collection of over a dozen board games for a night of strategy, skill, and laughter. Whether you're with family or friends, you'll find the perfect game to challenge and entertain everyone."
         },
         {
             picture: CornholePicture,
             title: "Cornhole",
-            description: "Test Description 8"
+            description: "Enjoy some classic outdoor fun with our cornhole game, conveniently located in the game room. After showing off your tossing skills, please return the game to its designated spot for the next guests to enjoy."
         }
 
     ]

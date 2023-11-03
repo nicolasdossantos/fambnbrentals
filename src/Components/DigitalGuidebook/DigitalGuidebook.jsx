@@ -6,8 +6,27 @@ import WifiIcon from '@mui/icons-material/Wifi';
 import '../../style/DigitalGuideBook.css';
 
 function DigitalGuideBook() {
+  const propertyId = "";
+  
+  const [guestyAPIKey, setGuestyAPIKey] = React.useState("");
+  
+
+  React.useEffect(() => {
+    if(guestyAPIKey === ""){
+
+    }
+  }, []);
+
+
+
+
+
+
+
+
+
   const reservationInfo = {
-    guestNames: "John & Jane",
+    guestName: "John",
     checkInDate: "Oct 15, 2023",
     checkOutDate: "Oct 20, 2023"
   };
@@ -20,7 +39,7 @@ function DigitalGuideBook() {
             <img id="coverImage" src={coverImage} alt="Cover" />
           
           <div className="reservation-card">
-            <div className="reservation-card-title title-font">{reservationInfo.guestNames}</div>
+            <div className="reservation-card-title title-font">Hello {reservationInfo.guestName}</div>
             <p className="detail-font"><strong>Check-in:</strong> {reservationInfo.checkInDate}</p>
             <p className="detail-font"><strong>Check-out:</strong> {reservationInfo.checkOutDate}</p>
           </div>
