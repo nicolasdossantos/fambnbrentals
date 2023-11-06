@@ -29,7 +29,6 @@ const Welcome = () => {
         },
         alert: {
             display: 'flex',
-        
             backgroundColor: '#FFF4E5',
             padding: '2vh 4vw',
             fontWeight: 'bold',

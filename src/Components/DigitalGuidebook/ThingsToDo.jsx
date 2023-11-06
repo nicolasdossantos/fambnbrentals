@@ -62,7 +62,7 @@ function ThingsToDo() {
       image:HickoryRunPic,
       name: "Hickory Run State Park",
       season: 2,
-      rating: 4.8,
+      rating: 4.5,
       distance: 4.5,
       category: 'adventure',
       description: 'Explore Hickory Run State Park, a lush haven offering hiking, swimming, and picnicking spots. With over 40 miles of trails and a picturesque boulder field, it\'s a nearby nature retreat for all seasons.',
@@ -200,17 +200,18 @@ function ThingsToDo() {
      icon: LocalSeeIcon ,
       title: 'Attractions',
       items: attractions
-    },
-    {
-      icon: RestaurantRoundedIcon,
-      title: 'Food & Drinks',
-      items: restaurants
-    },
-    {
-      icon: LocalGroceryStoreRoundedIcon,
-      title: 'Stores',
-      items: []
     }
+    // },
+    // {
+    //   icon: RestaurantRoundedIcon,
+    //   title: 'Food & Drinks',
+    //   items: restaurants
+    // },
+    // {
+    //   icon: LocalGroceryStoreRoundedIcon,
+    //   title: 'Stores',
+    //   items: []
+    // }
   ]
 
   return (

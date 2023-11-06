@@ -21,11 +21,11 @@ const TileGrid = () => {
             icon: StarRateRoundedIcon,
             onClickFunction: () => { navigate('/bishop/digitalguidebook/welcome') }
         },
-        {
-            title: "Arrival Info",
-            icon: KeyRoundedIcon,
-            onClickFunction: () => { navigate('/bishop/digitalguidebook/arrivalinfo') }
-        },
+        // {
+        //     title: "Arrival Info",
+        //     icon: KeyRoundedIcon,
+        //     onClickFunction: () => { navigate('/bishop/digitalguidebook/arrivalinfo') }
+        // },
         {
             title: "Before You Leave",
             icon: ChecklistRoundedIcon,

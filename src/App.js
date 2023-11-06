@@ -24,8 +24,8 @@ function App() {
     const location = useLocation();
     return (
         <>
-
-            <Header className="header" />
+            {location === '/bishop/digitalguidebook' ? <Header className="header" /> : null}
+        
             <div className="main-content">
                 <AnimatePresence mode="wait">
                     <Routes location={location} key={location.pathname}>
