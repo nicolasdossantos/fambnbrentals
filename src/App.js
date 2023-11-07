@@ -23,10 +23,32 @@ function App() {
     useScrollRestoration();
     const location = useLocation();
     const [showComingSoon, setShowComingSoon] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
         location.pathname !== '/' ? setShowComingSoon(true) : setShowComingSoon(false);
     }, [location]);
+
+    useEffect(() => {
+        // Handler to call on window resize
+        function handleResize() {
+            // Set window width/height to state
+            setIsMobile(window.innerWidth <= 768);
+        }
+        
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        
+        // Call handler right away so state gets updated with initial window size
+        handleResize();
+        
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    
+    if (!isMobile) {
+        return <ComingSoon />;
+    }
 
     return (
         <>
