@@ -29,6 +29,8 @@ import WaterRoundedIcon from '@mui/icons-material/WaterRounded';
 import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
 import CasinoRoundedIcon from '@mui/icons-material/CasinoRounded';
 import AddLocationAltRoundedIcon from '@mui/icons-material/AddLocationAltRounded';
+import BellaMiaPhoto from '../../photos/restaurat/bellamia.jpg';
+import ClubhousePhoto from '../../photos/community/clubhouseview.jpg';
 
 
 function ThingsToDo() {
@@ -185,13 +187,30 @@ function ThingsToDo() {
   
   const restaurants = [
     {
-      image: HunanHousePic,
-      name: 'Mommy Sorry',
-      rating: 4.8,
-      distance: 4.2,
-      description: 'Two Resorts. Mountains of Memories...Come join us and take your Poconos experience to the next level! Check out our hours of operations below to get the most from your visit.',
+      image: ClubhousePhoto,
+      name: 'Clubhouse Towamensing',
+      rating: 4.5,
+      distance: 0.1,
+      description: 'Steps away from us. Local American Restaurant With a View.',
       typeIcon: <RestaurantRoundedIcon style={{ color: "#7AC7C4" }} /> // replace with an actual MUI icon
-    }
+    },
+    {
+      image: BellaMiaPhoto,
+      name: 'Bella Mia Pizzeria',
+      rating: 4.0,
+      distance: 2.1,
+      description: 'Local Italian Restaurant and Ice Cream Shop.', 
+      typeIcon: <RestaurantRoundedIcon style={{ color: "#7AC7C4" }} /> // replace with an actual MUI icon
+    },
+    {
+      image: HunanHousePic,
+      name: 'Hunan House',
+      rating: 4.0,
+      distance: 2.4,
+      description: 'Local Chinese Restaurant.',
+      typeIcon: <RestaurantRoundedIcon style={{ color: "#7AC7C4" }} /> // replace with an actual MUI icon
+    },
+
   ]
 
   const categories = [
@@ -200,13 +219,12 @@ function ThingsToDo() {
      icon: LocalSeeIcon ,
       title: 'Attractions',
       items: attractions
-    }
-    // },
-    // {
-    //   icon: RestaurantRoundedIcon,
-    //   title: 'Food & Drinks',
-    //   items: restaurants
-    // },
+    },
+    {
+      icon: RestaurantRoundedIcon,
+      title: 'Food & Drinks',
+      items: restaurants
+    },
     // {
     //   icon: LocalGroceryStoreRoundedIcon,
     //   title: 'Stores',

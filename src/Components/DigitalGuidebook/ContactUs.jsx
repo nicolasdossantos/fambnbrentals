@@ -41,12 +41,15 @@ const Welcome = () => {
 
         },
         section: {
-          
-            alignItems: 'center',
-            marginBottom: '2vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            marginBottom: '4vh',
             padding: '2vh 4vw',
             border: '1px solid #e0e0e0',
             borderRadius: '5px',
+            height: '50vh' 
+
         },
         icon: {
             marginRight: '5px',

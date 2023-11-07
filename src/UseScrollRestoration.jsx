@@ -8,14 +8,18 @@ const useScrollRestoration = () => {
   useEffect(() => {
     return () => {
       // Store the scroll position of the current page before navigating away
-      document.querySelector('.main-content').scrollTop = 0;
+      if(document.querySelector('.main-content')) {
+        document.querySelector('.main-content').scrollTop = 0;
+      }
     };
   }, [location]);
 
   useEffect(() => {
     // On entering a new route, scroll to the stored position or to the top
-    const storedPosition = scrollPositions.get(location.pathname) || 0;
+    if(document.querySelector('.main-content')) {
+      const storedPosition = scrollPositions.get(location.pathname) || 0;
     document.querySelector('.main-content').scrollTop = 0;
+    }
   }, [location.pathname]);
 };
 
