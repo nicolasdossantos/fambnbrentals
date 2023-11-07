@@ -8,6 +8,16 @@
   
 }
 
+@media (min-width: 768px) {
+  .bar {
+    height: 10vh !important;
+  }
+  .logo {
+    max-width: 20vw !important;
+    margin-top: 10px;
+  }
+}
+
 .logo {
   max-height: 90% !important; /* Max height relative to parent */
   width: auto; /* Let width be automatic */

@@ -14,8 +14,8 @@
 #coverImage {
   width: 100%;           /* Use the full width of the container */
   height: 100%;          /* Use the full height of the container */
-  object-fit: cover;     /* Resize the image to cover the container while preserving its aspect ratio */
-  object-position: center;
+  object-fit:cover;     /* Resize the image to cover the container while preserving its aspect ratio */
+  object-position: center; /* Center the image within the container */
 }
 
 
@@ -40,7 +40,7 @@
   align-items: center !important;
   padding: 1vw 1vw !important;
   line-height: 0.3 !important;
- 
+  justify-content: center !important;
   white-space: nowrap !important; /* Prevents text wrapping onto the next line */
   overflow: hidden !important;   /* Hides overflow content */
   text-overflow: ellipsis !important; /* Adds "..." for overflowed content */
@@ -50,6 +50,14 @@
 
 
 .icon {
+
+}
+
+@media (min-width: 768px) { 
+  /* Adjust styles for desktop devices */
+  .cover-container {
+    height: 60vh !important;
+  }
 
 }
 

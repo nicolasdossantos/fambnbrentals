@@ -1,0 +1,59 @@
+.grid-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    padding: 2.5vw;
+}
+
+.grid-desktop > * {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+
+.tile-title-desktop {
+    margin-bottom: 0rem !important;
+    margin-top: 5px;
+}
+
+.tile-icon-desktop {
+    color: #7AC7C4;
+    margin-bottom: 0.5rem; /* Space between icon and title */
+    margin-right: 2vw;
+
+}
+
+
+.tile-desktop {
+    display: flex !important;
+    flex-grow: 1;
+    padding: 0rem;
+    text-align: center;
+    justify-content:start;
+    transition: transform 0.3s;
+    width: 100% !important;
+    margin-bottom: 5%;
+}
+
+.tile-container-desktop {
+    display: flex !important;
+    flex-grow: 1;
+    text-align: center;
+    transition: transform 0.3s;
+    align-items: stretch;
+    height: 100% !important;
+}
+
+
+.center-div-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+
+}

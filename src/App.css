@@ -30,27 +30,33 @@ html, body {
   top: 7% !important;
   height: 93%;
   overflow-y: scroll;
+  width: 100%;
 
 }
 
 
 .description-font {
-  font-size: 4vw !important;
+  /* font-size: 4vw !important; */
+  font-size: clamp(12px, 4vw, 24px) !important;
 }
 
 .detail-font {
-  font-size: 3vw !important;
+  font-size: clamp(10px, 3vw, 20px) !important;
+  /* font-size: 3vw !important; */
 
 }
 
 .title-font {
-  font-size: 4.5vw !important;
+  /* font-size: 4.5vw !important;
+   */
+  font-size: clamp(14px, 4.5vw, 26px) !important;
   font-weight: bold;
   margin-bottom: 0.5vw;
 }
 
 .icon-font {
-  font-size: 7vw !important;
+  /* font-size: 7vw !important; */
+  font-size: clamp(20px, 7vw, 40px) !important;
 }
 
 .center-div {
@@ -61,6 +67,30 @@ html, body {
   /* Aligns items on the main axis */
   height: 100vh;
   /* You might want to adjust the height */
+}
+
+
+.desktop-sidebar {
+  width: 30%;
+}
+
+.desktop-main-content {
+  position: fixed;
+  top: 10% !important;
+  left: 30%;
+  height: 93%;
+  overflow-y: scroll;
+  width: 70%;
+
+}
+.alert-desktop {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  position: fixed;
+  top: 7% !important;
 }
 
 

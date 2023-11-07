@@ -1,6 +1,6 @@
 import React from 'react';
 import TileGrid from './TileGrid';
-import coverImage from '../../photos/general/cover_50.jpg'
+import coverImage from '../../photos/general/cover_50.jpg';
 import Alert from '@mui/material/Alert';
 import WifiIcon from '@mui/icons-material/Wifi';
 import '../../style/DigitalGuideBook.css';

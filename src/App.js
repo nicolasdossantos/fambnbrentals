@@ -16,7 +16,9 @@ import Amenities from './Components/DigitalGuidebook/Amenities';
 import Community from './Components/DigitalGuidebook/Community';
 import useScrollRestoration from './UseScrollRestoration';
 import ComingSoon from './Components/ComingSoon';
-
+import DigitalGuideBookDesktop from './Components/DigitalGuidebook/DigitalGuidebookDesktop';
+import Alert from '@mui/material/Alert';
+import WifiIcon from '@mui/icons-material/Wifi';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
     const location = useLocation();
     const [showComingSoon, setShowComingSoon] = useState(true);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    // const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         location.pathname !== '/' ? setShowComingSoon(true) : setShowComingSoon(false);
@@ -35,19 +39,65 @@ function App() {
             // Set window width/height to state
             setIsMobile(window.innerWidth <= 768);
         }
-        
+
         // Add event listener
         window.addEventListener("resize", handleResize);
-        
+
         // Call handler right away so state gets updated with initial window size
         handleResize();
-        
+
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-    
+
     if (!isMobile) {
-        return <ComingSoon />;
+        return (<>
+            <div>
+                <Header className="header" />
+               
+                <div>
+                    <div className="desktop-sidebar">
+                    {/* <Alert className="alert-desktop description-font" severity="info" icon={<WifiIcon className="icon icon-font" />}>
+                    <p className="alert-text">Network: <b>FAM BNB</b> | Password: <b>Poconos2023</b></p>
+                </Alert> */}
+                        <DigitalGuideBookDesktop />
+                    </div>
+
+                    <div className="desktop-main-content">
+       
+                        <AnimatePresence mode="wait">
+                            <Routes location={location} key={location.pathname}>
+                                <Route
+                                    path="/bishop/digitalguidebook"
+                                    element={
+                                        <motion.div
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.2 }}
+                                        >
+                                            <DigitalGuideBook />
+                                        </motion.div>
+                                    }
+                                />
+                                <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo />} />
+                                <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs />} />
+                                <Route path='/bishop/digitalguidebook/welcome' element={<Welcome />}></Route>
+                                <Route path='/bishop/digitalguidebook/arrivalinfo' element={<ArrivalInfo />}></Route>
+                                <Route path='/bishop/digitalguidebook/beforeyouleave' element={<BeforeYouLeave />}></Route>
+                                <Route path='/bishop/digitalguidebook/houserules' element={<HouseRules />}></Route>
+                                <Route path='/bishop/digitalguidebook/amenities' element={<Amenities />}></Route>
+                                <Route path='/bishop/digitalguidebook/community' element={<Community />}></Route>
+                            </Routes>
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </div>
+
+        </>
+
+
+        );
     }
 
     return (
@@ -59,8 +109,8 @@ function App() {
                     <div className="main-content">
                         <AnimatePresence mode="wait">
                             <Routes location={location} key={location.pathname}>
-                                <Route 
-                                    path="/bishop/digitalguidebook" 
+                                <Route
+                                    path="/bishop/digitalguidebook"
                                     element={
                                         <motion.div
                                             initial={{ opacity: 0 }}
@@ -70,7 +120,7 @@ function App() {
                                         >
                                             <DigitalGuideBook />
                                         </motion.div>
-                                    } 
+                                    }
                                 />
                                 <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo />} />
                                 <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs />} />
