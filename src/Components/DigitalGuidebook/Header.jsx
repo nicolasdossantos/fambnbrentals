@@ -9,7 +9,7 @@ import FamBnbLogo from '../../photos/general/fambnb.png';
 import Button from '@mui/material/Button';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
-function Header() {
+function Header({isMobile=true}) {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -24,7 +24,7 @@ function Header() {
       <AppBar component="nav" className="bar">
         <Toolbar className="toolbar">
           <img onClick={handleLogoClick} className="logo" src={FamBnbLogo} alt="logo" />
-          {location.pathname !== '/bishop/digitalguidebook'  & location.pathname !== '/bishop/digitalguidebook' ?  <Button startIcon={<ArrowBackRoundedIcon className="icon-header" />} className="back-button" onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary"  /> : null
+          {location.pathname !== '/bishop/digitalguidebook' && isMobile ?  <Button startIcon={<ArrowBackRoundedIcon className="icon-header" />} className="back-button" onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary"  /> : null
           }
          
 

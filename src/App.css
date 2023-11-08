@@ -71,7 +71,9 @@ html, body {
 
 
 .desktop-sidebar {
-  width: 30%;
+  width: 28%;
+  height: 100vh;
+
 }
 
 .desktop-main-content {
@@ -80,7 +82,9 @@ html, body {
   left: 30%;
   height: 93%;
   overflow-y: scroll;
-  width: 70%;
+  width: 72%;
+  padding-top: 3%;
+  padding-bottom: 3%;
 
 }
 .alert-desktop {

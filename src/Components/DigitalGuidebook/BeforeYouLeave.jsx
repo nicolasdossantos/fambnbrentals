@@ -6,7 +6,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import { useNavigate } from 'react-router-dom';
 
 
-const BeforeYouLeave = () => {
+const BeforeYouLeave = ({isMobile=true}) => {
     const navigate = useNavigate();
   const styles = {
     container: {
@@ -110,7 +110,7 @@ const BeforeYouLeave = () => {
         <DoneRoundedIcon style={styles.icon} className="icon-font"/>
        Leave used towels on bathroom floor. 
       </div>
-
+      { isMobile ?
       <div style={styles.buttons}>
                 <Button
                     className="description-font"
@@ -123,6 +123,7 @@ const BeforeYouLeave = () => {
                     Back to Home
                 </Button>
             </div>
+            : null}
    
     </div>
   );

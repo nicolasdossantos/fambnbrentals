@@ -5,7 +5,8 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import NewReleasesRoundedIcon from '@mui/icons-material/NewReleasesRounded';
 
 
-const Welcome = () => {
+const Welcome = ({isMobile=true}) => {
+    console.log(isMobile);
     const navigate = useNavigate();
     const styles = {
         container: {
@@ -70,18 +71,20 @@ const Welcome = () => {
                 <NewReleasesRoundedIcon style={styles.icon} className="icon-font"></NewReleasesRoundedIcon><div className="description-font">Our goal is to make your stay perfect. If there's even a slight hiccup, don't hesitate to let us know. We're committed to turning it around, because your comfort matters deeply to us.</div>
             </div>
             <div style={styles.section} className="description-font"> We cherish every moment we get to host wonderful guests like you. We're excited and grateful for the chance to make your stay memorable!</div>
-            <div style={styles.buttons}>
-                <Button
-                    className="description-font"
-                    startIcon={<ArrowBackRoundedIcon className="icon-font" />}
-                    onClick={() => navigate('/bishop/digitalguidebook')}
-                    variant="contained"
-                    color="primary"
-                    style={{ backgroundColor: '#7AC7C4' }}
-                >
-                    Back to Home
-                </Button>
-            </div>
+            {isMobile ? 
+                <div style={styles.buttons}>
+                    <Button
+                        className="description-font"
+                        startIcon={<ArrowBackRoundedIcon className="icon-font" />}
+                        onClick={() => navigate('/bishop/digitalguidebook')}
+                        variant="contained"
+                        color="primary"
+                        style={{ backgroundColor: '#7AC7C4' }}
+                    >
+                        Back to Home
+                    </Button>
+                </div>
+                : null }
         </div>
     );
 };

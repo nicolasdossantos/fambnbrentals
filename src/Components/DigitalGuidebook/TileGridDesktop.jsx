@@ -63,7 +63,7 @@ const TileGridDesktop = () => {
             <Grid spacing={1} container>
                 {tilesData.map((tile) => (
                     <Grid key={tile.title} item xs={6} md={12}>
-                        <SelectionTilesDesktop title={tile.title} icon={tile.icon} onClickFunction={tile.onClickFunction}/>
+                        <SelectionTilesDesktop isMobile={false} title={tile.title} icon={tile.icon} onClickFunction={tile.onClickFunction}/>
                     </Grid>
                 ))}
 

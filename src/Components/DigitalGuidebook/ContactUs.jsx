@@ -9,7 +9,7 @@ import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
 
 
 
-const Welcome = () => {
+const ContactUs = ({isMobile=true}) => {
     const navigate = useNavigate();
     const styles = {
         container: {
@@ -100,6 +100,7 @@ const Welcome = () => {
                     
              
             </div>
+            { isMobile ?
             <Button
                     className="description-font"
                     startIcon={<ArrowBackRoundedIcon className="icon-font" />}
@@ -110,10 +111,11 @@ const Welcome = () => {
                 >
                     Back to Home
                 </Button>
+                :null }
         </div>
     );
 };
 
 
 
-export default Welcome;
+export default ContactUs;

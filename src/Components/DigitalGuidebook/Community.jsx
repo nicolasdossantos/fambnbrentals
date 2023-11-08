@@ -16,7 +16,7 @@ import BoatPicture from '../../photos/community/boats.jpg';
 
 import { useNavigate } from 'react-router-dom';
 
-const Community = () => {
+const Community = ({isMobile=true}) => {
 
     const navigate = useNavigate();
     const styles = {
@@ -118,9 +118,11 @@ const Community = () => {
             {amenityList.map((amenity) => (
                 <HomeAmenityCard amenity={amenity}></HomeAmenityCard>
             ))}
+            {isMobile ?
             <div style={styles.buttons} className="description-font">
                 <Button startIcon={<ArrowBackRoundedIcon className="icon-font" />} onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary" style={{backgroundColor: '#7AC7C4' }}>Back to Home</Button>
             </div>
+            : null}
 
         </ div >
     );

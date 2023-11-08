@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArrivalInfo = () => {
+const ArrivalInfo = ({isMobile=true}) => {
     return <div>ArrivalInfo</div>;
 }
 

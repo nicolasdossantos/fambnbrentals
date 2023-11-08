@@ -53,7 +53,7 @@ function App() {
     if (!isMobile) {
         return (<>
             <div>
-                <Header className="header" />
+                <Header className="header" isMobile={false} />
                
                 <div>
                     <div className="desktop-sidebar">
@@ -80,14 +80,14 @@ function App() {
                                         </motion.div>
                                     }
                                 />
-                                <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo />} />
-                                <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs />} />
-                                <Route path='/bishop/digitalguidebook/welcome' element={<Welcome />}></Route>
-                                <Route path='/bishop/digitalguidebook/arrivalinfo' element={<ArrivalInfo />}></Route>
-                                <Route path='/bishop/digitalguidebook/beforeyouleave' element={<BeforeYouLeave />}></Route>
-                                <Route path='/bishop/digitalguidebook/houserules' element={<HouseRules />}></Route>
-                                <Route path='/bishop/digitalguidebook/amenities' element={<Amenities />}></Route>
-                                <Route path='/bishop/digitalguidebook/community' element={<Community />}></Route>
+                                <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo isMobile={false}/>} />
+                                <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs isMobile={false}/>} />
+                                <Route path='/bishop/digitalguidebook/welcome' element={<Welcome isMobile={false}/>}></Route>
+                                <Route path='/bishop/digitalguidebook/arrivalinfo' element={<ArrivalInfo isMobile={false}/>}></Route>
+                                <Route path='/bishop/digitalguidebook/beforeyouleave' element={<BeforeYouLeave isMobile={false} />}></Route>
+                                <Route path='/bishop/digitalguidebook/houserules' element={<HouseRules isMobile={false}/>}></Route>
+                                <Route path='/bishop/digitalguidebook/amenities' element={<Amenities isMobile={false}/>}></Route>
+                                <Route path='/bishop/digitalguidebook/community' element={<Community isMobile={false}/>}></Route>
                             </Routes>
                         </AnimatePresence>
                     </div>

@@ -8,15 +8,7 @@
   
 }
 
-@media (min-width: 768px) {
-  .bar {
-    height: 10vh !important;
-  }
-  .logo {
-    max-width: 20vw !important;
-    margin-top: 10px;
-  }
-}
+
 
 .logo {
   max-height: 90% !important; /* Max height relative to parent */
@@ -39,5 +31,14 @@
 
   .icon-header {
     height: 3vh !important;
+  }
+  @media (min-width: 768px) {
+    .bar {
+      height: 12vh !important;
+    }
+    .logo {
+      max-width: 20vw !important;
+      margin-top: 10px;
+    }
   }
   

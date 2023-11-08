@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
-const HouseRules = () => {
+const HouseRules = ({isMobile=true}) => {
     const navigate = useNavigate();
     const styles = {
       container: {
@@ -118,9 +118,11 @@ const HouseRules = () => {
       <div style={styles.footer} className="description-font">
         Thank you for understanding and respecting our house rules. We hope you have a wonderful stay!
       </div>
+      { isMobile ?
       <div style={styles.buttons} className="description-font">
       <Button startIcon={<ArrowBackRoundedIcon className="icon-font"/>} onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary" style={{ backgroundColor: '#7AC7C4'}}>Back to Home</Button>
       </div>
+      : null}
    
     </div>
   );
