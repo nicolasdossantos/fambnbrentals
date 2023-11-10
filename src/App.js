@@ -18,6 +18,7 @@ import useScrollRestoration from './UseScrollRestoration';
 import ComingSoon from './Components/ComingSoon';
 import DigitalGuideBookDesktop from './Components/DigitalGuidebook/DigitalGuidebookDesktop';
 import Alert from '@mui/material/Alert';
+import BishopForm from './Components/BishopForm';
 import WifiIcon from '@mui/icons-material/Wifi';
 
 
@@ -51,53 +52,54 @@ function App() {
     }, []);
 
     if (!isMobile) {
-        return (<>
-            <div>
-                <Header className="header" isMobile={false} />
+        return <BishopForm />;
+        // return (<>
+        //     <div>
+        //         <Header className="header" isMobile={false} />
                
-                <div>
-                    <div className="desktop-sidebar">
-                    {/* <Alert className="alert-desktop description-font" severity="info" icon={<WifiIcon className="icon icon-font" />}>
-                    <p className="alert-text">Network: <b>FAM BNB</b> | Password: <b>Poconos2023</b></p>
-                </Alert> */}
-                        <DigitalGuideBookDesktop />
-                    </div>
+        //         <div>
+        //             <div className="desktop-sidebar">
+        //             {/* <Alert className="alert-desktop description-font" severity="info" icon={<WifiIcon className="icon icon-font" />}>
+        //             <p className="alert-text">Network: <b>FAM BNB</b> | Password: <b>Poconos2023</b></p>
+        //         </Alert> */}
+        //                 <DigitalGuideBookDesktop />
+        //             </div>
 
-                    <div className="desktop-main-content">
+        //             <div className="desktop-main-content">
        
-                        <AnimatePresence mode="wait">
-                            <Routes location={location} key={location.pathname}>
-                                <Route
-                                    path="/bishop/digitalguidebook"
-                                    element={
-                                        <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.2 }}
-                                        >
-                                            <DigitalGuideBook />
-                                        </motion.div>
-                                    }
-                                />
-                                <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo isMobile={false}/>} />
-                                <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs isMobile={false}/>} />
-                                <Route path='/bishop/digitalguidebook/welcome' element={<Welcome isMobile={false}/>}></Route>
-                                <Route path='/bishop/digitalguidebook/arrivalinfo' element={<ArrivalInfo isMobile={false}/>}></Route>
-                                <Route path='/bishop/digitalguidebook/beforeyouleave' element={<BeforeYouLeave isMobile={false} />}></Route>
-                                <Route path='/bishop/digitalguidebook/houserules' element={<HouseRules isMobile={false}/>}></Route>
-                                <Route path='/bishop/digitalguidebook/amenities' element={<Amenities isMobile={false}/>}></Route>
-                                <Route path='/bishop/digitalguidebook/community' element={<Community isMobile={false}/>}></Route>
-                            </Routes>
-                        </AnimatePresence>
-                    </div>
-                </div>
-            </div>
+        //                 <AnimatePresence mode="wait">
+        //                     <Routes location={location} key={location.pathname}>
+        //                         <Route
+        //                             path="/bishop/digitalguidebook"
+        //                             element={
+        //                                 <motion.div
+        //                                     initial={{ opacity: 0 }}
+        //                                     animate={{ opacity: 1 }}
+        //                                     exit={{ opacity: 0 }}
+        //                                     transition={{ duration: 0.2 }}
+        //                                 >
+        //                                     <DigitalGuideBook />
+        //                                 </motion.div>
+        //                             }
+        //                         />
+        //                         <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo isMobile={false}/>} />
+        //                         <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs isMobile={false}/>} />
+        //                         <Route path='/bishop/digitalguidebook/welcome' element={<Welcome isMobile={false}/>}></Route>
+        //                         <Route path='/bishop/digitalguidebook/arrivalinfo' element={<ArrivalInfo isMobile={false}/>}></Route>
+        //                         <Route path='/bishop/digitalguidebook/beforeyouleave' element={<BeforeYouLeave isMobile={false} />}></Route>
+        //                         <Route path='/bishop/digitalguidebook/houserules' element={<HouseRules isMobile={false}/>}></Route>
+        //                         <Route path='/bishop/digitalguidebook/amenities' element={<Amenities isMobile={false}/>}></Route>
+        //                         <Route path='/bishop/digitalguidebook/community' element={<Community isMobile={false}/>}></Route>
+        //                     </Routes>
+        //                 </AnimatePresence>
+        //             </div>
+        //         </div>
+        //     </div>
 
-        </>
+        // </>
 
 
-        );
+        // );
     }
 
     return (
