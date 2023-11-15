@@ -73,7 +73,7 @@ function App() {
                                         </motion.div>
                                     } 
                                 />
-                                <Route path="/bishop/form" element={<TowamensingForm />} />
+                                <Route path="/bishop/form/:firstName/:lastName/:startDate/:endDate" element={<TowamensingForm />} />
                                 <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo />} />
                                 <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs />} />
                                 <Route path='/bishop/digitalguidebook/welcome' element={<Welcome />}></Route>
