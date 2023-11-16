@@ -47,9 +47,9 @@ function App() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
     
-    if (!isMobile) {
-        return <ComingSoon />;
-    }
+    // if (!isMobile) {
+    //     return <ComingSoon />;
+    // }
 
     return (
         <>

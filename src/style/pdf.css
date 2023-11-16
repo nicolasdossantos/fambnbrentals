@@ -1,0 +1,52 @@
+/* TowamensingFormComponent.css */
+
+.form-container {
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+  }
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-header h1 {
+    font-size: 22px;
+  }
+  
+  .form-header h2 {
+    font-size: 18px;
+  }
+  
+  .form-field {
+    margin-bottom: 10px;
+  }
+  
+  .form-field label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-value, .form-date {
+    border-bottom: 1px solid #000;
+    padding: 3px 0;
+    margin-bottom: 5px;
+  }
+  
+  .multi {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .multi .form-value {
+    flex: 1;
+  }
+  
+  .form-subfield {
+    margin-bottom: 5px;
+  }
+  
+  /* Adjust and add more styles as necessary to match the form's design */
+  

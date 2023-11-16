@@ -13,11 +13,13 @@ import html2canvas from 'html2canvas';
 
 export default function TowamensingForm() {
   let { firstName, lastName, startDate, endDate } = useParams();
+  const [shouldShowForm, setShouldShowForm] = useState(true);
   const [cars, setCars] = useState([{ plate: '', state: '' }]);
   const [firstNameState, setFirstNameState] = useState(firstName || '');
   const [lastNameState, setLastNameState] = useState(lastName || '');
   const [startDateState, setStartDateState] = useState(startDate || '');
   const [endDateState, setEndDateState] = useState(endDate || '');
+  const [formData, setFormData] = useState({});
 
 
   const [email, setEmail] = useState('');
@@ -96,6 +98,8 @@ export default function TowamensingForm() {
       cleaningCrewName, //WHO WILL BE PICKING UP STR PACKET (NAME & PHONE NUMBER)
       cleaningCrewPhoneNumber, //WHO WILL BE PICKING UP STR PACKET (NAME & PHONE NUMBER)
     };
+
+    setFormData(formData);
     
     try {
       const response = await fetch('https://fambnbbackend.azurewebsites.net/api/getSecrets?code=X8ZC7UFwAIHl16u5OoreMM8QT9AdDX0W7IyhVjMbuqOHAzFuwkUMnw==', {
@@ -105,23 +109,25 @@ export default function TowamensingForm() {
           'Content-Type': 'application/json'
         }
       });
+      setShouldShowForm(false);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      // if (!response.ok) {
+      //   
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
 
-      const sasToken  = await response.text();
-      console.log(sasToken);
-      generatePDFBlob(formData).then((pdfBlob) => {
-        uploadPDF(pdfBlob, sasToken);
-      });
+      // const sasToken  = await response.text();
+      // console.log(sasToken);
+      // generatePDFBlob(formData).then((pdfBlob) => {
+      //   uploadPDF(pdfBlob, sasToken, `${firstNameState}_${lastNameState}_${startDateState}_${endDateState}.pdf`);
+      // });
 
       // You might want to do something upon success, e.g., redirect or show a message
     } catch (error) {
       console.error('Error during form submission:', error);
     }
     
-    
+    //signatures SAS TOKE
     
 
     
@@ -132,8 +138,9 @@ export default function TowamensingForm() {
   const generatePDFBlob = async (formData) => {
     // Create a container for the off-screen rendering
     const container = document.createElement('div');
-    container.style.position = 'absolute';
-    container.style.left = '-9999px'; // Move off-screen
+    container.style.height = '100vh';
+    container.style.marginTop = '20vh';
+    // container.style.left = '-9999px'; // Move off-screen
     document.body.appendChild(container);
   
     // Render your custom component inside the container
@@ -160,29 +167,55 @@ export default function TowamensingForm() {
     return pdfBlob;
   };
 
-  const uploadPDF = async (pdfBlob, sasToken) => {
-    const blobName = `${new Date().toISOString()}.pdf`;
-    const url = `https://fambnbstorage.blob.core.windows.net/pdf-container/pdfs/${blobName}${sasToken}`;
+  // const uploadPDF = async (pdfBlob, sasToken) => {
+  //   const blobName = 'example.pdf'; // Replace with your actual blob name
+  //   const url = `https://fambnbstorage.blob.core.windows.net/pdf-container/${blobName}${sasToken}`;
   
-    try {
-      const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'x-ms-blob-type': 'BlockBlob',
-          'Content-Type': 'application/pdf'
-        },
-        body: pdfBlob
-      });
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'x-ms-blob-type': 'BlockBlob',
+  //         'Content-Type': 'application/pdf',
+  //         'Content-Length': pdfBlob.size
+  //       },
+  //       body: pdfBlob
+  //     });
   
-      if (!response.ok) throw new Error('Failed to upload PDF');
-      console.log('PDF uploaded to blob storage.');
-    } catch (error) {
-      console.error('Failed to upload PDF:', error);
-    }
-  };
+  //     if (!response.ok) throw new Error(`Failed to upload PDF: ${response.statusText}`);
+  //     console.log('PDF uploaded to blob storage.');
+  //     // Handle successful upload here
+  //   } catch (error) {
+  //     console.error('Failed to upload PDF:', error);
+  //     // Handle errors here
+  //   }
+  // };
+
+const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
+  const url = `https://fambnbstorage.blob.core.windows.net/pdf-container/${blobName}?${sasTokenBase}`;
+
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'x-ms-blob-type': 'BlockBlob',
+        'Content-Type': 'application/pdf',
+        'Content-Length': pdfBlob.size
+      },
+      body: pdfBlob
+    });
+
+    if (!response.ok) throw new Error(`Failed to upload PDF: ${response.statusText}`);
+    console.log('PDF uploaded to blob storage.');
+  } catch (error) {
+    console.error('Failed to upload PDF:', error);
+  }
+};
 
 
-  return (
+
+
+  return ( <>{ shouldShowForm ?
     <Container maxWidth="md">
       <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off" sx={{ mt: 4 }}>
         <Typography variant="h6">Personal Information</Typography>
@@ -314,6 +347,6 @@ export default function TowamensingForm() {
 
         <Button type="submit" variant="contained" sx={{ mt: 3 }}>Submit</Button>
       </Box>
-    </Container>
+    </Container> : <InvisibleComponent formData={formData} /> } </>
   );
 }
