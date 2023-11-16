@@ -97,6 +97,6 @@
 .input-class {
     border: none !important;
     border-bottom: 1px solid #000 !important;; 
-   
+   padding-bottom: 5px !important;
     margin-bottom: 5px !important;
 }
