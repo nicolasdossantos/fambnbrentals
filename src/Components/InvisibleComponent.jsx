@@ -4,9 +4,11 @@ import '../style/InvisiblePDF.css'
 
 const FormComponent = ({ formData }) => {
     const formatDate = (date) => {
-        const dateObj = new Date(date);
+        // Append the time 'T00:00' to ensure the date is treated as local
+        const dateObj = new Date(date + 'T00:00');
         return `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
-    }
+      };
+
     return (
         <div style={styles.formContainer}>
 
@@ -43,13 +45,13 @@ const FormComponent = ({ formData }) => {
                     IF THERE ARE ANY CHANGES TO THIS SHORT-TERM RENTER, PLEASE RESUBMIT THE ORIGINAL FORM WITH CHANGES AND NOTE ON
                     TOP OF FORM THAT IS AN UPDATE.
                 </div>
-                <img style={{ width: '40px', height:'100%',border: '1px solid black', marginLeft: '5px' }} src={URL.createObjectURL(formData.initials)} alt="Owner Signature" />
+                <img style={{ width: '40px', height:'100%',border: '1px solid black', marginLeft: '5px' }} src={formData.initials} alt="Owner Signature" />
 
 
                 </div>
 
          
-
+                {/* THIS */}
                 <div style={{marginBottom: '10px'}}>
                     <label>WHO WILL BE PICKING UP STR PACKET (Name & Phone number):</label>
                     <input className="input-class" type="text" value={formData.cleaningCrewName.toUpperCase() + ", " + formData.cleaningCrewPhoneNumber} style={styles.input} readOnly />
@@ -66,7 +68,7 @@ const FormComponent = ({ formData }) => {
 
                 <div style={{display: 'flex', alignItems: 'end', justifyContent:'left'}}>
                     <label style={{ marginRight: '15px' }}>SIGNATURE OF PROPERTY OWNER/AGENT:</label>
-                    <img style={styles.signatureImage} src={URL.createObjectURL(formData.signature)}></img>
+                    <img style={styles.signatureImage} src={formData.signature}></img>
                 </div>
 
                 <div style={styles.formGroupDate}>
@@ -79,15 +81,20 @@ const FormComponent = ({ formData }) => {
                         <input className="input-class" type="text" value={formatDate(formData.endDate)} style={styles.inputHalf} readOnly />
                     </div>
                 </div>
+                {/* THIS */}
 
                 <div style={styles.formGroup}>
-                    <label style={{ marginRight: '15px' }}>STR NAME (PLEASE PRINT):</label>
-                    <input className="input-class" type="text" value={`${formData.guestFirstName.toUpperCase()} ${formData.guestLastName.toUpperCase()}`} style={styles.inputHalf} readOnly />
+                    
                 </div>
 
                 <div style={styles.formGroup}>
+                    <label style={{ marginRight: '15px' }}>STR NAME (PLEASE PRINT):</label> 
+                    <input className="input-class" type="text" value={`${formData.guestFirstName.toUpperCase()} ${formData.guestLastName.toUpperCase()}`} style={styles.inputThird} readOnly />
+                </div>
+                {/* THIS */}
+                <div style={styles.formGroup}>
                     <label style={{ marginRight: '15px' }}>STR MAILING ADDRESS:</label>
-                    <input className="input-class" type="text" value={formData.guestAddress.toUpperCase()} style={styles.inputHalf} readOnly />
+                    <input className="input-class" type="text" value={formData.guestAddress.toUpperCase()} readOnly style={styles.inputThird}/>
                 </div>
 
 
@@ -127,7 +134,7 @@ const FormComponent = ({ formData }) => {
 
                 <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
                     {/* Column for the first three cars */}
-                    <div style={{ width: '48%' }}>
+                    <div style={{ width: '48%'}}>
                         {formData.cars.slice(0, 3).map((car, index) => (
                             <div key={index} style={{ display: 'flex', marginBottom: '10px' }}>
                                 <label>STATE:</label>
@@ -143,9 +150,9 @@ const FormComponent = ({ formData }) => {
                         {formData.cars.slice(3).map((car, index) => (
                             <div key={index} style={{ display: 'flex', marginBottom: '10px' }}>
                                 <label>STATE:</label>
-                                <input className="input-class" type="text" value={car.state.toUpperCase()} style={styles.input} readOnly />
+                                <input className="input-class" type="text" value={car.state.toUpperCase()} style={styles.inputHalf} readOnly />
                                 <label>PLATE:</label>
-                                <input className="input-class" type="text" value={car.plate.toUpperCase()} style={styles.input} readOnly />
+                                <input className="input-class" type="text" value={car.plate.toUpperCase()} style={styles.inputHalf} readOnly />
                             </div>
                         ))}
                     </div>
@@ -225,10 +232,13 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
     },
+    flexRowStart: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+    },
     input: {
         width: '100%',
-        padding: '5px',
-        marginBottom: '5px',
+        paddingBottom: '5px'
 
     },
     inputThird: {
@@ -239,7 +249,6 @@ const styles = {
     inputHalf: {
         width: 'calc(50% - 10px)',
         padding: '5px',
-        marginBottom: '5px',
         border: '0px 0px 1px 0px solid #000',
     },
     inputSmall: {

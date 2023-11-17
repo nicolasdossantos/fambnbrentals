@@ -9,7 +9,8 @@ import '../style/TowamensingForm.css';
 import InvisibleComponent from './InvisibleComponent';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
+import Signature from '../photos/form/signature.png';
+import Initials from '../photos/form/initials.png';
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -23,10 +24,11 @@ export default function TowamensingForm() {
   const [startDateState, setStartDateState] = useState(startDate || '');
   const [endDateState, setEndDateState] = useState(endDate || '');
   const [isSuccessfull, setIsSuccessfull] = useState(false);
-  const [signature, setSignature] = useState('');
+  const [signature, setSignature] = useState(Signature);
   
-  const [initials, setInitials] = useState('');
+  const [initials, setInitials] = useState(Initials);
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const [email, setEmail] = useState('');
@@ -35,8 +37,6 @@ export default function TowamensingForm() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
-  const ownerInitialsPath = 'https://fambnbstorage.blob.core.windows.net/signatures/initials.png';
-  const ownerSignaturePath = 'https://fambnbstorage.blob.core.windows.net/signatures/signature.png';
   const ownerName = 'Nicolas dos Santos';
   const ownerPhoneNumber = '267-721-0098';
   const lotNumber = '1352';
@@ -45,36 +45,6 @@ export default function TowamensingForm() {
 
   const cleaningCrewName = 'Gena O\'Connor';
   const cleaningCrewPhoneNumber = '570-926-0282';
-
-  useEffect(() => {
-    let isSubscribed = true; // flag to keep track of whether the component is mounted
-  
-    async function fetchSecrets() {
-      try {
-        const response = await fetch('https://fambnbbackend.azurewebsites.net/api/getSecrets?code=X8ZC7UFwAIHl16u5OoreMM8QT9AdDX0W7IyhVjMbuqOHAzFuwkUMnw==', {
-          method: 'POST',
-          body: JSON.stringify({ type: 'SIGNATURE-SAS' }),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-  
-        if (!isSubscribed) return; // if component has unmounted, don't do anything else
-  
-        const data = await response.text();
-        getSignatures(data);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-  
-    fetchSecrets();
-  
-    return () => {
-      isSubscribed = false; // set the flag to false when the component unmounts
-    };
-  }, []);
-
 
 
   const handleCarChange = (index, event) => {
@@ -109,6 +79,7 @@ export default function TowamensingForm() {
   }
 
   const handleSubmit = async (event) => {
+    setIsLoading(true);
     event.preventDefault();
     // setSignatureData(sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png'));
 
@@ -164,36 +135,12 @@ export default function TowamensingForm() {
       console.error('Error during form submission:', error);
     }
     
-    //signatures SAS TOKE
-    
 
     
 
 
   };
 
-  //get images from blob storage
-  const getSignatures = async (sasToken) => { 
-    const url = `https://fambnbstorage.blob.core.windows.net/signatures/signature.png?${sasToken}`;
-    const url2 = `https://fambnbstorage.blob.core.windows.net/signatures/initials.png?${sasToken}`;
-    try {
-      const response = await fetch(url);
-      const response2 = await fetch(url2);
-      
-      if (!response.ok) throw new Error(`Failed to get signature image: ${response.statusText}`);
-      if (!response2.ok) throw new Error(`Failed to get initials image: ${response2.statusText}`);
-      
-      const image = await response.blob();
-      const image2 = await response2.blob();
-      
-      setSignature(image);
-      setInitials(image2);
-  
-    } catch (error) {
-      console.error('Failed to get image:', error);
-      // Handle errors here
-    }
-  };
 
   const generatePDFBlob = async (formData) => {
     // Create a container for the off-screen rendering
@@ -261,6 +208,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
     if (!response.ok) throw new Error(`Failed to upload PDF: ${response.statusText}`);
     console.log('PDF uploaded to blob storage.');
     setIsSuccessfull(true);
+    setIsLoading(false);
   } catch (error) {
     console.error('Failed to upload PDF:', error);
   }
@@ -389,7 +337,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               disabled={isSuccessfull}
               sx={{ mr: 1, mt: 1 }}
             />
-            <IconButton disabled={isSuccessfull} onClick={() => handleRemoveCar(index)} disabled={cars.length === 1}>
+            <IconButton onClick={() => handleRemoveCar(index)} disabled={cars.length === 1 || isSuccessfull}>
               <RemoveCircleOutlineIcon />
             </IconButton>
           </Box>
@@ -422,7 +370,10 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
           <Button disabled={isSuccessfull} variant="contained" style={{ backgroundColor: '#7AC7C4' }} onClick={clearSignature}>Clear Signature</Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-        <Button type="submit" disabled={isSuccessfull} variant="contained" style={{ backgroundColor: '#7AC7C4' }} sx={{ mt: 3, px: 5, mb: 3}}>Submit</Button>
+        <Button type="submit" disabled={isLoading || isSuccessfull} variant="contained" style={{ backgroundColor: '#7AC7C4' }} sx={{ mt: 3, px: 5, mb: 3}}>
+          {isLoading ?  'Submitting...' : 'Submit'}
+        
+        </Button>
         </Box>
       </Box>
     </Container>
