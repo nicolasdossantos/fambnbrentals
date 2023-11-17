@@ -143,51 +143,55 @@ export default function TowamensingForm() {
 
 
   const generatePDFBlob = async (formData) => {
-    // Create a container for the off-screen rendering
-    const container = document.createElement('div');
-    container.style.position = 'absolute';
-    container.style.height = '279.4mm';
-    container.style.width = '215.9mm';
-    container.style.left = '-9999px'; // Move off-screen
-    document.body.appendChild(container);
-  
-    // Render your custom component inside the container
-    ReactDOM.render(<InvisibleComponent formData={formData} />, container);
-  
-    // Wait for the next repaint to ensure the component is rendered
-    await new Promise((resolve) => setTimeout(resolve, 0));
-  
-    // Convert the rendered component to canvas and then to a PDF
-    const canvas = await html2canvas(container, {
-      width: container.offsetWidth,
-      height: container.offsetHeight,
-      scale: 2, // Adjust scale as needed
-      useCORS: true, // If you're loading images from external URLs
-      onclone: (document) => {
-        // Ensure the cloned document will be visible for html2canvas
-        document.body.style.visibility = 'visible';
-      }
-    });
-    const pdfWidth = 215.9;
-    const pdfHeight = 279.4;
-  
-    // Create a jsPDF instance with the correct dimensions
-    const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: [pdfWidth, pdfHeight]
-    });
-  
-    // Add the image to the jsPDF instance
-    pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, pdfWidth, pdfHeight);
-  
-    const pdfBlob = pdf.output('blob');
-  
-    // Clean up: remove the off-screen container
-    ReactDOM.unmountComponentAtNode(container);
-    container.parentNode.removeChild(container);
-  
-    return pdfBlob;
+    try {// Create a container for the off-screen rendering
+      const container = document.createElement('div');
+      container.style.position = 'absolute';
+      container.style.height = '279.4mm';
+      container.style.width = '215.9mm';
+      container.style.left = '-9999px'; // Move off-screen
+      document.body.appendChild(container);
+    
+      // Render your custom component inside the container
+      ReactDOM.render(<InvisibleComponent formData={formData} />, container);
+    
+      // Wait for the next repaint to ensure the component is rendered
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    
+      // Convert the rendered component to canvas and then to a PDF
+      const canvas = await html2canvas(container, {
+        width: container.offsetWidth,
+        height: container.offsetHeight,
+        scale: 1, // Adjust scale as needed
+        useCORS: true, // If you're loading images from external URLs
+        onclone: (document) => {
+          // Ensure the cloned document will be visible for html2canvas
+          document.body.style.visibility = 'visible';
+        }
+      });
+      const pdfWidth = 215.9;
+      const pdfHeight = 279.4;
+    
+      // Create a jsPDF instance with the correct dimensions
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [pdfWidth, pdfHeight]
+      });
+    
+      // Add the image to the jsPDF instance
+      pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0);
+    
+      const pdfBlob = pdf.output('blob');
+    
+      // Clean up: remove the off-screen container
+      ReactDOM.unmountComponentAtNode(container);
+      container.parentNode.removeChild(container);
+    
+      return pdfBlob;
+    } catch (error) {
+      console.error('Failed to generate PDF:', error);
+    }
+    
   };
 
 
