@@ -7,6 +7,9 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import ReactDOM from 'react-dom';
 import '../style/TowamensingForm.css';
 import InvisibleComponent from './InvisibleComponent';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -19,7 +22,9 @@ export default function TowamensingForm() {
   const [lastNameState, setLastNameState] = useState(lastName || '');
   const [startDateState, setStartDateState] = useState(startDate || '');
   const [endDateState, setEndDateState] = useState(endDate || '');
+  const [isSuccessfull, setIsSuccessfull] = useState(false);
   const [signature, setSignature] = useState('');
+  
   const [initials, setInitials] = useState('');
   const [formData, setFormData] = useState({});
 
@@ -255,6 +260,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
 
     if (!response.ok) throw new Error(`Failed to upload PDF: ${response.statusText}`);
     console.log('PDF uploaded to blob storage.');
+    setIsSuccessfull(true);
   } catch (error) {
     console.error('Failed to upload PDF:', error);
   }
@@ -265,6 +271,12 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
 
   return (
     <Container maxWidth="md">
+    {isSuccessfull &&
+      <Alert style={{position:'sticky', top:'0'}} severity="success" variant="filled">
+          <AlertTitle>Thank You!</AlertTitle>
+          Your form has been submitted successfully. 
+        </Alert>
+    }
       <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off" sx={{ mt: 4 }}>
         <Typography variant="h6">Personal Information</Typography>
         <Grid container spacing={2}>
@@ -273,6 +285,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="First Name"
+              disabled
               value={firstNameState}
               onChange={(e) => setFirstNameState(e.target.value)}
             />
@@ -282,6 +295,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="Last Name"
+              disabled
               value={lastNameState}
               onChange={(e) => setLastNameState(e.target.value)}
             />
@@ -291,6 +305,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="Email Address"
+              disabled={isSuccessfull}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -301,6 +316,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="Address"
+              disabled={isSuccessfull}
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -310,6 +326,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="City"
+              disabled={isSuccessfull}
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
@@ -319,6 +336,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="State"
+              disabled={isSuccessfull}
               value={state}
               onChange={(e) => setState(e.target.value)}
 
@@ -329,6 +347,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="Zip"
+              disabled={isSuccessfull}
               value={zip}
               onChange={(e) => setZip(e.target.value)}
             />
@@ -338,6 +357,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               fullWidth
               required
               label="Phone Number"
+              disabled={isSuccessfull}
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -356,6 +376,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               name="plate"
               value={car.plate}
               onChange={(event) => handleCarChange(index, event)}
+              disabled={isSuccessfull}
               sx={{ mr: 1, mt: 1 }}
             />
             <TextField
@@ -365,9 +386,10 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
               name="state"
               value={car.state}
               onChange={(event) => handleCarChange(index, event)}
+              disabled={isSuccessfull}
               sx={{ mr: 1, mt: 1 }}
             />
-            <IconButton onClick={() => handleRemoveCar(index)} disabled={cars.length === 1}>
+            <IconButton disabled={isSuccessfull} onClick={() => handleRemoveCar(index)} disabled={cars.length === 1}>
               <RemoveCircleOutlineIcon />
             </IconButton>
           </Box>
@@ -376,7 +398,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
           variant="outlined"
           startIcon={<AddCircleOutlineIcon />}
           onClick={handleAddCar}
-          disabled={cars.length >= 5}
+          disabled={cars.length >= 5 || isSuccessfull}
           sx={{ mb: 2 }}
         >
           Add Another Car
@@ -393,13 +415,14 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
           ref={sigCanvasRef}
           canvasProps={{ className: 'signatureCanvas' }}
           onEnd={onSignatureChange}
+          disabled={isSuccessfull}
         // other props you might need
         />
         <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-          <Button variant="contained" style={{ backgroundColor: '#7AC7C4' }} onClick={clearSignature}>Clear Signature</Button>
+          <Button disabled={isSuccessfull} variant="contained" style={{ backgroundColor: '#7AC7C4' }} onClick={clearSignature}>Clear Signature</Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-        <Button type="submit" variant="contained" style={{ backgroundColor: '#7AC7C4' }} sx={{ mt: 3, px: 5, mb: 3}}>Submit</Button>
+        <Button type="submit" disabled={isSuccessfull} variant="contained" style={{ backgroundColor: '#7AC7C4' }} sx={{ mt: 3, px: 5, mb: 3}}>Submit</Button>
         </Box>
       </Box>
     </Container>

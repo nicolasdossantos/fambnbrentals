@@ -21,15 +21,28 @@ function Header() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
+      {/* TEMPORARY */}
+
+      {location.pathname.includes('/form') ? 
+
+      <AppBar component="nav" className="bar">
+        <Toolbar className="toolbar">
+          <img onClick={()=> navigate('/')} className="logo" src={FamBnbLogo} alt="logo" />
+        </Toolbar>
+      </AppBar> :
       <AppBar component="nav" className="bar">
         <Toolbar className="toolbar">
           <img onClick={handleLogoClick} className="logo" src={FamBnbLogo} alt="logo" />
-          {location.pathname !== '/bishop/digitalguidebook'  & location.pathname !== '/bishop/digitalguidebook' ?  <Button startIcon={<ArrowBackRoundedIcon className="icon-header" />} className="back-button" onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary"  /> : null
+          {location.pathname !== '/bishop/digitalguidebook' 
+           & location.pathname !== '/bishop/digitalguidebook' ?  <Button startIcon={<ArrowBackRoundedIcon className="icon-header" />} className="back-button" onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary"  /> : null
           }
-         
-
+        
         </Toolbar>
       </AppBar>
+      }
+
+
+     
       <nav>
       </nav>
     </Box>
