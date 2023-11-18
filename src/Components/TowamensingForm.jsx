@@ -161,7 +161,7 @@ export default function TowamensingForm() {
       const canvas = await html2canvas(container, {
         width: container.offsetWidth,
         height: container.offsetHeight,
-        scale: 2, // Adjust scale as needed
+        scale: 1, // Adjust scale as needed
         useCORS: true, // If you're loading images from external URLs
         onclone: (document) => {
           // Ensure the cloned document will be visible for html2canvas
