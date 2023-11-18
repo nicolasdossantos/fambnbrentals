@@ -159,7 +159,9 @@ export default function TowamensingForm() {
     
       // Convert the rendered component to canvas and then to a PDF
       const canvas = await html2canvas(container, {
-        scale: 1.5, // Adjust scale as needed
+        width: container.offsetWidth,
+        height: container.offsetHeight,
+        scale: 2, // Adjust scale as needed
         useCORS: true, // If you're loading images from external URLs
         onclone: (document) => {
           // Ensure the cloned document will be visible for html2canvas
@@ -177,7 +179,7 @@ export default function TowamensingForm() {
       });
     
       // Add the image to the jsPDF instance
-      pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0);
+      pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, pdf.width, pdf.height);
     
       const pdfBlob = pdf.output('blob');
     
