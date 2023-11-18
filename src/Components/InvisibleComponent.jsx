@@ -11,7 +11,6 @@ const FormComponent = ({ formData }) => {
 
     return (
         <div style={styles.formContainer}>
-
             <header style={styles.header}>
                 <h2 style={{paddingBottom: '0px'}}>Towamensing Trails Property Owners Association</h2>
                 <h3>SHORT TERM RENTAL REGISTRATION FORM</h3>
@@ -194,6 +193,7 @@ const styles = {
     },
     formGroup: {
         marginBottom: '10px',
+        maringTop: '10px',
         display: 'flex',
         flexDirection: 'row',
     },

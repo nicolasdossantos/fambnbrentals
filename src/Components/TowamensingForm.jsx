@@ -159,9 +159,7 @@ export default function TowamensingForm() {
     
       // Convert the rendered component to canvas and then to a PDF
       const canvas = await html2canvas(container, {
-        width: container.offsetWidth,
-        height: container.offsetHeight,
-        scale: 1, // Adjust scale as needed
+        scale: 1.5, // Adjust scale as needed
         useCORS: true, // If you're loading images from external URLs
         onclone: (document) => {
           // Ensure the cloned document will be visible for html2canvas
