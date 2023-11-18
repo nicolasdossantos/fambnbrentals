@@ -371,10 +371,10 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
         // other props you might need
         />
         <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-          <Button disabled={isSuccessfull} variant="contained" style={{ backgroundColor: '#7AC7C4' }} onClick={clearSignature}>Clear Signature</Button>
+          <Button disabled={isSuccessfull} variant="contained"  onClick={clearSignature}>Clear Signature</Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-        <Button type="submit" disabled={isLoading || isSuccessfull} variant="contained" style={{ backgroundColor: '#7AC7C4' }} sx={{ mt: 3, px: 5, mb: 3}}>
+        <Button type="submit" disabled={isLoading || isSuccessfull} variant="contained"  sx={{ mt: 3, px: 5, mb: 3}}>
           {isLoading ?  'Submitting...' : 'Submit'}
         
         </Button>
