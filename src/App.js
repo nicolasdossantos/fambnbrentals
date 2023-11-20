@@ -16,7 +16,7 @@ import Amenities from './Components/DigitalGuidebook/Amenities';
 import Community from './Components/DigitalGuidebook/Community';
 import useScrollRestoration from './UseScrollRestoration';
 import ComingSoon from './Components/ComingSoon';
-import TowamensingForm from './Components/TowamensingForm';
+import TowamensingForm from './Components/Form/TowamensingForm';
 
 
 
