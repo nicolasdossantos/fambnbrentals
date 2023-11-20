@@ -1,13 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SignaturePad from 'react-signature-canvas';
 import { Box, TextField, Button, IconButton, Typography, Grid, Container } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import '../style/TowamensingForm.css';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import '../style/TowamensingForm.css';
 
+const CarInput = React.memo(({ car, index, isSuccessfull, onCarChange, onRemoveCar }) => (
+  <Box sx={{ mb: 2 }}>
+    <TextField
+      fullWidth
+      required
+      label="Car Plate"
+      name="plate"
+      value={car.plate}
+      onChange={onCarChange(index)}
+      disabled={isSuccessfull}
+      sx={{ mr: 1, mt: 1 }}
+    />
+    <TextField
+      fullWidth
+      required
+      label="State"
+      name="state"
+      value={car.state}
+      onChange={onCarChange(index)}
+      disabled={isSuccessfull}
+      sx={{ mr: 1, mt: 1 }}
+    />
+    <IconButton onClick={() => onRemoveCar(index)} disabled={isSuccessfull}>
+      <RemoveCircleOutlineIcon />
+    </IconButton>
+  </Box>
+));
 
 
 export default function TowamensingForm() {
@@ -18,7 +45,7 @@ export default function TowamensingForm() {
   const [startDateState, setStartDateState] = useState(startDate || '');
   const [endDateState, setEndDateState] = useState(endDate || '');
   const [isSuccessfull, setIsSuccessfull] = useState(false);
-  
+
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,22 +66,37 @@ export default function TowamensingForm() {
   const cleaningCrewPhoneNumber = '570-926-0282';
 
 
-  const handleCarChange = (index, event) => {
-    const newCars = cars.map((car, carIndex) => {
-      if (index !== carIndex) return car;
-      return { ...car, [event.target.name]: event.target.value };
+  const handleCarChange = useCallback((index) => (event) => {
+    console.log("render");
+    setCars((currentCars) => {
+      const newCars = [...currentCars];
+      newCars[index] = { ...newCars[index], [event.target.name]: event.target.value };
+      return newCars;
     });
-    setCars(newCars);
-  };
+  }, []);
 
-  const handleAddCar = () => {
-    if (cars.length < 5) {
-      setCars([...cars, { plate: '', state: '' }]);
-    }
-  };
+  const handleAddCar = useCallback(() => {
+    setCars((currentCars) => [...currentCars, { plate: '', state: '' }]);
+  }, []);
+
+  const handleRemoveCar = useCallback((index) => {
+    setCars((currentCars) => currentCars.filter((_, carIndex) => index !== carIndex));
+  }, []);
+
 
   const sigCanvasRef = useRef({});
   const [signatureData, setSignatureData] = useState('');
+
+  const carsElements = useMemo(() => cars.map((car, index) => (
+    <CarInput
+      key={index}
+      car={car}
+      index={index}
+      isSuccessfull={isSuccessfull}
+      onCarChange={handleCarChange}
+      onRemoveCar={handleRemoveCar}
+    />
+  )), [cars, isSuccessfull, handleCarChange, handleRemoveCar]);
 
 
   const clearSignature = () => {
@@ -68,18 +110,14 @@ export default function TowamensingForm() {
     return `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
   };
 
-  const handleRemoveCar = (index) => {
-    setCars(cars.filter((_, carIndex) => index !== carIndex));
-  };
-
   const onSignatureChange = () => {
     setSignatureData(sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png'));
   }
 
   const populateCars = (dataForm, cars) => {
     cars.forEach((car, index) => {
-      dataForm[`car${index+1}Plate`] = car.plate;
-      dataForm[`car${index+1}State`] = car.state;
+      dataForm[`car${index + 1}Plate`] = car.plate;
+      dataForm[`car${index + 1}State`] = car.state;
     });
 
     return dataForm;
@@ -133,12 +171,12 @@ export default function TowamensingForm() {
     const formDataWithCars = populateCars(dataForm, cars);
 
 
-  
+
 
     setFormData(formDataWithCars);
 
     console.log(formDataWithCars);
-    
+
     try {
       const response = await fetch('https://fambnbbackend.azurewebsites.net/api/ProcessForm?code=X8ZC7UFwAIHl16u5OoreMM8QT9AdDX0W7IyhVjMbuqOHAzFuwkUMnw==', {
         method: 'POST',
@@ -147,7 +185,7 @@ export default function TowamensingForm() {
           'Content-Type': 'application/json'
         }
       });
-     
+
 
       if (!response.ok) {
         setIsLoading(false);
@@ -156,30 +194,25 @@ export default function TowamensingForm() {
       setIsLoading(false);
       setIsSuccessfull(true);
 
-      // const sasToken  = await response.text();
-      // generatePDFBlob(formData).then((pdfBlob) => {
-      //   uploadPDF(pdfBlob, sasToken, `${firstNameState}_${lastNameState}_${startDateState}_${endDateState}.pdf`);
-      // });
-
       // You might want to do something upon success, e.g., redirect or show a message
     } catch (error) {
       console.error('Error during form submission:', error);
     }
-    
 
-    
+
+
 
 
   };
 
   return (
     <Container maxWidth="md">
-    {isSuccessfull &&
-      <Alert style={{position:'sticky', top:'0'}} severity="success" variant="filled">
+      {isSuccessfull && (
+        <Alert style={{ position: 'sticky', top: '0' }} severity="success" variant="filled">
           <AlertTitle>Thank You!</AlertTitle>
-          Your form has been submitted successfully. 
+          Your form has been submitted successfully.
         </Alert>
-    }
+      )}
       <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off" sx={{ mt: 4 }}>
         <Typography variant="h6">Personal Information</Typography>
         <Grid container spacing={2}>
@@ -270,33 +303,7 @@ export default function TowamensingForm() {
 
 
         <Typography variant="h6" sx={{ mt: 4 }}>Car Information (Please add all cars that will be parked at the house)</Typography>
-        {cars.map((car, index) => (
-          <Box key={index} sx={{ mb: 2 }}>
-            <TextField
-              fullWidth
-              required
-              label="Car Plate"
-              name="plate"
-              value={car.plate}
-              onChange={(event) => handleCarChange(index, event)}
-              disabled={isSuccessfull}
-              sx={{ mr: 1, mt: 1 }}
-            />
-            <TextField
-              fullWidth
-              required
-              label="State"
-              name="state"
-              value={car.state}
-              onChange={(event) => handleCarChange(index, event)}
-              disabled={isSuccessfull}
-              sx={{ mr: 1, mt: 1 }}
-            />
-            <IconButton onClick={() => handleRemoveCar(index)} disabled={cars.length === 1 || isSuccessfull}>
-              <RemoveCircleOutlineIcon />
-            </IconButton>
-          </Box>
-        ))}
+        {carsElements}
         <Button
           variant="outlined"
           startIcon={<AddCircleOutlineIcon />}
@@ -306,11 +313,11 @@ export default function TowamensingForm() {
         >
           Add Another Car
         </Button>
-        <div             style={{width: '100%', textAlign: 'center', borderRadius: '4px', backgroundColor: 'rgb(229, 246, 253)', padding: '20px'}}
->
-          <div 
+        <div style={{ width: '100%', textAlign: 'center', borderRadius: '4px', backgroundColor: 'rgb(229, 246, 253)', padding: '20px' }}
+        >
+          <div
           >I AFFIRM I HAVE READ THE CURRENT RULES OF CONDUCT AND RENTAL POLICY AND I AM AWARE OF THE TRASH COMPACTOR HOURS UPON CHECKOUT TIME.</div>
-          <a style={{color: 'blue'}} href="https://www.towamensing.com/documents2010/rules%20of%20conduct%202010.pdf" target='_blank'>Towamensing Trails Rules of Conduct</a>
+          <a style={{ color: 'blue' }} href="https://www.towamensing.com/documents2010/rules%20of%20conduct%202010.pdf" target='_blank'>Towamensing Trails Rules of Conduct</a>
         </div>
         {/* Car inputs and buttons here, wrapped in Grid components as above */}
         <Typography variant="h6" sx={{ mt: 4 }}>Signature</Typography>
@@ -322,13 +329,13 @@ export default function TowamensingForm() {
         // other props you might need
         />
         <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-          <Button disabled={isSuccessfull || isLoading} variant="contained"  onClick={clearSignature}>Clear Signature</Button>
+          <Button disabled={isSuccessfull || isLoading} variant="contained" onClick={clearSignature}>Clear Signature</Button>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-        <Button disabled={isLoading || isSuccessfull} type="submit" variant="contained"  sx={{ mt: 3, px: 5, mb: 3}}>
-          {isLoading ?  'Submitting...' : 'Submit'}
-        
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button disabled={isLoading || isSuccessfull} type="submit" variant="contained" sx={{ mt: 3, px: 5, mb: 3 }}>
+            {isLoading ? 'Submitting...' : 'Submit'}
+
+          </Button>
         </Box>
       </Box>
     </Container>
