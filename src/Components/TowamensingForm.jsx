@@ -7,8 +7,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import '../style/TowamensingForm.css';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import Signature from '../photos/form/signature.png';
-import Initials from '../photos/form/initials.png';
+
 
 
 export default function TowamensingForm() {
@@ -151,9 +150,11 @@ export default function TowamensingForm() {
      
 
       if (!response.ok) {
-        
+        setIsLoading(false);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      setIsLoading(false);
+      setIsSuccessfull(true);
 
       // const sasToken  = await response.text();
       // generatePDFBlob(formData).then((pdfBlob) => {
@@ -321,10 +322,10 @@ export default function TowamensingForm() {
         // other props you might need
         />
         <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-          <Button disabled={isSuccessfull} variant="contained"  onClick={clearSignature}>Clear Signature</Button>
+          <Button disabled={isSuccessfull || isLoading} variant="contained"  onClick={clearSignature}>Clear Signature</Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-        <Button type="submit" variant="contained"  sx={{ mt: 3, px: 5, mb: 3}}>
+        <Button disabled={isLoading || isSuccessfull} type="submit" variant="contained"  sx={{ mt: 3, px: 5, mb: 3}}>
           {isLoading ?  'Submitting...' : 'Submit'}
         
         </Button>
