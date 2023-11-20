@@ -17,7 +17,7 @@ module.exports = {
       root: __dirname,
     }),
     new HtmlWebpackPlugin({
-      template: './dist/index.html',
+      template: './public/index.html',
       filename: 'index.html',
       inject: true,
       templateParameters: (compilation, assets, assetTags, options) => {
@@ -66,11 +66,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
-
-      alias: {
-        '@emotion/react': path.resolve(__dirname, 'node_modules/@emotion/react'),
-      }
+    extensions: ['.js', '.jsx', '.css']
   },
   output: {
     filename: 'bundle.js',
