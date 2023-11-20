@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState, Suspense, lazy   } from 'react';
 import { useParams } from 'react-router-dom';
 import SignaturePad from 'react-signature-canvas';
 import { Box, TextField, Button, IconButton, Typography, Grid, Container } from '@mui/material';
@@ -67,7 +67,6 @@ export default function TowamensingForm() {
 
 
   const handleCarChange = useCallback((index) => (event) => {
-    console.log("render");
     setCars((currentCars) => {
       const newCars = [...currentCars];
       newCars[index] = { ...newCars[index], [event.target.name]: event.target.value };
@@ -127,6 +126,7 @@ export default function TowamensingForm() {
   const handleSubmit = async (event) => {
     setIsLoading(true);
     event.preventDefault();
+    
     // setSignatureData(sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png'));
 
     const dataForm = {
@@ -169,18 +169,12 @@ export default function TowamensingForm() {
     }
 
     const formDataWithCars = populateCars(dataForm, cars);
-
-
-
-
     setFormData(formDataWithCars);
-
-    console.log(formDataWithCars);
 
     try {
       const response = await fetch('https://fambnbbackend.azurewebsites.net/api/ProcessForm?code=X8ZC7UFwAIHl16u5OoreMM8QT9AdDX0W7IyhVjMbuqOHAzFuwkUMnw==', {
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formDataWithCars),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -321,6 +315,9 @@ export default function TowamensingForm() {
         </div>
         {/* Car inputs and buttons here, wrapped in Grid components as above */}
         <Typography variant="h6" sx={{ mt: 4 }}>Signature</Typography>
+        <Suspense fallback={<div>Loading...</div>}>
+       
+     
         <SignaturePad
           ref={sigCanvasRef}
           canvasProps={{ className: 'signatureCanvas' }}
@@ -328,6 +325,7 @@ export default function TowamensingForm() {
           disabled={isSuccessfull}
         // other props you might need
         />
+         </Suspense>
         <Box sx={{ display: 'flex', justifyContent: 'right' }}>
           <Button disabled={isSuccessfull || isLoading} variant="contained" onClick={clearSignature}>Clear Signature</Button>
         </Box>
