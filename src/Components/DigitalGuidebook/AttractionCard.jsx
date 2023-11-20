@@ -1,5 +1,4 @@
 import { Card, CardMedia, CardContent, Typography, Box, Rating, Icon } from '@mui/material';
-import Button from '@mui/material/Button';
 import React from 'react';
 import '../../style/AttractionCard.css'
 

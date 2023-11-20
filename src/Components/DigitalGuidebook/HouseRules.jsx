@@ -13,7 +13,7 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 import { useNavigate } from 'react-router-dom';
 
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+
 
 const HouseRules = () => {
     const navigate = useNavigate();
