@@ -4,29 +4,22 @@ import SignaturePad from 'react-signature-canvas';
 import { Box, TextField, Button, IconButton, Typography, Grid, Container } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import ReactDOM from 'react-dom';
 import '../style/TowamensingForm.css';
-import InvisibleComponent from './InvisibleComponent';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Signature from '../photos/form/signature.png';
 import Initials from '../photos/form/initials.png';
 
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 export default function TowamensingForm() {
   let { firstName, lastName, startDate, endDate } = useParams();
-  const [shouldShowForm, setShouldShowForm] = useState(true);
   const [cars, setCars] = useState([{ plate: '', state: '' }]);
   const [firstNameState, setFirstNameState] = useState(firstName || '');
   const [lastNameState, setLastNameState] = useState(lastName || '');
   const [startDateState, setStartDateState] = useState(startDate || '');
   const [endDateState, setEndDateState] = useState(endDate || '');
   const [isSuccessfull, setIsSuccessfull] = useState(false);
-  const [signature, setSignature] = useState(Signature);
   
-  const [initials, setInitials] = useState(Initials);
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -70,6 +63,12 @@ export default function TowamensingForm() {
     setSignatureData('');
   };
 
+  const formatDate = (date) => {
+    // Append the time 'T00:00' to ensure the date is treated as local
+    const dateObj = new Date(date + 'T00:00');
+    return `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
+  };
+
   const handleRemoveCar = (index) => {
     setCars(cars.filter((_, carIndex) => index !== carIndex));
   };
@@ -78,42 +77,73 @@ export default function TowamensingForm() {
     setSignatureData(sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png'));
   }
 
+  const populateCars = (dataForm, cars) => {
+    cars.forEach((car, index) => {
+      dataForm[`car${index+1}Plate`] = car.plate;
+      dataForm[`car${index+1}State`] = car.state;
+    });
+
+    return dataForm;
+
+  }
+
   const handleSubmit = async (event) => {
     setIsLoading(true);
     event.preventDefault();
     // setSignatureData(sigCanvasRef.current.getTrimmedCanvas().toDataURL('image/png'));
 
-    // Prepare the payload
-    const formData = {
-      guestFirstName: firstNameState,  // STR Name
-      guestLastName: lastNameState, // STR Name
-      startDate: startDateState,  // FROM
-      endDate: endDateState, // TO
-      guestEmail: email, // For DB only
-      guestPhoneNumber: phone, // (PHONE)
-      guestAddress: address, //STR MAILING ADDRESS
-      guestCity: city, // CITY
-      guestState: state,  // STATE
-      cars, // FOR EACH CAR -> STATE + PLATE #
-      guestSignature: signatureData, // SIGNATURE OF STR
-      initials, //(PROPERTY OWNER/AGENT MUST INITIAL...)
-      signature, // SIGNATURE OF PROPERTY OWNER/AGENT,
-      guestZip: zip, // ZIP
-      ownerName, // NAME OF PROPERTY OWNER
-      ownerPhoneNumber, // FOR QUESTIONS/COMPLAINTS PLEASE CONTACT
-      lotNumber, // ACCT/LOT #
-      houseNumber, // 911 #
-      houseStreet, // STREET
-      cleaningCrewName, //WHO WILL BE PICKING UP STR PACKET (NAME & PHONE NUMBER)
-      cleaningCrewPhoneNumber, //WHO WILL BE PICKING UP STR PACKET (NAME & PHONE NUMBER)
-    };
+    const dataForm = {
+      ownerName,
+      lotNumber,
+      houseNumber,
+      houseStreet,
+      cleaningCrewName,
+      cleaningCrewPhoneNumber,
+      guestFirstName: firstNameState,
+      guestLastName: lastNameState,
+      cleanerNameAndPhoneNumber: cleaningCrewName + ' ' + cleaningCrewPhoneNumber,
+      guestFullName: firstNameState + ' ' + lastNameState,
+      guestAddress: address,
+      guestCity: city,
+      guestState: state,
+      guestZip: zip,
+      ownerPhoneNumber,
+      guestPhoneNumber: phone,
+      guestSignature: signatureData,
+      todaysDate: new Date().toLocaleDateString(), //check
+      startDate: formatDate(startDateState),
+      endDate: formatDate(endDateState),
+      car1Plate: "",
+      car1State: "",
+      car2Plate: "",
+      car2State: "",
+      car3Plate: "",
+      car3State: "",
+      car4Plate: "",
+      car4State: "",
+      car5Plate: "",
+      car5State: "",
+      car6Plate: "",
+      car6State: "",
+      car7Plate: "",
+      car7State: "",
+      car8Plate: "",
+      car8State: "",
+    }
 
-    setFormData(formData);
+    const formDataWithCars = populateCars(dataForm, cars);
+
+
+  
+
+    setFormData(formDataWithCars);
+
+    console.log(formDataWithCars);
     
     try {
-      const response = await fetch('https://fambnbbackend.azurewebsites.net/api/getSecrets?code=X8ZC7UFwAIHl16u5OoreMM8QT9AdDX0W7IyhVjMbuqOHAzFuwkUMnw==', {
+      const response = await fetch('https://fambnbbackend.azurewebsites.net/api/ProcessForm?code=X8ZC7UFwAIHl16u5OoreMM8QT9AdDX0W7IyhVjMbuqOHAzFuwkUMnw==', {
         method: 'POST',
-        body: JSON.stringify({type: 'PDF-SAS'}),
+        body: JSON.stringify(formData),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -125,10 +155,10 @@ export default function TowamensingForm() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const sasToken  = await response.text();
-      generatePDFBlob(formData).then((pdfBlob) => {
-        uploadPDF(pdfBlob, sasToken, `${firstNameState}_${lastNameState}_${startDateState}_${endDateState}.pdf`);
-      });
+      // const sasToken  = await response.text();
+      // generatePDFBlob(formData).then((pdfBlob) => {
+      //   uploadPDF(pdfBlob, sasToken, `${firstNameState}_${lastNameState}_${startDateState}_${endDateState}.pdf`);
+      // });
 
       // You might want to do something upon success, e.g., redirect or show a message
     } catch (error) {
@@ -140,86 +170,6 @@ export default function TowamensingForm() {
 
 
   };
-
-
-  const generatePDFBlob = async (formData) => {
-    try {// Create a container for the off-screen rendering
-      const container = document.createElement('div');
-      container.style.position = 'absolute';
-      container.style.height = '279.4mm';
-      container.style.width = '215.9mm';
-      container.style.left = '-9999px'; // Move off-screen
-      document.body.appendChild(container);
-    
-      // Render your custom component inside the container
-      ReactDOM.render(<InvisibleComponent formData={formData} />, container);
-    
-      // Wait for the next repaint to ensure the component is rendered
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    
-      // Convert the rendered component to canvas and then to a PDF
-      const canvas = await html2canvas(container, {
-        width: container.offsetWidth,
-        height: container.offsetHeight,
-        scale: 1, // Adjust scale as needed
-        useCORS: true, // If you're loading images from external URLs
-        onclone: (document) => {
-          // Ensure the cloned document will be visible for html2canvas
-          document.body.style.visibility = 'visible';
-        }
-      });
-      const pdfWidth = 215.9;
-      const pdfHeight = 279.4;
-    
-      // Create a jsPDF instance with the correct dimensions
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: [pdfWidth, pdfHeight]
-      });
-    
-      // Add the image to the jsPDF instance
-      pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, pdf.width, pdf.height);
-    
-      const pdfBlob = pdf.output('blob');
-    
-      // Clean up: remove the off-screen container
-      ReactDOM.unmountComponentAtNode(container);
-      container.parentNode.removeChild(container);
-    
-      return pdfBlob;
-    } catch (error) {
-      console.error('Failed to generate PDF:', error);
-    }
-    
-  };
-
-
-const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
-  const url = `https://fambnbstorage.blob.core.windows.net/pdf-container/${blobName}?${sasTokenBase}`;
-
-  try {
-    const response = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'x-ms-blob-type': 'BlockBlob',
-        'Content-Type': 'application/pdf',
-        'Content-Length': pdfBlob.size
-      },
-      body: pdfBlob
-    });
-
-    if (!response.ok) throw new Error(`Failed to upload PDF: ${response.statusText}`);
-    console.log('PDF uploaded to blob storage.');
-    setIsSuccessfull(true);
-    setIsLoading(false);
-  } catch (error) {
-    console.error('Failed to upload PDF:', error);
-  }
-};
-
-
-
 
   return (
     <Container maxWidth="md">
@@ -374,7 +324,7 @@ const uploadPDF = async (pdfBlob, sasTokenBase, blobName) => {
           <Button disabled={isSuccessfull} variant="contained"  onClick={clearSignature}>Clear Signature</Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-        <Button type="submit" disabled={isLoading || isSuccessfull} variant="contained"  sx={{ mt: 3, px: 5, mb: 3}}>
+        <Button type="submit" variant="contained"  sx={{ mt: 3, px: 5, mb: 3}}>
           {isLoading ?  'Submitting...' : 'Submit'}
         
         </Button>

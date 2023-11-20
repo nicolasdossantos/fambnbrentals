@@ -20,7 +20,7 @@ const FormComponent = ({ formData }) => {
 
                 <div style={styles.formGroup}>
                     <label style={styles.lable}>NAME OF PROPERTY OWNER (PLEASE PRINT):</label>
-                    <input className="input-class" type="text" value={formData.ownerName.toUpperCase()} style={styles.inputThird} readOnly />
+                        <div className="input-class">{formData.ownerName.toUpperCase()}</div>
                 </div>
 
                 <label style={{ marginBottom: '10px' }}>LOCATION OF STR:</label>
