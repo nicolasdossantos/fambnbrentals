@@ -1,5 +1,6 @@
 const path = require('path');
 const UnusedWebpackPlugin = require('unused-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -9,6 +10,7 @@ module.exports = {
   mode: 'development',
   plugins: [
     new Dotenv(),
+
     new UnusedWebpackPlugin({
       directories: [path.join(__dirname, 'src')],
       exclude: ['*.test.js'],
