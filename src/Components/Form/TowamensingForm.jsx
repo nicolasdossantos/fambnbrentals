@@ -375,25 +375,6 @@ export default function TowamensingForm() {
 }
 
 function formatDate(date) {
-  let dateObj;
-
-  // Check if the date is in the format "YYYY-MM-DD"
-  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-    // If so, directly create a date object
-    dateObj = new Date(date);
-  } else {
-    // If not, assume it's in the format "Month DD"
-    const currentYear = new Date().getFullYear();
-    let dateString = `${date}, ${currentYear}`;
-    dateObj = new Date(dateString);
-
-    // Check if the date has already passed in the current year
-    if (dateObj < new Date()) {
-      dateString = `${date}, ${currentYear + 1}`;
-      dateObj = new Date(dateString);
-    }
-  }
-
-  // Format the date
+  const dateObj = new Date(date + 'T00:00');
   return `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
 }
