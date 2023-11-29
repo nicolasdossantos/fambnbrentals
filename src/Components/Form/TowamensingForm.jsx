@@ -160,6 +160,7 @@ export default function TowamensingForm() {
       cleaningCrewPhoneNumber: "570-926-0282",
       guestFirstName: formState.firstName,
       guestLastName: formState.lastName,
+      guestEmail: formState.email,
       cleanerNameAndPhoneNumber: "Gena O\'Connor 570-926-0282",
       guestFullName: formState.firstName + ' ' + formState.lastName,
       guestAddress: formState.address,

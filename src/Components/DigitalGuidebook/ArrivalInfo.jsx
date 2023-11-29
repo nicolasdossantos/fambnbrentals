@@ -1,7 +1,19 @@
 import React from "react";
+import ArrivalAccordeon from "./ArrivalAccordeon";
 
 const ArrivalInfo = () => {
-    return <div>ArrivalInfo</div>;
+    const categories = [
+        {
+            title: "",
+            icon: ""
+        }
+    ]
+
+
+
+    return (
+        <div></div>
+    )
 }
 
 export default ArrivalInfo;
