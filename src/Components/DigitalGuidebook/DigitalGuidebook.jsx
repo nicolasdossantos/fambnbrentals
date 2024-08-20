@@ -4,12 +4,31 @@ import coverImage from '../../photos/general/cover_50.jpg'
 import Alert from '@mui/material/Alert';
 import WifiIcon from '@mui/icons-material/Wifi';
 import '../../style/DigitalGuideBook.css';
+import ComingSoon from '../ComingSoon';
 
 function DigitalGuideBook() {
   const propertyId = "";
   
   const [guestyAPIKey, setGuestyAPIKey] = React.useState("");
-  
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+
+
+  React.useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+        // Set window width/height to state
+        setIsMobile(window.innerWidth <= 768);
+    }
+    
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+}, []);
 
   React.useEffect(() => {
     if(guestyAPIKey === ""){
@@ -22,9 +41,12 @@ function DigitalGuideBook() {
     checkInDate: "Oct 15, 2023",
     checkOutDate: "Oct 20, 2023"
   };
+    
 
   return (
-    <div className="App main">
+    <div>
+      {!isMobile ? <ComingSoon /> : 
+      <div className="App main">
       <div>
         <div className="cover-container">
          
@@ -41,7 +63,9 @@ function DigitalGuideBook() {
         </Alert>
         <TileGrid />
       </div>
+    </div>}
     </div>
+
   );
 }
 

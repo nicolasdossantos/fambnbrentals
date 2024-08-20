@@ -81,51 +81,51 @@ export default function TowamensingForm() {
         setErrorMessage('');
       }, 3000);
     }
-    }, [errorMessage]);
+  }, [errorMessage]);
 
   const handleSetError = useCallback((field, hasError) => {
     dispatch({ type: 'SET_ERROR', field, value: hasError });
   }, []);
 
   const requiredIsEmpty = () => {
-    if(formState.firstName == "") {
+    if (formState.firstName == "") {
       setErrorMessage('Please enter your first name');
       return true
-    } else if(formState.lastName == "") {
+    } else if (formState.lastName == "") {
       setErrorMessage('Please enter your last name');
       return true
-    } else if(formState.email == "") {
-      setErrorMessage('Please enter your email address');  
+    } else if (formState.email == "") {
+      setErrorMessage('Please enter your email address');
       return true
-    } else if(formState.address == "") {
+    } else if (formState.address == "") {
       setErrorMessage('Please enter your address');
       return true
-    } else if(formState.city == "") {
+    } else if (formState.city == "") {
       setErrorMessage('Please enter your city');
       return true
-    } else if(formState.state == "") {
+    } else if (formState.state == "") {
       setErrorMessage('Please enter your state');
       return true
-    } else if(formState.zip == "") {
+    } else if (formState.zip == "") {
       setErrorMessage('Please enter your zip code');
       return true
-    } else if(formState.phone == "") {
+    } else if (formState.phone == "") {
       setErrorMessage('Please enter your phone number');
       return true
-    } else if(signatureData == "") {
+    } else if (signatureData == "") {
       setErrorMessage('Please sign the form');
       return true
-    } 
+    }
 
-    if(formState.cars.length == 0) {
+    if (formState.cars.length == 0) {
       setErrorMessage('Please enter at least one car');
       return true
-    } else if(formState.cars.length == 1 && formState.cars[0].plate == "") {
+    } else if (formState.cars.length == 1 && formState.cars[0].plate == "") {
       setErrorMessage('Please enter at least one car');
       return true
     }
 
-   
+
 
     return false
   }
@@ -191,12 +191,12 @@ export default function TowamensingForm() {
       car8State: "",
     }
 
-    if(requiredIsEmpty() ) {
+    if (requiredIsEmpty()) {
       setIsLoading(false);
       return
     }
 
-    
+
 
     const populateCars = (dataForm, cars) => {
       cars.forEach((car, index) => {
@@ -346,7 +346,9 @@ export default function TowamensingForm() {
         >
           <div
           >I AFFIRM I HAVE READ THE CURRENT RULES OF CONDUCT AND RENTAL POLICY AND I AM AWARE OF THE TRASH COMPACTOR HOURS UPON CHECKOUT TIME.</div>
-          <a style={{ color: 'blue' }} href="https://www.towamensing.com/documents2010/rules%20of%20conduct%202010.pdf" target='_blank'>Towamensing Trails Rules of Conduct</a>
+          <a style={{ color: 'blue' }} href="https://towamensingformsa.blob.core.windows.net/test/rulesofconduct.pdf" target='_blank' rel="noopener noreferrer">
+            Towamensing Trails Rules of Conduct
+          </a>
         </div>
         {/* Car inputs and buttons here, wrapped in Grid components as above */}
         <Typography variant="h6" sx={{ mt: 4 }}>Signature</Typography>

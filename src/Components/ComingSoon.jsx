@@ -6,8 +6,8 @@ const ComingSoon = () => {
   return (
     <div className="coming-soon">
         <img src={FamBnbLogo} alt="logo" className="logo" />
-        <div className="description-font text">Coming Soon!</div>
-        </div>
+        <div className="description-font text">Coming Soon!</div>  
+      </div>
   );
 };
 
