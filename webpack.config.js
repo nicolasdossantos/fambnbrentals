@@ -2,6 +2,7 @@ const path = require('path');
 const UnusedWebpackPlugin = require('unused-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 
@@ -32,7 +33,18 @@ module.exports = {
           }
         };
       }
-   })
+   }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: '',
+          globOptions: {
+            ignore: ['**/index.html'], // HtmlWebpackPlugin handles this
+          },
+        },
+      ],
+    })
    
   ],
   module: {

@@ -9,7 +9,7 @@ import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
 
 
 
-const Welcome = () => {
+const ContactUs = () => {
     const navigate = useNavigate();
     const styles = {
         container: {
@@ -116,4 +116,4 @@ const Welcome = () => {
 
 
 
-export default Welcome;
+export default ContactUs;

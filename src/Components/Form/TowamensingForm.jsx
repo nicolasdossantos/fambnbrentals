@@ -1,10 +1,15 @@
 import React, { useState, useReducer, useRef, useCallback, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SignaturePad from 'react-signature-canvas';
-import { Box, TextField, Button, Typography, Grid, Container } from '@mui/material';
+import { Box, Button, Typography, Grid, Container, Paper, Divider, FormControlLabel, Checkbox } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CreateIcon from '@mui/icons-material/Create';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import dayjs from 'dayjs';
 import CarInput from './CarInput'; // Assume CarInput is in a separate file
 import FormTextField from './FormTextField';
 import '../../style/TowamensingForm.css';
@@ -47,7 +52,15 @@ const formReducer = (state, action) => {
 };
 
 export default function TowamensingForm() {
-  const { firstName, lastName, startDate, endDate } = useParams();
+  const { firstName, lastName, startDate: urlStartDate, endDate: urlEndDate } = useParams();
+
+  // Parse URL dates if provided, otherwise null for date picker
+  const [startDate, setStartDate] = useState(
+    urlStartDate ? dayjs(urlStartDate) : null
+  );
+  const [endDate, setEndDate] = useState(
+    urlEndDate ? dayjs(urlEndDate) : null
+  );
 
   const [formState, dispatch] = useReducer(formReducer, {
     ...initialState,
@@ -63,11 +76,14 @@ export default function TowamensingForm() {
   const [isSuccessfull, setIsSuccessfull] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [signatureData, setSignatureData] = useState('');
+  const [rulesAgreed, setRulesAgreed] = useState(false);
   const sigCanvasRef = useRef({});
 
+  // Check if form is complete enough to enable submit
   const isSubmitDisabled = useMemo(() => {
-    return Object.values(formState.errors).some(error => error);
-  }, [formState.errors]);
+    const hasErrors = Object.values(formState.errors).some(error => error);
+    return hasErrors || !rulesAgreed || !signatureData;
+  }, [formState.errors, rulesAgreed, signatureData]);
 
   const handleFieldChange = useCallback((field) => (event) => {
     dispatch({ type: 'SET_FIELD', field, value: event.target.value });
@@ -115,6 +131,12 @@ export default function TowamensingForm() {
     } else if (signatureData == "") {
       setErrorMessage('Please sign the form');
       return true
+    } else if (!startDate) {
+      setErrorMessage('Please select a check-in date');
+      return true
+    } else if (!endDate) {
+      setErrorMessage('Please select a check-out date');
+      return true
     }
 
     if (formState.cars.length == 0) {
@@ -135,7 +157,9 @@ export default function TowamensingForm() {
   }, []);
 
   const handleAddCar = () => dispatch({ type: 'ADD_CAR' });
-  const handleRemoveCar = (index) => () => dispatch({ type: 'REMOVE_CAR', index });
+  const handleRemoveCar = useCallback((index) => {
+    dispatch({ type: 'REMOVE_CAR', index });
+  }, []);
 
   const clearSignature = () => {
     sigCanvasRef.current.clear();
@@ -171,8 +195,8 @@ export default function TowamensingForm() {
       guestPhoneNumber: formState.phone,
       guestSignature: signatureData,
       todaysDate: new Date().toLocaleDateString(), //check
-      startDate: formatDate(startDate),
-      endDate: formatDate(endDate),
+      startDate: startDate ? startDate.format('M/D/YYYY') : '',
+      endDate: endDate ? endDate.format('M/D/YYYY') : '',
       car1Plate: "",
       car1State: "",
       car2Plate: "",
@@ -237,6 +261,7 @@ export default function TowamensingForm() {
       isSuccessfull={isSuccessfull}
       onCarChange={handleCarChange}
       onRemoveCar={handleRemoveCar}
+      showRemove={formState.cars.length > 1}
     />
   )), [formState.cars, isSuccessfull, handleCarChange, handleRemoveCar]);
 
@@ -254,7 +279,7 @@ export default function TowamensingForm() {
         </Alert>
       )}
       <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off" sx={{ mt: 4 }}>
-        <Typography variant="h6">Personal Information</Typography>
+        <Typography variant="h6" sx={{ mb: 2 }}>Personal Information</Typography>
         <Grid container spacing={2}>
           <FormTextField
             name="firstName"
@@ -330,45 +355,161 @@ export default function TowamensingForm() {
           />
         </Grid>
 
+        <Divider sx={{ my: 4 }} />
 
-        <Typography variant="h6" sx={{ mt: 4 }}>Car Information</Typography>
+        <Typography variant="h6" sx={{ mb: 2 }}>Reservation Dates</Typography>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <MobileDatePicker
+                label="Check-in Date"
+                value={startDate}
+                onChange={(newValue) => setStartDate(newValue)}
+                disabled={isSuccessfull || !!urlStartDate}
+                closeOnSelect={true}
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    required: true,
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <MobileDatePicker
+                label="Check-out Date"
+                value={endDate}
+                onChange={(newValue) => setEndDate(newValue)}
+                disabled={isSuccessfull || !!urlEndDate}
+                minDate={startDate || undefined}
+                closeOnSelect={true}
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    required: true,
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+        </LocalizationProvider>
+
+        <Divider sx={{ my: 4 }} />
+
+        <Typography variant="h6" sx={{ mb: 2 }}>Car Information</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Please enter the license plate information for all vehicles that will be at the property.
+        </Typography>
         {carsElements}
         <Button
           variant="outlined"
           startIcon={<AddCircleOutlineIcon />}
           onClick={handleAddCar}
           disabled={formState.cars.length >= 5 || isSuccessfull}
-          sx={{ mb: 2 }}
+          sx={{ mb: 3 }}
         >
           Add Another Car
         </Button>
-        <div style={{ width: '100%', textAlign: 'center', borderRadius: '4px', backgroundColor: 'rgb(229, 246, 253)', padding: '20px' }}
+
+        <Divider sx={{ my: 3 }} />
+
+        <Paper 
+          elevation={0} 
+          sx={{ 
+            p: 3, 
+            backgroundColor: 'rgb(229, 246, 253)', 
+            borderRadius: 2,
+            border: '1px solid',
+            borderColor: 'info.light'
+          }}
         >
-          <div
-          >I AFFIRM I HAVE READ THE CURRENT RULES OF CONDUCT AND RENTAL POLICY AND I AM AWARE OF THE TRASH COMPACTOR HOURS UPON CHECKOUT TIME.</div>
-          <a style={{ color: 'blue' }} href="https://towamensingformsa.blob.core.windows.net/test/rulesofconduct.pdf" target='_blank' rel="noopener noreferrer">
-            Towamensing Trails Rules of Conduct
-          </a>
-        </div>
-        {/* Car inputs and buttons here, wrapped in Grid components as above */}
-        <Typography variant="h6" sx={{ mt: 4 }}>Signature</Typography>
+          <FormControlLabel
+            control={
+              <Checkbox 
+                checked={rulesAgreed} 
+                onChange={(e) => setRulesAgreed(e.target.checked)}
+                disabled={isSuccessfull}
+                color="primary"
+              />
+            }
+            label={
+              <Typography variant="body2">
+                I have read the{' '}
+                <a 
+                  href="https://engage.goenumerate.com/s/towamensingtrails/public/7234/2026%20Rules%20of%20Conduct%20revised%202.pdf" 
+                  target='_blank' 
+                  rel="noopener noreferrer"
+                  style={{ color: '#1976d2', fontWeight: 500 }}
+                >
+                  Towamensing Trails Rules of Conduct
+                </a>
+                {' '}and Rental Policy. I am aware of the trash compactor hours and checkout time requirements.
+              </Typography>
+            }
+          />
+        </Paper>
+
+        <Divider sx={{ my: 3 }} />
+
+        <Typography variant="h6" sx={{ mb: 1 }}>Signature</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Please sign below using your finger or mouse
+        </Typography>
 
 
 
-        <SignaturePad
-          ref={sigCanvasRef}
-          canvasProps={{ className: 'signatureCanvas' }}
-          onEnd={onSignatureChange}
-          disabled={isSuccessfull}
-        // other props you might need
-        />
-
-        <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-          <Button disabled={isSuccessfull || isLoading} variant="contained" onClick={clearSignature}>Clear Signature</Button>
+        <Box sx={{ 
+          border: '2px solid',
+          borderColor: signatureData ? 'success.main' : 'grey.400',
+          borderRadius: 2,
+          backgroundColor: '#fafafa',
+          p: 1,
+          mb: 1
+        }}>
+          <SignaturePad
+            ref={sigCanvasRef}
+            canvasProps={{ className: 'signatureCanvas' }}
+            onEnd={onSignatureChange}
+            disabled={isSuccessfull}
+          />
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Button disabled={isLoading || isSuccessfull || isSubmitDisabled} type="submit" variant="contained" sx={{ mt: 3, px: 5, mb: 3 }}>
-            {isLoading ? 'Submitting...' : 'Submit'}
+        {!signatureData && (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+            <CreateIcon fontSize="small" color="action" />
+            <Typography variant="caption" color="text.secondary">
+              Sign in the box above
+            </Typography>
+          </Box>
+        )}
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          <Button 
+            disabled={isSuccessfull || isLoading || !signatureData} 
+            variant="outlined" 
+            onClick={clearSignature}
+            size="small"
+          >
+            Clear Signature
+          </Button>
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', pb: 4 }}>
+          <Button 
+            disabled={isLoading || isSuccessfull || isSubmitDisabled} 
+            type="submit" 
+            variant="contained" 
+            size="large"
+            sx={{ 
+              mt: 3, 
+              px: 6, 
+              py: 1.5,
+              fontSize: '1.1rem',
+              backgroundColor: 'primary.main',
+              '&:hover': {
+                backgroundColor: 'primary.dark',
+              }
+            }}
+          >
+            {isLoading ? 'Submitting...' : 'Submit Registration'}
 
           </Button>
         </Box>
@@ -377,7 +518,4 @@ export default function TowamensingForm() {
   );
 }
 
-function formatDate(date) {
-  const dateObj = new Date(date + 'T00:00');
-  return `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
-}
+// formatDate is no longer needed - using dayjs format() instead
