@@ -1,8 +1,9 @@
 import React from 'react';
 import TileGrid from './TileGrid';
 import coverImage from '../../photos/general/cover_50.jpg'
-import Alert from '@mui/material/Alert';
 import WifiIcon from '@mui/icons-material/Wifi';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import CheckIcon from '@mui/icons-material/Check';
 import '../../style/DigitalGuideBook.css';
 import ComingSoon from '../ComingSoon';
 
@@ -11,6 +12,19 @@ function DigitalGuideBook() {
   
   const [guestyAPIKey, setGuestyAPIKey] = React.useState("");
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+  const [copied, setCopied] = React.useState(false);
+
+  const wifiPassword = "Poconos2023";
+
+  const handleCopyPassword = async () => {
+    try {
+      await navigator.clipboard.writeText(wifiPassword);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
 
 
   React.useEffect(() => {
@@ -32,40 +46,48 @@ function DigitalGuideBook() {
 
   React.useEffect(() => {
     if(guestyAPIKey === ""){
-
+      // Future: Fetch Guesty API key
     }
   }, []);
-
-  const reservationInfo = {
-    guestName: "John",
-    checkInDate: "Oct 15, 2023",
-    checkOutDate: "Oct 20, 2023"
-  };
-    
 
   return (
     <div>
       {!isMobile ? <ComingSoon /> : 
       <div className="App main">
-      <div>
+      <div className="guidebook-content">
         <div className="cover-container">
-         
-            <img id="coverImage" src={coverImage} alt="Cover" />
-{/*           
-          <div className="reservation-card">
-            <div className="reservation-card-title title-font">Hello {reservationInfo.guestName}</div>
-            <p className="detail-font"><strong>Check-in:</strong> {reservationInfo.checkInDate}</p>
-            <p className="detail-font"><strong>Check-out:</strong> {reservationInfo.checkOutDate}</p>
-          </div> */}
+          <img id="coverImage" src={coverImage} alt="Cover" />
+          <div className="cover-overlay"></div>
+          <div className="welcome-text">
+            <span className="welcome-subtitle">Welcome to</span>
+            <h1 className="property-name">194 Bishop</h1>
+          </div>
         </div>
-        <Alert className="alert description-font" severity="info" icon={<WifiIcon className="icon icon-font"/>}>
-          <p className="alert-text">Network: <b>FAM BNB</b> | Password: <b>Poconos2023</b></p>
-        </Alert>
+        
+        <div className="wifi-bar" onClick={handleCopyPassword}>
+          <div className="wifi-content">
+            <WifiIcon className="wifi-icon" />
+            <div className="wifi-details">
+              <span className="wifi-label">WiFi Network</span>
+              <span className="wifi-network">FAM BNB</span>
+            </div>
+          </div>
+          <div className="wifi-password-section">
+            <div className="wifi-password-info">
+              <span className="wifi-label">Password</span>
+              <span className="wifi-password">{wifiPassword}</span>
+            </div>
+            <button className={`copy-btn ${copied ? 'copied' : ''}`}>
+              {copied ? <CheckIcon className="copy-icon" /> : <ContentCopyIcon className="copy-icon" />}
+              <span>{copied ? 'Copied!' : 'Copy'}</span>
+            </button>
+          </div>
+        </div>
+        
         <TileGrid />
       </div>
     </div>}
     </div>
-
   );
 }
 

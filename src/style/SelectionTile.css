@@ -1,8 +1,10 @@
+/* ===== TILE GRID LAYOUT ===== */
 .grid {
     display: flex;
     flex-direction: column;
-    gap: 1vw;
-    padding: 2.5vw;
+    gap: 12px;
+    padding: 20px;
+    padding-top: 24px;
 }
 
 .grid > * {
@@ -11,35 +13,98 @@
     align-items: stretch;
 }
 
-
-.tile-title {
-    margin-bottom: 0.5rem;
-}
-
-.tile-icon {
-    color: #7AC7C4;
-    margin-bottom: 0.5rem; /* Space between icon and title */
-
-}
-
-
-.tile {
-    flex-grow: 1;
-    padding: 1rem;
-    text-align: center;
-    transition: transform 0.3s;
-    height: 100% !important;
-}
-
+/* ===== INDIVIDUAL TILES ===== */
 .tile-container {
     flex-grow: 1;
     text-align: center;
-    transition: transform 0.3s;
     align-items: stretch;
     height: 100% !important;
 }
 
+.tile {
+    flex-grow: 1;
+    padding: 24px 16px;
+    text-align: center;
+    height: 100% !important;
+    background: white !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(122, 199, 196, 0.15) !important;
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 4px 16px rgba(122, 199, 196, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
 
+.tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7AC7C4, #5BB5B2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tile:active {
+    transform: scale(0.97) !important;
+    box-shadow: 
+        0 1px 4px rgba(0, 0, 0, 0.05),
+        0 2px 8px rgba(122, 199, 196, 0.1) !important;
+}
+
+.tile:active::before {
+    opacity: 1;
+}
+
+/* ===== TILE ICON ===== */
+.tile-icon {
+    color: #7AC7C4;
+    font-size: 36px !important;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tile:active .tile-icon {
+    transform: scale(1.1);
+    color: #5BB5B2;
+}
+
+/* ===== TILE TITLE ===== */
+.tile-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2D3748;
+    letter-spacing: -0.2px;
+}
+
+/* ===== STAGGER ANIMATION ===== */
+.grid .MuiGrid-item:nth-child(1) .tile { animation: tileSlideIn 0.4s ease-out 0.05s both; }
+.grid .MuiGrid-item:nth-child(2) .tile { animation: tileSlideIn 0.4s ease-out 0.1s both; }
+.grid .MuiGrid-item:nth-child(3) .tile { animation: tileSlideIn 0.4s ease-out 0.15s both; }
+.grid .MuiGrid-item:nth-child(4) .tile { animation: tileSlideIn 0.4s ease-out 0.2s both; }
+.grid .MuiGrid-item:nth-child(5) .tile { animation: tileSlideIn 0.4s ease-out 0.25s both; }
+.grid .MuiGrid-item:nth-child(6) .tile { animation: tileSlideIn 0.4s ease-out 0.3s both; }
+.grid .MuiGrid-item:nth-child(7) .tile { animation: tileSlideIn 0.4s ease-out 0.35s both; }
+.grid .MuiGrid-item:nth-child(8) .tile { animation: tileSlideIn 0.4s ease-out 0.4s both; }
+
+@keyframes tileSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CENTER UTILITY ===== */
 .center-div {
     display: flex;
     align-items: center;
@@ -47,7 +112,21 @@
     height: 100vh;
 }
 
-/* Media Query for smaller screens */
-@media (max-width: 768px) {
-
+/* ===== RESPONSIVE ===== */
+@media (max-width: 360px) {
+    .grid {
+        padding: 16px;
+    }
+    
+    .tile {
+        padding: 20px 12px;
+    }
+    
+    .tile-icon {
+        font-size: 32px !important;
+    }
+    
+    .tile-title {
+        font-size: 14px;
+    }
 }

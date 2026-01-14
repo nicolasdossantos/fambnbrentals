@@ -1,59 +1,71 @@
 import React from 'react';
 
-const HomeAmenityCard = ({ amenity }) => {
+const HomeAmenityCard = ({ amenity, index = 0 }) => {
     const styles = {
-        container: {
-            padding: '3vh 5vw',
-            margin: 'auto',
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
+        card: {
+            background: 'white',
+            borderRadius: '20px',
+            marginBottom: '16px',
+            boxShadow: '0 2px 16px rgba(0, 0, 0, 0.08)',
+            border: '1px solid rgba(122, 199, 196, 0.1)',
+            overflow: 'hidden',
+            animation: `slideUp 0.5s ease-out ${0.05 * (index + 1)}s both`,
         },
-        section: {
-            marginBottom: '2vh',
-            padding: '2vh 2vw',
-            border: '1px solid #e0e0e0',
-            borderRadius: '5px',
-            display: 'flex',             // added this
-            flexDirection: 'column',     // added this
-            alignItems: 'center',
+        imageContainer: {
+            width: '100%',
+            lineHeight: 0,
         },
-        icon: {
-            marginRight: '0.5vw',
+        image: {
+            width: '100%',
+            height: 'auto',
+            display: 'block',
+            borderRadius: '20px 20px 0 0',
         },
-
-        buttons: {
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            marginTop: '2vh',
-
+        content: {
+            padding: '20px',
         },
         title: {
-            textAlign: 'center'
+            fontSize: '20px',
+            fontWeight: '700',
+            color: '#2D3748',
+            margin: '0 0 10px 0',
+            letterSpacing: '-0.3px',
         },
-        images: {
-            width: 'auto',
-            maxWidth: '100%',
-            margin: '0 auto'
-        }
-
+        description: {
+            fontSize: '15px',
+            color: '#718096',
+            lineHeight: '1.6',
+            margin: 0,
+        },
     };
 
+    React.useEffect(() => {
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes slideUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+        return () => document.head.removeChild(styleSheet);
+    }, []);
+
     return (
-        <div>
-            <div style={styles.section}>
-                <img style={styles.images} src={amenity.picture}></img>
-                <div>
-                    <div style={styles.title} className="title-font">{amenity.title}</div>
-                    <p className="description-font">{amenity.description}</p>
-                </div>
+        <div style={styles.card}>
+            <div style={styles.imageContainer}>
+                <img 
+                    style={styles.image} 
+                    src={amenity.picture} 
+                    alt={amenity.title}
+                />
+            </div>
+            <div style={styles.content}>
+                <h3 style={styles.title}>{amenity.title}</h3>
+                <p style={styles.description}>{amenity.description}</p>
             </div>
         </div>
-    )
-
-
-
-
+    );
 }
+
 export default HomeAmenityCard;

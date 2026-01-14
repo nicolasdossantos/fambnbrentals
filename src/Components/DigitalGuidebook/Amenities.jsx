@@ -11,41 +11,62 @@ import ArcadeGamesPicture from '../../photos/house/Arcades.jpg';
 import BoardGamesPicture from '../../photos/house/Board Games.jpg';
 import CornholePicture from '../../photos/house/Cornhole.jpg';
 
-
 import { useNavigate } from 'react-router-dom';
 
 const Amenities = () => {
-
     const navigate = useNavigate();
+    
     const styles = {
-        header: {
-            backgroundColor: '#A9CCE3', // soft blue color
-            padding: '1vh 2vw',
-            borderRadius: '5px',
-            displpay: 'flex',
-            alignItems: 'center',
-            fontWeight: 'bold',
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: '2vh',
-            justifyContent: 'center',
-        },
-
         container: {
-            padding: '3vh 5vw',
+            padding: '24px 20px',
+            paddingBottom: '40px',
             margin: 'auto',
             display: 'flex',
-            justifyContent: 'center',
             flexDirection: 'column',
+            background: 'linear-gradient(180deg, #f8fffe 0%, #ffffff 100%)',
+            minHeight: '100%',
+            animation: 'fadeIn 0.5s ease-out',
         },
-        buttons: {
+        heroSection: {
+            textAlign: 'center',
+            marginBottom: '24px',
+        },
+        greeting: {
+            fontSize: '14px',
+            color: '#7AC7C4',
+            fontWeight: '600',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            marginBottom: '8px',
+        },
+        title: {
+            fontSize: '26px',
+            fontWeight: '700',
+            color: '#2D3748',
+            margin: '0 0 8px 0',
+            letterSpacing: '-0.5px',
+        },
+        subtitle: {
+            fontSize: '15px',
+            color: '#718096',
+            lineHeight: '1.5',
+        },
+        buttonContainer: {
             display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            marginTop: '2vh',
-
+            justifyContent: 'center',
+            marginTop: '12px',
+        },
+        button: {
+            background: 'linear-gradient(135deg, #7AC7C4 0%, #5BB5B2 100%)',
+            borderRadius: '12px',
+            padding: '14px 28px',
+            fontSize: '15px',
+            fontWeight: '600',
+            textTransform: 'none',
+            boxShadow: '0 4px 15px rgba(122, 199, 196, 0.3)',
         },
     };
+
     const amenityList = [
         {
             picture: GrillPicture,
@@ -55,7 +76,7 @@ const Amenities = () => {
         {
             picture: HotTubPicture,
             title: "Hot Tub",
-            description: "Indulge in our comfortable 5-person hot tub — the perfect way to unwind. Please make sure to cover it after each use to maintain cleanliness and safety. Importantly, the hot tub should remain on at all times. Simply lower the temperature to 80 degrees before you leave. Enjoy your soothing retreat!"
+            description: "Indulge in our comfortable 5-person hot tub, the perfect way to unwind. Please make sure to cover it after each use to maintain cleanliness and safety. The hot tub should remain on at all times. Simply lower the temperature to 80 degrees before you leave."
         },
         {
             picture: PoolTablePicture,
@@ -70,7 +91,7 @@ const Amenities = () => {
         {
             picture: FoosballTablePicture,
             title: "Foosball Table",
-            description: "Challenge your friends and family to a spirited match at our foosball table — a classic and entertaining addition to our game room that's sure to provide hours of fun."
+            description: "Challenge your friends and family to a spirited match at our foosball table, a classic and entertaining addition to our game room that's sure to provide hours of fun."
         },
         {
             picture: ArcadeGamesPicture,
@@ -87,23 +108,44 @@ const Amenities = () => {
             title: "Cornhole",
             description: "Enjoy some classic outdoor fun with our cornhole game, conveniently located in the game room. After showing off your tossing skills, please return the game to its designated spot for the next guests to enjoy."
         }
+    ];
 
-    ]
+    React.useEffect(() => {
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+        return () => document.head.removeChild(styleSheet);
+    }, []);
 
     return (
         <div style={styles.container}>
-            <div style={styles.header} className="title-font">
-                Home Amenities
-            </div>
-            {amenityList.map((amenity) => (
-                <HomeAmenityCard amenity={amenity}></HomeAmenityCard>
-            ))}
-            <div style={styles.buttons} className="description-font">
-                <Button startIcon={<ArrowBackRoundedIcon className="icon-font" />} onClick={() => navigate('/bishop/digitalguidebook')} variant="contained" color="primary" style={{ marginTop: '20px', backgroundColor: '#7AC7C4' }}>Back to Home</Button>
-                {/* <Button startIcon={<LogoutRoundedIcon />} onClick={() => navigate('/beforeyouleave')} variant="contained" color="primary" style={{marginTop: '20px', backgroundColor: '#7AC7C4'}}>Checkout Rules</Button> */}
+            {/* Hero Section */}
+            <div style={styles.heroSection}>
+                <p style={styles.greeting}>What We Offer</p>
+                <h1 style={styles.title}>Home Amenities</h1>
+                <p style={styles.subtitle}>Everything you need for an unforgettable stay</p>
             </div>
 
-        </ div >
+            {amenityList.map((amenity, index) => (
+                <HomeAmenityCard key={amenity.title} amenity={amenity} index={index} />
+            ))}
+
+            <div style={styles.buttonContainer}>
+                <Button 
+                    startIcon={<ArrowBackRoundedIcon />} 
+                    onClick={() => navigate('/bishop/digitalguidebook')} 
+                    variant="contained" 
+                    style={styles.button}
+                >
+                    Back to Home
+                </Button>
+            </div>
+        </div>
     );
 }
 

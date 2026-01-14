@@ -1,70 +1,213 @@
+/* ===== MAIN LAYOUT ===== */
+.main {
+  height: 100% !important;
+  background: linear-gradient(180deg, #f8fffe 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.guidebook-content {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HERO SECTION ===== */
 .cover-container {
   position: relative !important;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100% !important;
-  height: 30vh !important;
-}
-
-.main {
-  height: 83% !important;
+  height: 35vh !important;
+  overflow: hidden;
 }
 
 #coverImage {
-  width: 100%;           /* Use the full width of the container */
-  height: 100%;          /* Use the full height of the container */
-  object-fit: cover;     /* Resize the image to cover the container while preserving its aspect ratio */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
+  transform: scale(1.02);
 }
 
+.cover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+}
 
+.welcome-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  text-align: left;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.welcome-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.property-name {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* ===== WIFI BAR ===== */
+.wifi-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #7AC7C4 0%, #5BB5B2 100%);
+  padding: 16px 20px;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(122, 199, 196, 0.3);
+}
+
+.wifi-bar:active {
+  transform: scale(0.995);
+  background: linear-gradient(135deg, #6BBFBC 0%, #4AA9A6 100%);
+}
+
+.wifi-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wifi-icon {
+  font-size: 28px !important;
+  color: white;
+  opacity: 0.95;
+}
+
+.wifi-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.wifi-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.wifi-network {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.3px;
+}
+
+.wifi-password-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wifi-password-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.wifi-password {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  font-family: 'SF Mono', 'Roboto Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.copy-btn.copied {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.copy-icon {
+  font-size: 16px !important;
+}
+
+/* ===== LEGACY SUPPORT ===== */
 .reservation-card {
   position: absolute;
   bottom: 4%;
   right: 2%;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 1vw;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 25vw;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  max-width: 200px;
+  backdrop-filter: blur(10px);
 }
-
 
 .reservation-card p {
-  margin: 0.5vw 0;
+  margin: 4px 0;
 }
 
-.alert {
-  display: flex !important;
-  align-items: center !important;
-  padding: 1vw 1vw !important;
-  line-height: 0.3 !important;
- 
-  white-space: nowrap !important; /* Prevents text wrapping onto the next line */
-  overflow: hidden !important;   /* Hides overflow content */
-  text-overflow: ellipsis !important; /* Adds "..." for overflowed content */
-  width: 100% !important;         /* Set to desired width, can be adjusted */
-  margin-bottom: 1vw !important;
-}
-
-
-.icon {
-
-}
-
-
-
-/* Media Queries */
-@media (max-width: 768px) { 
-  /* Adjust styles for tablets and mobile devices */
-
-  .reservation-card {
-      padding: 3vw;
-      max-width: 50vw;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 360px) {
+  .wifi-bar {
+    padding: 14px 16px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
   }
-
+  
+  .wifi-password-section {
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .property-name {
+    font-size: 24px;
+  }
 }
-
-/* If you find text getting too small or too large on some devices, 
- you can add more media queries for specific breakpoints */

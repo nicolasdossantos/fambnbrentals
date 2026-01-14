@@ -21,16 +21,6 @@ const TileGrid = () => {
             icon: StarRateRoundedIcon,
             onClickFunction: () => { navigate('/bishop/digitalguidebook/welcome') }
         },
-        // {
-        //     title: "Arrival Info",
-        //     icon: KeyRoundedIcon,
-        //     onClickFunction: () => { navigate('/bishop/digitalguidebook/arrivalinfo') }
-        // },
-        {
-            title: "Before You Leave",
-            icon: ChecklistRoundedIcon,
-            onClickFunction: () => { navigate('/bishop/digitalguidebook/beforeyouleave') }
-        },
         {
             title: "House Rules",
             icon: HouseRoundedIcon,
@@ -50,6 +40,11 @@ const TileGrid = () => {
             title: "Things To Do",
             icon: LocationOnIcon,
             onClickFunction: () => { navigate('/bishop/digitalguidebook/thingstodo') }
+        },
+        {
+            title: "Before You Leave",
+            icon: ChecklistRoundedIcon,
+            onClickFunction: () => { navigate('/bishop/digitalguidebook/beforeyouleave') }
         },
         {
             title: "Contact Us",
