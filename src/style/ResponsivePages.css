@@ -1,0 +1,216 @@
+/* ===== RESPONSIVE PAGE CONTAINER ===== */
+.page-container {
+    padding: 24px 20px;
+    padding-bottom: 40px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #f8fffe 0%, #ffffff 100%);
+    min-height: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== HERO SECTION ===== */
+.page-hero {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.page-hero-greeting {
+    font-size: 14px;
+    color: #7AC7C4;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.page-hero-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2D3748;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+}
+
+.page-hero-subtitle {
+    font-size: 15px;
+    color: #718096;
+    line-height: 1.5;
+}
+
+/* ===== PAGE CONTENT ===== */
+.page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* ===== CARDS ===== */
+.page-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(122, 199, 196, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Amenity Cards Grid */
+.amenity-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Category Cards */
+.category-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Attraction Cards Grid */
+.attractions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ===== BACK BUTTON ===== */
+.page-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.page-back-button {
+    background: linear-gradient(135deg, #7AC7C4 0%, #5BB5B2 100%) !important;
+    border-radius: 12px !important;
+    padding: 14px 28px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    box-shadow: 0 4px 15px rgba(122, 199, 196, 0.3) !important;
+}
+
+/* ===== DESKTOP STYLES ===== */
+@media (min-width: 769px) {
+    .page-container {
+        padding: 48px 40px;
+        padding-bottom: 60px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .page-hero {
+        margin-bottom: 40px;
+    }
+
+    .page-hero-greeting {
+        font-size: 15px;
+        letter-spacing: 3px;
+    }
+
+    .page-hero-title {
+        font-size: 36px;
+    }
+
+    .page-hero-subtitle {
+        font-size: 17px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .page-content {
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    .page-content.grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-content.grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .page-card {
+        padding: 28px;
+        border-radius: 20px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .page-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .amenity-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .category-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .attractions-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .page-back-button {
+        display: none !important;
+    }
+}
+
+/* ===== LARGE DESKTOP ===== */
+@media (min-width: 1200px) {
+    .page-container {
+        max-width: 1000px;
+        padding: 60px 48px;
+    }
+
+    .page-hero-title {
+        font-size: 42px;
+    }
+
+    .page-hero-subtitle {
+        font-size: 18px;
+        max-width: 600px;
+    }
+
+    .page-content.grid-2 {
+        gap: 24px;
+    }
+
+    .page-content.grid-3 {
+        gap: 24px;
+    }
+}
