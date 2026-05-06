@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import './App.css';
@@ -17,6 +17,12 @@ import Community from './Components/DigitalGuidebook/Community';
 import useScrollRestoration from './UseScrollRestoration';
 import ComingSoon from './Components/ComingSoon';
 import TowamensingForm from './Components/Form/TowamensingForm';
+
+// Redirect old-format URLs (/firstName/lastName/startDate/endDate) to no-date form
+function LegacyFormRedirect() {
+  const { firstName, lastName } = require('react-router-dom').useParams();
+  return <Navigate to={`/bishop/form/${firstName}/${lastName}`} replace />;
+}
 
 
 
@@ -52,7 +58,8 @@ function App() {
                                         </motion.div>
                                     } 
                                 />
-                                <Route path="/bishop/form/:firstName/:lastName/:startDate/:endDate" element={<TowamensingForm />} />
+                                <Route path="/bishop/form/:firstName/:lastName/:reservationCode" element={<TowamensingForm />} />
+                                <Route path="/bishop/form/:firstName/:lastName/:startDate/:endDate" element={<LegacyFormRedirect />} />
                                 <Route path="/bishop/form/:firstName/:lastName" element={<TowamensingForm />} />
                                 <Route path="/bishop/digitalguidebook/thingstodo" element={<ThingsToDo />} />
                                 <Route path="/bishop/digitalguidebook/contactus" element={<ContactUs />} />

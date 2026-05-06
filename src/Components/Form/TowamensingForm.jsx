@@ -52,15 +52,10 @@ const formReducer = (state, action) => {
 };
 
 export default function TowamensingForm() {
-  const { firstName, lastName, startDate: urlStartDate, endDate: urlEndDate } = useParams();
+  const { firstName, lastName, reservationCode } = useParams();
 
-  // Parse URL dates if provided, otherwise null for date picker
-  const [startDate, setStartDate] = useState(
-    urlStartDate ? dayjs(urlStartDate) : null
-  );
-  const [endDate, setEndDate] = useState(
-    urlEndDate ? dayjs(urlEndDate) : null
-  );
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [formState, dispatch] = useReducer(formReducer, {
     ...initialState,
@@ -197,6 +192,7 @@ export default function TowamensingForm() {
       todaysDate: new Date().toLocaleDateString(), //check
       startDate: startDate ? startDate.format('M/D/YYYY') : '',
       endDate: endDate ? endDate.format('M/D/YYYY') : '',
+      reservationCode: reservationCode || '',
       car1Plate: "",
       car1State: "",
       car2Plate: "",
@@ -365,7 +361,7 @@ export default function TowamensingForm() {
                 label="Check-in Date"
                 value={startDate}
                 onChange={(newValue) => setStartDate(newValue)}
-                disabled={isSuccessfull || !!urlStartDate}
+                disabled={isSuccessfull}
                 closeOnSelect={true}
                 slotProps={{
                   textField: {
@@ -380,7 +376,7 @@ export default function TowamensingForm() {
                 label="Check-out Date"
                 value={endDate}
                 onChange={(newValue) => setEndDate(newValue)}
-                disabled={isSuccessfull || !!urlEndDate}
+                disabled={isSuccessfull}
                 minDate={startDate || undefined}
                 closeOnSelect={true}
                 slotProps={{
