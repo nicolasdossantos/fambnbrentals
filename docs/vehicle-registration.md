@@ -1,0 +1,13 @@
+# Vehicle completeness and compatibility
+
+Both sides trim plate/state pairs and uppercase state/province text, without country lists or plate-format rules. Every nonblank row needs both fields. Blank extras do not count. Frontend rows remain capped at five; legacy backend eight-slot payloads remain accepted.
+
+`carNPlate`, `carNState` and the new `vehicleListConfirmation` remain strings. The backend ignores any client `vehicleCount` and derives a numeric count. Confirmation values are `confirmed_complete` for exactly one explicitly confirmed vehicle, `not_required` when the single-car prompt does not apply, and `legacy_unconfirmed` when confirmation is missing/blank or explicitly marked for legacy review. An incompatible explicit confirmation/count combination is rejected. Missing confirmation does not reject an otherwise valid legacy form. Vehicle edits, additions and removals reset the UI confirmation. Guest count never determines an expected vehicle count.
+
+The existing UI nominally requires one car, but allowed two blank rows to bypass that check. The UI minimum is preserved and that bypass is closed. The backend continues accepting zero-car legacy forms, deriving count zero and `legacy_unconfirmed`; this is not a new universal minimum-car rule. Authoritative no-car/rental-car exceptions and community requirements remain unverified. Resolve that policy before changing the existing UI/backend difference. No dumpster restriction is added.
+
+Count and confirmation are stored database review metadata, excluded from PDF rendering and its fingerprint. A confirmation-only change therefore does not trigger another PDF email. Normalized plate/state values remain PDF content. Signature validation, reservation matching, conditional PDF reuse and persistence-failure responses are preserved. Existing completed records are not migrated or reclassified.
+
+The owner describes the workflow as internal PDF email to the team, team review, then manual forwarding to Towamensing. Recipients and sending are unchanged. No approval-state infrastructure or guest follow-up is added. Guest completion and internal email receipt do not establish HOA submission or acceptance. Reviewers can inspect the stored count/confirmation; missing confirmation and no-car/rental-car cases are not automatically resolved.
+
+Coordinate backend rollout before the frontend so server-derived metadata is available. Frontend source is `nicolasdossantos/fambnbrentals` on `responsive`; workflow targeting is verified but deployed-source equivalence is not. Draft frontend PRs skip Azure deployment jobs and run form tests only. Neither change deploys or changes reminder cadence. Source preservation and recipient verification remain separate rollout checks.

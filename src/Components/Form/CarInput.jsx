@@ -3,6 +3,8 @@ import { Box, TextField, IconButton, Grid, Paper } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const CarInput = ({ car, index, isSuccessfull, onCarChange, onRemoveCar, showRemove = true }) => {
+    const needsPlate = !car.plate.trim() && Boolean(car.state.trim());
+    const needsState = !car.state.trim() && Boolean(car.plate.trim());
     const handleChange = (event) => {
         const { name, value } = event.target;
         onCarChange(index, name)(value);
@@ -24,6 +26,8 @@ const CarInput = ({ car, index, isSuccessfull, onCarChange, onRemoveCar, showRem
                         fullWidth
                         required
                         label="License Plate"
+                        error={needsPlate}
+                        helperText={needsPlate ? 'Enter the license plate for this vehicle' : ''}
                         name="plate"
                         value={car.plate}
                         onChange={handleChange}
@@ -36,19 +40,22 @@ const CarInput = ({ car, index, isSuccessfull, onCarChange, onRemoveCar, showRem
                     <TextField
                         fullWidth
                         required
-                        label="State"
+                        label="State / province"
+                        error={needsState}
+                        helperText={needsState ? 'Enter the state or province for this vehicle' : ''}
                         name="state"
                         value={car.state}
                         onChange={handleChange}
                         disabled={isSuccessfull}
                         size="medium"
                         placeholder="e.g., PA"
-                        inputProps={{ maxLength: 2, style: { textTransform: 'uppercase' } }}
+                        inputProps={{ style: { textTransform: 'uppercase' } }}
                     />
                 </Grid>
                 <Grid item xs={2} sm={2} sx={{ display: 'flex', justifyContent: 'center' }}>
                     {showRemove && (
                         <IconButton 
+                            aria-label={`Remove vehicle ${index + 1}`}
                             onClick={() => onRemoveCar(index)} 
                             disabled={isSuccessfull}
                             color="error"
