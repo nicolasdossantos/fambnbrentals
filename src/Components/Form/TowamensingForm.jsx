@@ -14,42 +14,9 @@ import CarInput from './CarInput'; // Assume CarInput is in a separate file
 import FormTextField from './FormTextField';
 import '../../style/TowamensingForm.css';
 
-const initialState = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  address: '',
-  city: '',
-  state: '',
-  zip: '',
-  errors: {},
-  cars: [{ plate: '', state: '' }],
-};
-
-
-
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_FIELD':
-      return { ...state, [action.field]: action.value };
-    case 'SET_ERROR':
-      return {
-        ...state,
-        errors: { ...state.errors, [action.field]: action.value },
-      };
-    case 'ADD_CAR':
-      return { ...state, cars: [...state.cars, { plate: '', state: '' }] };
-    case 'UPDATE_CAR':
-      const updatedCars = [...state.cars];
-      updatedCars[action.index] = { ...updatedCars[action.index], [action.field]: action.value };
-      return { ...state, cars: updatedCars };
-    case 'REMOVE_CAR':
-      return { ...state, cars: state.cars.filter((_, index) => index !== action.index) };
-    default:
-      return state;
-  }
-};
+import { initialState, formReducer } from './formState';
+import { inspectVehicleRows } from './vehicleFields';
+import { prepareVehicleSubmission } from './vehicleSubmission';
 
 export default function TowamensingForm() {
   const { firstName, lastName, reservationCode } = useParams();
@@ -74,11 +41,15 @@ export default function TowamensingForm() {
   const [rulesAgreed, setRulesAgreed] = useState(false);
   const sigCanvasRef = useRef({});
 
+  const vehicles = useMemo(() => inspectVehicleRows(formState.cars), [formState.cars]);
+  const singleVehicle = vehicles.incompleteIndex === -1 && vehicles.vehicles.length === 1;
+
   // Check if form is complete enough to enable submit
   const isSubmitDisabled = useMemo(() => {
     const hasErrors = Object.values(formState.errors).some(error => error);
-    return hasErrors || !rulesAgreed || !signatureData;
-  }, [formState.errors, rulesAgreed, signatureData]);
+    return hasErrors || !rulesAgreed || !signatureData || vehicles.incompleteIndex !== -1 ||
+      vehicles.vehicles.length === 0 || (singleVehicle && !formState.vehicleListConfirmed);
+  }, [formState.errors, formState.vehicleListConfirmed, rulesAgreed, signatureData, vehicles, singleVehicle]);
 
   const handleFieldChange = useCallback((field) => (event) => {
     dispatch({ type: 'SET_FIELD', field, value: event.target.value });
@@ -134,15 +105,12 @@ export default function TowamensingForm() {
       return true
     }
 
-    if (formState.cars.length == 0) {
-      setErrorMessage('Please enter at least one car');
-      return true
-    } else if (formState.cars.length == 1 && formState.cars[0].plate == "") {
-      setErrorMessage('Please enter at least one car');
-      return true
+    try {
+      prepareVehicleSubmission(formState.cars, formState.vehicleListConfirmed);
+    } catch (error) {
+      setErrorMessage(error.message);
+      return true;
     }
-
-
 
     return false
   }
@@ -167,7 +135,6 @@ export default function TowamensingForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting Form State:", formState); // Debug log
     setIsLoading(true);
 
     const dataForm = {
@@ -218,18 +185,7 @@ export default function TowamensingForm() {
 
 
 
-    const populateCars = (dataForm, cars) => {
-      cars.forEach((car, index) => {
-        dataForm[`car${index + 1}Plate`] = car.plate;
-        dataForm[`car${index + 1}State`] = car.state;
-      });
-
-      return dataForm;
-
-    }
-
-    const formDataWithCars = populateCars(dataForm, formState.cars);
-
+    const formDataWithCars = { ...dataForm, ...prepareVehicleSubmission(formState.cars, formState.vehicleListConfirmed) };
 
     try {
       const response = await fetch('https://fambnbbackend.azurewebsites.net/api/ProcessForm?code=X8ZC7UFwAIHl16u5OoreMM8QT9AdDX0W7IyhVjMbuqOHAzFuwkUMnw==', {
@@ -397,6 +353,18 @@ export default function TowamensingForm() {
           Please enter the license plate information for all vehicles that will be at the property.
         </Typography>
         {carsElements}
+        {singleVehicle && (
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="body2">You have listed one vehicle. Is this your complete vehicle list?</Typography>
+            <FormControlLabel
+              control={<Checkbox checked={formState.vehicleListConfirmed}
+                onChange={event => dispatch({ type: 'CONFIRM_VEHICLES', value: event.target.checked })}
+                disabled={isSuccessfull} />}
+              label="Yes, this is our complete vehicle list"
+            />
+            <Typography variant="body2" color="text.secondary">If another vehicle is coming, choose Add Another Car below.</Typography>
+          </Box>
+        )}
         <Button
           variant="outlined"
           startIcon={<AddCircleOutlineIcon />}
